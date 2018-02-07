@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2792 1699 28 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #95989a;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="icono_cards" data-name="icono cards" transform="translate(1796 1108)">
+    <g id="Rectangle_707" data-name="Rectangle 707" class="cls-1" transform="translate(996 591)">
+      <rect class="cls-2" width="8" height="12"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="7" height="11"/>
+    </g>
+    <g id="Rectangle_712" data-name="Rectangle 712" class="cls-1" transform="translate(1006 591)">
+      <rect class="cls-2" width="8" height="12"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="7" height="11"/>
+    </g>
+    <g id="Rectangle_713" data-name="Rectangle 713" class="cls-1" transform="translate(1016 591)">
+      <rect class="cls-2" width="8" height="12"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="7" height="11"/>
+    </g>
+    <g id="Rectangle_708" data-name="Rectangle 708" class="cls-1" transform="translate(996 619)">
+      <rect class="cls-2" width="8" height="12"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="7" height="11"/>
+    </g>
+    <g id="Rectangle_709" data-name="Rectangle 709" class="cls-1" transform="translate(996 605)">
+      <rect class="cls-2" width="8" height="12"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="7" height="11"/>
+    </g>
+    <g id="Rectangle_711" data-name="Rectangle 711" class="cls-1" transform="translate(1006 605)">
+      <rect class="cls-2" width="8" height="12"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="7" height="11"/>
+    </g>
+  </g>
+</svg>

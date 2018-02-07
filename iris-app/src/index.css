@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+@font-face{
+	font-family:Brandon-light;
+	src:url(Assets/Fonts/Brandon_light.otf);
+}
+@font-face{
+	font-family:Brandon-medium;
+	src:url(Assets/Fonts/Brandon_med.otf);
+}
+
+
