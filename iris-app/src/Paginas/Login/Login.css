@@ -4,6 +4,11 @@ body {
 
 
 /*LOGIN PARTE DE LOGUEO*/
+
+.contenedor{
+  padding-top: 10em;
+}
+
 .login{
 	 background: url('../../Assets/img/Login.jpg'); 
 	 height: 100vh;
@@ -12,6 +17,7 @@ body {
 	margin-top: 100px!important;
    margin-left: 100px;
    margin-right: 100px;
+   align-items: center;
 }
 
 .starter-template {
@@ -32,6 +38,7 @@ body {
 	padding-top: 50px!important;
   margin-left: 30px!important;
   margin-right: 30px!important;
+  text-align: center;
 
 }
 .contenido-login h1{
@@ -54,7 +61,7 @@ body {
 }
 
 .boton-image:hover{ 
-  background-color:#2979FF;
+  background-color:#2979FF!important;
   border-color: transparent;
 }
 
@@ -79,7 +86,7 @@ body {
 
 .marca p{
   margin-top: 80px;
-  color: #E0E0E0!important;
+  color: #BDBDBD!important;
 }
 
 .url-marca{
@@ -111,4 +118,9 @@ body {
   font-family:Brandon-light;
   color: white!important;
   opacity: .6;
+}
+
+@media screen and (max-width: 1920px){
+
+
 }

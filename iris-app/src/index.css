@@ -12,5 +12,7 @@ body {
 	font-family:Brandon-medium;
 	src:url(Assets/Fonts/Brandon_med.otf);
 }
-
-
+@font-face{
+	font-family: Brandon-it ;
+	src:url(Assets/Fonts/Brandon_light_it.otf);
+}

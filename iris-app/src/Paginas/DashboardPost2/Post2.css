@@ -1,0 +1,199 @@
+.dash{
+	background-color: #eeeeee;
+	height: 100vh;
+}
+.navbar-header{
+ 
+}
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 0!important;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand img{
+	width: 165px;
+}
+
+ .icon-menu{
+
+ }
+
+.icon-menu img{
+	width: 1.3em!important;
+}
+.separacion{
+	border-right: 1px solid rgb(48, 239, 223);
+}
+
+.profile-img{
+    margin-top: -5px;
+    margin-right: 5px;
+    float: left;
+    background: url(../../Assets/Iconos/fb2.png) 50% 50% no-repeat; 
+    background-size: auto 100%; 
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+}
+
+.user-link{
+	padding-right: 2em;
+}
+.btn-green:hover{
+	background-color:rgb(48, 239, 223)!important;
+	border-color: transparent!important;
+	
+}
+
+.nombre-dashboard li > a{
+    font-family: Brandon-medium;
+    font-size: 20px;
+    color: black!important;
+}
+
+/*POST*/
+.thumbnail{
+    border-color:transparent;
+}
+.thumbnail p,h5{
+    font-family: Brandon-light;
+}
+
+.thumbnail a>img{
+    display: inline-block;
+}
+.post-view{
+    background-color: white;
+    height: 60em;
+    overflow: hidden;
+    overflow-y: scroll; 
+    padding:10px;
+    -webkit-box-shadow: 0 0 10px #e0e0e0;
+}
+::-webkit-scrollbar{
+    width: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color: #757575;
+
+}
+
+
+
+.separador{
+    border:1px solid #BDBDBD;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.logo-pagina img{
+    width: 50%;
+}
+
+.columns-post{
+    padding-top: 5em;
+}
+
+.texto-pagina h2{
+    font-family: Brandon-medium;
+    text-align: left;
+    font-size: 20px!important;
+    line-height: 40px;
+    text-align: left;
+
+}
+.texto-pagina img{
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 40px;
+    
+
+}
+
+.texto-pagina{
+display: flex;
+justify-content: center;
+}
+
+
+.post-div{
+    border:2px dashed #BDBDBD;
+    height: 60em;    
+}
+.content-post{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) ;
+    font-family: Brandon-medium;
+
+}
+.content-post p{
+  font-size: 25px;
+  color: #9E9E9E;
+}
+.content-post img{
+  justify-content: center!important;
+}
+
+
+@media screen and (max-width: 1920px){
+    .post-view{
+    height: 55em!important;  
+}
+.post-div{
+    height: 55em!important;   
+}
+.agregar{
+    padding-top: 19em!important;
+    padding-bottom: 10em;
+   
+
+}
+   
+}
+@media screen and (max-width: 1366px){
+    .post-view{
+  
+    height: 46.5em!important;
+    
+}
+.post-div{
+    height: 46.5em!important;   
+}
+
+.texto-pagina h2{
+    font-family: Brandon-medium;
+    text-align: left;
+    font-size: 12px!important;
+    line-height: 10px;
+    text-align: left;
+
+}
+.texto-pagina img{
+    width: 1.5em;
+    height: 1.5em;
+    
+}
+.logo-pagina img{
+    width: 50%;
+    margin-top: 10px;
+}
+
+.thumbnail p,h5{
+    font-size: 10px;
+}
+.agregar{
+    padding-top: 15em!important;
+    padding-bottom: 10em;
+   
+
+}
+}
