@@ -29,8 +29,7 @@ class DashboardPost extends Component {
   }
 
   componentDidMount(){
-    axios.get('https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts'
-    )
+    axios.get('https://jsonplaceholder.typicode.com/users')
     .then(res => {
       const persons = res.data;
       this.setState({ persons }); 
