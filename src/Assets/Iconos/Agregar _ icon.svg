@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4620 4184 59.847 59.847">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #cbcbcb;
+      }
+
+      .cls-2 {
+        fill: #f3f3f3;
+      }
+    </style>
+  </defs>
+  <g id="Agregar___icon" data-name="Agregar _ icon" transform="translate(4620 4184)">
+    <circle id="Ellipse_638" data-name="Ellipse 638" class="cls-1" cx="29.923" cy="29.923" r="29.923"/>
+    <path id="Union_11" data-name="Union 11" class="cls-2" d="M10.869,28.427V17.558H0V10.869H10.869V0h6.689V10.869H28.427v6.688H17.558V28.427Z" transform="translate(15.71 15.71)"/>
+  </g>
+</svg>

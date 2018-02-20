@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="7283.5 2303.719 15.693 7.781">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #a17bfc;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="retweet" transform="translate(5987 1201)">
+    <path id="Path_85" data-name="Path 85" class="cls-1" d="M.5,3.761,2.761,1.5,5.021,3.761" transform="translate(1296.5 1102.849)"/>
+    <path id="Path_86" data-name="Path 86" class="cls-1" d="M9.282,7.151H2.5V1.5" transform="translate(1296.76 1102.849)"/>
+    <path id="Path_87" data-name="Path 87" class="cls-1" d="M14.021,3.5,11.761,5.761,9.5,3.5" transform="translate(1297.672 1103.109)"/>
+    <path id="Path_88" data-name="Path 88" class="cls-1" d="M5.5.5h6.782V6.151" transform="translate(1297.151 1102.719)"/>
+  </g>
+</svg>

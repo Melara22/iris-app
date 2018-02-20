@@ -1,0 +1,176 @@
+.dash{
+	background-color: #eeeeee;
+	height: 100vh;
+}
+
+.buscar-contenedor{
+    width: 1366px;
+}
+
+.navbar-header{
+ 
+}
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 0!important;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand img{
+	width: 165px;
+}
+
+ .icon-menu{
+
+ }
+
+.icon-menu img{
+	width: 1.3em!important;
+}
+.separacion{
+	border-right: 1px solid rgb(48, 239, 223);
+}
+
+
+.profile-img{
+    margin-top: -5px;
+    margin-right: 5px;
+    float: left;
+    background: url(../../Assets/Iconos/fb2.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+}
+
+.user-link{
+	padding-right: 2em;
+}
+.btn-green:hover{
+	background-color:rgb(48, 239, 223)!important;
+	border-color: transparent!important;
+	
+}
+
+
+
+/*Buscar*/
+.section-buscar{
+    padding-top: 5em;
+}
+.input-buscar{
+    background-color:transparent; 
+    border-top:  none;
+    border-left:  none;
+    border-right:  none;
+    border:1px solid transparent!important;
+    box-shadow: none;
+    border-bottom-color: #BDBDBD!important;
+    width: 25em;
+    font-family: Brandon-it;
+    font-size: 1.6em;
+    font-weight: bolder;
+
+}
+
+.input-buscar:focus {
+  border-color: transparent;
+  box-shadow: inset 0 1px 1px transparent;
+}
+
+.inner-addon {
+  position: relative;
+}
+
+.mis-post{
+    padding-top: 5em;
+}
+
+
+
+ul.a {
+    list-style-type: circle;
+    margin: 10px;
+}
+
+.page img {
+ width: 15px;
+ margin: 10px;
+ margin-left: 25px;
+}
+
+.page{
+   margin:10px;
+}
+   
+   
+ .thumbnail img{
+    width: 100%;
+
+}
+.thumbnail > .caption p{
+    font-size: 6px;
+}
+.thumbnail{
+    background-color: transparent;
+}
+
+#header {
+    height:50px;
+    width:100%;
+    top:0px;
+    left:0px;
+    background: transparent;
+    position:absolute;
+    font-family: Brandon-medium;
+    z-index: 10000000;
+
+     
+}
+
+#footer {
+    margin-bottom: 10px;
+    height:50px;
+    width:100%;
+    bottom:0px;
+    left:0px;
+    background: transparent;
+    position:absolute;
+    font-family: Brandon-medium;
+    z-index: 1000000;
+      
+}
+#content {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height:500px;
+    padding: 50px 0;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 15px #BDBDBD; 
+
+}
+
+#content #scrollableContent {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+#content #scrollableContent #paddingContent {
+    padding: 7px;
+
+}
+
+.awe-overlay-bg-single {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 50vh;
+    z-index: 1;
+    background: linear-gradient(-80deg, white, transparent);
+    cursor: pointer;
+}
