@@ -11,11 +11,15 @@ import fb from '../../Assets/Iconos/fb.png';
 import settings from '../../Assets/Iconos/settings.png';
 import post3 from '../../Assets/img/prew.PNG';
 import post1 from '../../Assets/img/mara/post1.png';
+import{verfSession, verifyDashboards2, getData, signOut} from '../../Assets/js/script.js';
 
 
 
 class DashboardBuscar extends Component {
   render() {
+    verfSession();
+    verifyDashboards2();
+    getData();
     return (
       <div className="DashboardBuscar">
         
@@ -39,12 +43,12 @@ class DashboardBuscar extends Component {
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
-                                      <div className="img-rounded profile-img"></div>
-                                      Oscar Melara<span className="caret"></span>
+                                      <div id="ultradiv" className="img-rounded profile-img"></div>
+                                      <span id="namelog"></span><span className="caret"></span>
                                   </a>
                                   <ul className="dropdown-menu">
                                       <li>
-                                          <a href="#">Cerrar Sesion</a>
+                                          <a onClick={signOut}>Cerrar Sesion</a>
                                       </li>
                                       <li>
                                           <a href="#">Ajustes</a>
@@ -73,154 +77,6 @@ class DashboardBuscar extends Component {
                     <div className=" mis-post">
                       <div className="row">
                         <div className="col-md-3 col-lg-3">
-                           <div id="header">
-                              <ul className="a">
-                                <li><h3>Tendecias Nacionales</h3></li>
-                              </ul>
-                            </div>
-                            <div id="content">
-                              <div id="scrollableContent">
-                                <div id="paddingContent">  
-                                    <div className="awe-overlay-bg-single "></div>
-                              
-                                        <div className="prew">
-                                                 <div className="col-md-6">
-                                                  <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-
-                                            <div className="col-md-6">
-                                             <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-                                        </div>
-                                
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div id="footer">
-                                   <div className="page">
-                                        <h4><img src={fb} alt="fbicon"/>La Mara Anda Diciendo</h4>
-                              </div>       
-                            </div>
-
-                             
-                          </div>
-
-                                                  <div className="col-md-3 col-lg-3">
-                           <div id="header">
-                              <ul className="a">
-                                <li><h3>Tendecias Nacionales</h3></li>
-                              </ul>
-                            </div>
-                            <div id="content">
-                              <div id="scrollableContent">
-                                <div id="paddingContent">  
-                                    <div className="awe-overlay-bg-single "></div>
-                              
-                                        <div className="prew">
-                                                 <div className="col-md-6">
-                                                  <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-
-                                            <div className="col-md-6">
-                                             <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-                                        </div>
-                                
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div id="footer">
-                                   <div className="page">
-                                        <h4><img src={fb} alt="fbicon"/>La Mara Anda Diciendo</h4>
-                              </div>       
-                            </div>
-
-                             
-                          </div>
-                                                  <div className="col-md-3 col-lg-3">
-                           <div id="header">
-                              <ul className="a">
-                                <li><h3>Tendecias Nacionales</h3></li>
-                              </ul>
-                            </div>
-                            <div id="content">
-                              <div id="scrollableContent">
-                                <div id="paddingContent">  
-                                    <div className="awe-overlay-bg-single "></div>
-                              
-                                        <div className="prew">
-                                                 <div className="col-md-6">
-                                                  <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-
-                                            <div className="col-md-6">
-                                             <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-                                        </div>
-                                
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div id="footer">
-                                   <div className="page">
-                                        <h4><img src={fb} alt="fbicon"/>La Mara Anda Diciendo</h4>
-                              </div>       
-                            </div>
-
-                             
-                          </div>
-                                                  <div className="col-md-3 col-lg-3">
                            <div id="header">
                               <ul className="a">
                                 <li><h3>Tendecias Nacionales</h3></li>

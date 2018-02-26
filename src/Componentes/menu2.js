@@ -9,11 +9,12 @@ import notifi from '../Assets/Iconos/notificaciones.png';
 import nuevo from '../Assets/Iconos/nuevo.png';
 import compartir from '../Assets/Iconos/compartir.png';
 import arrow from '../Assets/Iconos/arrow.png';
-
-
+import{signOut, verfSession,getData} from '../Assets/js/script.js';
 
 class Menu2 extends Component {
   render() {
+    verfSession();
+    getData();
 
     return (
       <div className="Menu2">
@@ -35,12 +36,12 @@ class Menu2 extends Component {
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
-                                      <div className="img-rounded profile-img"></div>
-                                      Oscar Melara<span className="caret"></span>
+                                      <div id="ultradiv" className="img-rounded profile-img"><img style={{width:'30px', borderRadius: '50%'}}/></div>
+                                      <span id="namelog"></span><span className="caret"></span>
                                   </a>
                                   <ul className="dropdown-menu">
                                       <li>
-                                          <a href="">Cerrar Sesion</a>
+                                          <a onClick={signOut}>Cerrar Sesion</a>
                                       </li>
                                       <li>
                                           <a href="">Ajustes</a>

@@ -17,10 +17,19 @@ const BasicExample = () => (
   <Router>
     <div>
       <Route exact path="/" component={Home}/>
-      <Route path="/dashboard" component={dashboard}/>
+      <Route exact path="/Dashboard" component={Dashboard}/>
+      {/*<Route path="/dashboard/:slug" render={(match) => {
+        return(
+          <Dashboard {...match} />
+        );
+      }}/>*/}
       <Route path="/dashboardagregar" component={dashboard2}/>
       <Route path="/dashboard_Post" component={dashboard_post}/>
-      <Route path="/dashboardPost" component={dashboardpost}/>
+      <Route path="/dashboardPost/:slug " render={(match) => {
+        return(
+            <Dashboard_Post {...match} />
+          );
+      }}/>
       <Route path="/dashboardBuscar" component={dashboardbuscar}/>
       <Route path="/dashboardPost2" component={dashboardpost2}/>
       <Route path="/topics" component={Topics}/>
@@ -29,7 +38,7 @@ const BasicExample = () => (
 )
 
 const Home = () => (
- 	<Login />
+  <Login />
 )
 
 const dashboard = () => (

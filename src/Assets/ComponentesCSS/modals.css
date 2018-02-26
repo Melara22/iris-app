@@ -49,10 +49,10 @@
   color: #757575;
   font-weight: lighter;
 }
-.redes a{
-	align-items: center;
-	display: inline-block;
-	padding: 1.2em;
+.redes label{
+  align-items: center;
+  display: inline-block;
+  padding: 0.8em;
 }
 
 .btnAgregar{
@@ -166,6 +166,19 @@ input[type="radio"]:checked:before {
   background: transparent;
   font-family: Brandon-light;
   width: 100%!important;
-}
- 
- 
+} 
+ .radio_item{
+    display: none !important;
+    }
+
+    .label_item {
+    opacity: 0.2;
+    }
+    
+    .radio_item:checked + label {
+    opacity: 1;
+    }
+
+label {
+cursor: pointer;   
+} 

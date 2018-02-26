@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import '../Assets/ComponentesCSS/modals.css';
 
 import facebook from '../Assets/Iconos/fb.png';
-import tw from '../Assets/Iconos/tw.png';
+import tw from '../Assets/Iconos/twitterlogo-color.png';
 import layout from '../Assets/Iconos/layout.png';
 import layout1 from '../Assets/Iconos/layout1.png';
 import publico from '../Assets/Iconos/icono_publico.png';
 import privado from '../Assets/Iconos/privado.png';
+import{createDashboard, createSocialNetwork} from '../Assets/js/script.js';
 
 
 class Modals extends Component {
@@ -27,17 +28,19 @@ class Modals extends Component {
 			        <p>Agregar una cuenta a tu dashboard y revisa constantemente su contenido</p>
 
 			        <div className="redes">
-			      <a><img src={facebook} alt="facebook" /></a>
-			      <a><img src={tw} alt="twitter" /></a>
+    			     <input type="radio" className="radio_item" value="" name="item" id="radio1"/>
+                     <label className="label_item" for="radio1"> <img src={facebook} /> </label>
+                     <input type="radio" className="radio_item" value="" name="item" id="radio2"/>
+                     <label className="label_item" for="radio2"> <img src={tw} /> </label>
 			     </div>
 
 			     <form>
 			     	<div className="form-group" align="center">
 					   
-					    <input type="email" className="form-control input-color-blue" id="email"/>
+					    <input type="email" className="form-control input-color-blue" id="usname"/>
 					  </div>
 			     </form>
-			      <a className="btn bt-primary btnAgregar">Agregar cuenta</a>
+			      <a onClick={createSocialNetwork} className="btn bt-primary btnAgregar">Agregar cuenta</a>
 			      </div>
 
 			      
@@ -60,7 +63,7 @@ class Modals extends Component {
 			         	 <form>
 			                  <h4>Nuevo Dashboard</h4>
 			                  <div className="form-group">
-			                  	<input className="form-control input-noborder" placeholder="Nombre de dashboard" />
+			                  	<input className="form-control input-noborder" id="dname" placeholder="Nombre de dashboard" required/>
 			                  </div>
                 		</form>
 
@@ -70,7 +73,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" />Columnas</label>
+									  <label><input type="radio" name="optradio" id="columns"/>Columnas</label>
 									</div>
                 				</div>
                 				<div className="col-md-8 layout" align="left">
@@ -84,7 +87,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" />Cards</label>
+									  <label><input type="radio" name="optradio" id="cards" />Cards</label>
 									</div>
                 				</div>
 
@@ -102,7 +105,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" /><img src={publico} alt="opcion2.2" /></label>
+									  <label><input type="radio" name="optradio" id="publi" /><img src={publico} alt="opcion2.2" /></label>
 									</div>
                 				</div>
                 				<div className="col-md-8 layout" align="left">
@@ -116,7 +119,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" /><img src={privado} alt="privado"/></label>
+									  <label><input type="radio" name="optradio" id="priv" /><img src={privado} alt="privado"/></label>
 									</div>
                 				</div>
 
@@ -129,7 +132,7 @@ class Modals extends Component {
                 		</div>
 
                 		<div className="btn-right">
-                		<a className="btn btn-primary btn-green">Crear dashboard</a>
+                		<a onClick={createDashboard} className="btn btn-primary btn-green">Crear dashboard</a>
                 		</div>
                 		</form>
 
@@ -150,7 +153,7 @@ class Modals extends Component {
 			         	 <form >
 			                  <h4>Actualizar Dashboard</h4>
 			                  <div className="form-group">
-			                  	<input className="form-control input-noborder" placeholder="Nombre de dashboard" />
+			                  	<input required className="form-control input-noborder" placeholder="Nombre de dashboard" />
 			                  </div>
                 		</form>
 

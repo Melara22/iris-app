@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import './Login.css';
-import logo from '../../Assets/Iconos/logo_login.png'
+import {Redirect} from 'react-router-dom'
+
+import logo from '../../Assets/Iconos/logo_login.png';
+import '../../Assets/js/script.js';
+import{signIn, signOut, createUser, extermin, verfSessionlog} from '../../Assets/js/script.js';
+
 
 class Login extends Component {
   render() {
+    verfSessionlog();
     return (
       <div className="Login">
         
@@ -17,7 +23,7 @@ class Login extends Component {
                 <img src={logo} alt="logo" />
                   <h1>Iniciar sesión</h1>
                     <p>Asegurate que tu cuenta sea elaniin.com para poder ingresar.</p>
-                    <button className="btn btn-primary boton-image monBouton">Sign up with Google</button>
+                    <button id="login" onClick={signIn} className="btn btn-primary boton-image monBouton">Sign up with Google</button>
 
                     <div className="marca">
                     <p>Powered by <a className="url-marca" href="">Elaniin </a>&<a className="url-marca" href=""> Inxights</a></p>
