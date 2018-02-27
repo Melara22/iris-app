@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Buscar.css';
 import Modals from '../../Componentes/modals';
+import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
@@ -15,12 +16,29 @@ import{verfSession, verifyDashboards2, getData, signOut} from '../../Assets/js/s
 
 
 
+
 class DashboardBuscar extends Component {
+  constructor(props){
+  super(props);
+
+  this.state = {
+    loading: []
+  };
+}
+
+componentDidMount() {
+  setTimeout(() => {
+    this.setState({loading: [1, 2, 3]});
+  }, 2000 );
+}
+
+
   render() {
     verfSession();
     verifyDashboards2();
     getData();
     return (
+      this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="DashboardBuscar">
         
           <section className="dash">
@@ -79,38 +97,18 @@ class DashboardBuscar extends Component {
                         <div className="col-md-3 col-lg-3">
                            <div id="header">
                               <ul className="a">
-                                <li><h3>Tendecias Nacionales</h3></li>
+                                <li><h3>Nombre DashBoard</h3></li>
+                                
                               </ul>
+                                <hr />
                             </div>
                             <div id="content">
                               <div id="scrollableContent">
                                 <div id="paddingContent">  
-                                    <div className="awe-overlay-bg-single "></div>
+                                    
                               
                                         <div className="prew">
-                                                 <div className="col-md-6">
-                                                  <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
-
-                                            <div className="col-md-6">
-                                             <div className="thumbnail">
-                                               
-                                                  <img src={post1} alt="Lights" />
-                                                  <div className="caption">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                  </div>
-                                              
-                                              </div>
-                                           </div>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, ad at. Nemo vero rerum, excepturi cum ut ea eos, voluptates aperiam sunt culpa, voluptate deleniti earum harum, nulla hic quisquam</p>
                                         </div>
                                 
                                   </div>
@@ -119,8 +117,7 @@ class DashboardBuscar extends Component {
 
                               <div id="footer">
                                    <div className="page">
-                                        <h4><img src={fb} alt="fbicon"/>La Mara Anda Diciendo</h4>
-                              </div>       
+                                          </div>       
                             </div>
 
                              
@@ -134,6 +131,7 @@ class DashboardBuscar extends Component {
         </section>
 
       </div>
+      )
     );
   }
 }

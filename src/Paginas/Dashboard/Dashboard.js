@@ -3,6 +3,8 @@ import './Dashboard.css';
 import Modals from '../../Componentes/modals';
 import Menu2 from '../../Componentes/menu2';
 
+import IconLoading from '../../Componentes/icons/IconLoading';
+
 import imgstate from '../../Assets/Iconos/blank_state.png';
 import{verifyDashboards} from '../../Assets/js/script.js';
 import {
@@ -30,7 +32,7 @@ class Dashboard extends Component {
     verifyDashboards();
     // console.log(this.props);
     return (
-      this.state.loading.length <= 0 ? 'Loading' : (
+      this.state.loading.length <= 0 ? <IconLoading /> : (
         <div className="Dashboard">
           <section className="dash">
             <div className="container postainer">
@@ -53,9 +55,7 @@ class Dashboard extends Component {
 
                     <Modals />
 
-                    <li>
-                    <Link to="/dashboard/1">Dashboard #1</Link>
-                    </li>
+                   
                 </div>
               </div>
               </div>

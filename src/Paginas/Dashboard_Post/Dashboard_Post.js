@@ -11,7 +11,7 @@ import './dashboard_Post.css';
 import Menu from '../../Componentes/menu';
 import Cards from '../../Componentes/Cards';
 import Columns from '../../Componentes/Columns';
-
+import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
@@ -30,6 +30,19 @@ var url = window.location.href;
 var id = url.substring(url.lastIndexOf('/') + 1 );
 
 class Dashboard_Post extends Component {
+constructor(props){
+  super(props);
+
+  this.state = {
+    loading: []
+  };
+}
+
+componentDidMount() {
+  setTimeout(() => {
+    this.setState({loading: [1, 2, 3]});
+  }, 2000 );
+}
 
  
   render() {
@@ -37,25 +50,7 @@ class Dashboard_Post extends Component {
     console.log(this.props);
      if(this.props != id){
     return (
-      <div className="Dashboard_Post">
-        
-          <section className="dash">
-              <div className="container postainer">
-
-                <div className="starter-template">
-
-                     <Menu/>
-
-                </div>
-                < Columns />
-                    
-          </div>
-        </section>
-      </div>
-    );
-  }
-    else{
-      return(
+      this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Dashboard_Post">
         
           <section className="dash">
@@ -71,8 +66,10 @@ class Dashboard_Post extends Component {
           </div>
         </section>
       </div>
+      )
     );
-    }
+  }
+
 
   }
 }

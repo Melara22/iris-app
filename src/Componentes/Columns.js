@@ -72,7 +72,7 @@ componentDidMount(){
                                       
                                       <p>{posttw.text}</p>
                                     </div>
-                                  <img src={post1} />
+                                
                                    <div className="opciones2">
                                          <a>{posttw.retweet_count} <img src={retweet} alt="share" /></a>
                                         <a>{posttw.favorite_count} <img src={favorite} alt="share" /></a>
