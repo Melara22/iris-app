@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Buscar.css';
 import Modals from '../../Componentes/modals';
+
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
@@ -11,15 +12,57 @@ import fb from '../../Assets/Iconos/fb.png';
 import settings from '../../Assets/Iconos/settings.png';
 import post3 from '../../Assets/img/prew.PNG';
 import post1 from '../../Assets/img/mara/post1.png';
-import{verfSession, verifyDashboards2, getData, signOut} from '../../Assets/js/script.js';
+import * as firebase from 'firebase';
+import {config} from '../../Assets/js/cons.js';
+import {app} from '../../Assets/js/script.js';
 
 
 
 class DashboardBuscar extends Component {
+  constructor(){
+    super();
+
+    this.state = { 
+    users: [],  
+    }
+  }
+
+    componentDidMount() {
+        const self = this;
+        const rootRef = app.database().ref().child('users');
+        const userRef = rootRef.child('vavava');
+        rootRef.once('value', function(snapshot){
+          snapshot.forEach(function(childSnapshot){
+              self.setState({
+                  users: self.state.users.concat(childSnapshot.val())
+              });
+          });
+        });
+        }
+
   render() {
-    verfSession();
-    verifyDashboards2();
-    getData();
+     const List = (props) => {
+
+
+    return (
+        <ul>
+        { props.users.map( (user,i) => { 
+
+         const { uid, email } = user;
+
+         return (
+
+         <li key = { i } >
+         <div>{ uid }</div>
+        <div> { email } </div>
+         </li>
+         )
+
+
+        })}
+        </ul>
+    )
+}
     return (
       <div className="DashboardBuscar">
         
@@ -46,9 +89,10 @@ class DashboardBuscar extends Component {
                                       <div id="ultradiv" className="img-rounded profile-img"></div>
                                       <span id="namelog"></span><span className="caret"></span>
                                   </a>
+                                 <List users = { this.state.users } />
                                   <ul className="dropdown-menu">
                                       <li>
-                                          <a onClick={signOut}>Cerrar Sesion</a>
+                                          <a >Avvavav</a>
                                       </li>
                                       <li>
                                           <a href="#">Ajustes</a>

@@ -22,11 +22,15 @@ import logo from '../Assets/img/mara/logo.png';
 import tw from '../Assets/Iconos/twitterlogo-color.png';
 import fb from '../Assets/Iconos/fb2.png';
 import post1 from '../Assets/Iconos/place_holder.jpg';
+import{deprueba} from '../Assets/js/script.js';
 
 var id = 'ProgramadoresAndanDiciendo';
+var url = window.location.href;
+var id1 = url.substring(url.lastIndexOf('/') + 1 );
+deprueba();
 /*declaramos como constantes a las APIS*/
-const API_tw ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?username=prensagrafica';
-const API_fb = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=e4d21ec722cc86d79d71ffb5aee4cfa2176e28cbbd612f181bd3083b3a02553d&username='+id;
+const API_tw ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?username=@Andinod_';
+const API_fb = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=dff91550656ae9ad81dd5758343d1fa56d009afc7dbdc7786b8a1a5f1261c2c9&username='+id;
 
 class Columns extends Component {
 /*declaramos el constructor*/ 
@@ -105,6 +109,8 @@ componentDidMount(){
                          </div>     
         );
     });
+    
+   
     console.log(renderPostfb)
     return (
    
