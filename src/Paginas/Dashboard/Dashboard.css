@@ -98,6 +98,10 @@
 }
 
 
+/*LOADING*/
+.icon-loading svg{
+	width: 15%!important; 
+}
 
 @media screen and (max-width: 1920px){
  .state-div{

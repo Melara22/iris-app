@@ -124,9 +124,12 @@ ul.a {
     background: transparent;
     position:absolute;
     font-family: Brandon-medium;
-    z-index: 10000000;
-
-     
+    
+    z-index: 10000000;    
+}
+#header hr{
+    border:1px solid #bdbdbd;
+    width: 80%;
 }
 
 #footer {
@@ -145,22 +148,29 @@ ul.a {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    height:500px;
-    padding: 50px 0;
+    height:300px;
+    padding: 50px 10px;
     overflow: hidden;
     -webkit-box-shadow: 0 0 15px #BDBDBD; 
 
 }
 
+
 #content #scrollableContent {
     height: 100%;
     width: 100%;
     overflow: auto;
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+#content #scrollableContent p {
+    font-family: Brandon-light;
+    font-size: 17px;
+    text-align: justify;
 }
 
 #content #scrollableContent #paddingContent {
-    padding: 7px;
+    padding: 10px;
 
 }
 
