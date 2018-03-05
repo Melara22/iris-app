@@ -533,7 +533,7 @@ export function verifiyAccess(){
                     privacity.once("value").then(function(snapshot) {
                       snapshot.forEach(function(childSnapshot) {
                           var dpriv = childSnapshot.child("priv").val();
-                          if (dpriv == true && namelog.email != key2) {
+                          if (dpriv == true && namelog.email != key2 ) {
                             window.alert("Dashboard Privado");
                             window.location.href="/Dashboard"
                           } 
@@ -559,6 +559,10 @@ export function verifiyAccess(){
                 privacity.once("value").then(function(snapshot) {
                   snapshot.forEach(function(childSnapshot) {
                       var dpriv = childSnapshot.child("priv").val();
+                      if (dpriv == true) {
+                            window.alert("Dashboard Privado");
+                            window.location.href="/Dashboard"
+                      } 
                   });
                 });
               }
