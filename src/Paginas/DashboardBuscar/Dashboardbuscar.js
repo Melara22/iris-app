@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import './Buscar.css';
-import Modals from '../../Componentes/modals';
-<<<<<<< HEAD
 
-=======
+import Modals from '../../Componentes/modals';
 import IconLoading from '../../Componentes/icons/IconLoading';
->>>>>>> 34487437933f174e23472dce75b364d6e84f3334
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
@@ -18,34 +15,61 @@ import post3 from '../../Assets/img/prew.PNG';
 import post1 from '../../Assets/img/mara/post1.png';
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
-import {app} from '../../Assets/js/script.js';
+import {app, verifyDashboards2, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom'
+import {MY_ROUTE} from '../../routes.js'
 
 
-
-
+/**
+function timeout() {
+    setTimeout(function () {
+        alert('Hello');
+        timeout();
+    }, 3000);
+}
+    timeout();
+    **/
 class DashboardBuscar extends Component {
 
-  constructor(){
+  constructor(props){
     super(props);
 
     this.state = { 
     users: [],  
-    }
-
-    this.state = {
-      loading: []
+    loading: [],
+    search: []
     };
+  }
+  updateSearch(event){
+    this.setState({search: event.target.value.substr(0,20)})
   }
 
     componentDidMount() {
         const self = this;
         const rootRef = app.database().ref().child('users');
         const userRef = rootRef.child('vavava');
-        rootRef.once('value', function(snapshot){
-          snapshot.forEach(function(childSnapshot){
-              self.setState({
-                  users: self.state.users.concat(childSnapshot.val())
-              });
+        firebase.auth().onAuthStateChanged(function(user) {
+          rootRef.once('value', function(snapshot){
+            snapshot.forEach(function(childSnapshot){
+              var uskey = childSnapshot.key;
+              var useremail = childSnapshot.child("email").val();
+              var namelog = firebase.auth().currentUser;
+                if (namelog.email == useremail) {
+                  var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+                    dashdirection.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                        self.setState({
+                            users: self.state.users.concat(childSnapshot.val())
+                        });
+                      });
+                    });
+                }
+                /**/
+            });
           });
         });
           setTimeout(() => {
@@ -58,29 +82,62 @@ class DashboardBuscar extends Component {
 
 
   render() {
+    verfSession();
      const List = (props) => {
+    let filteredContact = props.users.filter(
+        (users) => {
+          var users2 = users.dname.toUpperCase();
+          var user = users2.toLowerCase()
+          return users2.indexOf(this.state.search) !== -1 || user.indexOf(this.state.search) !== -1;
+        }
+      );
 
+    getData();
 
     return (
-        <ul>
-        { props.users.map( (user,i) => { 
+        <div className=" mis-post">
+          <div className="row">
+            
+                          
+                        
+        { filteredContact.map( (user,i) => { 
 
-         const { uid, email } = user;
+         const { did, dname, ddescription } = user;
 
          return (
+          <div className="col-md-3 col-lg-3" key = { i }>
+           
+           <div id="header">
+            <ul className="a">
+             <Link to={ MY_ROUTE.replace(':slug', did) }><li><h3><a id="dashname">{dname}</a></h3></li></Link>  
+             
 
-         <li key = { i } >
-         <div>{ uid }</div>
-        <div> { email } </div>
-         </li>
+            </ul>
+              <hr/>
+          </div>
+          <div id="content">
+              <div id="scrollableContent">
+                  <div id="paddingContent">  
+                    <div className="prew">
+                        <p>{ddescription}</p>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div id="footer">
+            <div className="page"></div>       
+          </div>
+          </div>
          )
 
 
         })}
-        </ul>
+            </div>
+        </div>
     )
 }
     return (
+
       this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="DashboardBuscar">
         
@@ -97,23 +154,21 @@ class DashboardBuscar extends Component {
                             </a>
                           </div>
                           <ul className="nav navbar-nav navbar-right">
-                            <li><a className="icon-menu" href="#"><img src={settings}  data-toggle="modal" data-target="#myModal3" /></a></li>
-                            <li><a className="icon-menu" href="#"><img src={notifi} /></a></li>
-                            <li><a className="icon-menu"><img src={nuevo} data-toggle="modal" data-target="#myModal2"/></a></li>
-                            <li className="separacion"><a className="icon-menu" href="#"><img src={compartir} /></a></li>
+                            
+                            <li><a className="icon-menu"><img src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
+                            <li className="separacion"><a className="icon-menu" href=""><img src={compartir} alt="icon-compártir" /></a></li>
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
-                                      <div id="ultradiv" className="img-rounded profile-img"></div>
-                                      <span id="namelog"></span><span className="caret"></span>
+                                      <div id="ultradiv" className="img-rounded profile-img"><img style={{width:'30px', borderRadius: '50%'}}/></div>
+                                      <span id="namelog"/><span className="caret"></span>
                                   </a>
-                                 <List users = { this.state.users } />
                                   <ul className="dropdown-menu">
                                       <li>
-                                          <a >Avvavav</a>
+                                          <a onClick={signOut}>Cerrar Sesion</a>
                                       </li>
                                       <li>
-                                          <a href="#">Ajustes</a>
+                                          <a href="">Ajustes</a>
                                       </li>
                                     
                                   </ul>
@@ -128,56 +183,26 @@ class DashboardBuscar extends Component {
                           <div className="col-xs-12 col-md-12 col-lg-12 section-buscar" align="center">
                             <form>
                              <div className="form-group">
-                              <input className="form-control input-buscar" placeholder="Buscar" />
+                              <input className="form-control input-buscar" id="searchbar" placeholder="Search" onChange={this.updateSearch.bind(this)}/>
                              </div>
                              </form>
                           <Modals />
                           </div>  
                     </div>
+                     <List users = { this.state.users } />
                     
 
-                    <div className=" mis-post">
-                      <div className="row">
-                        <div className="col-md-3 col-lg-3">
-                           <div id="header">
-                              <ul className="a">
-                                <li><h3>Nombre DashBoard</h3></li>
-                                
-                              </ul>
-                                <hr />
-                            </div>
-                            <div id="content">
-                              <div id="scrollableContent">
-                                <div id="paddingContent">  
-                                    
-                              
-                                        <div className="prew">
-                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, ad at. Nemo vero rerum, excepturi cum ut ea eos, voluptates aperiam sunt culpa, voluptate deleniti earum harum, nulla hic quisquam</p>
-                                        </div>
-                                
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div id="footer">
-                                   <div className="page">
-                                          </div>       
-                            </div>
-
-                             
-                          </div>
-                      </div>
-
-
-
-              </div>
+                    
           </div>
         </section>
 
       </div>
       )
     );
+
   }
+
 }
+
 
 export default DashboardBuscar;

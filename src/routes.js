@@ -8,10 +8,12 @@ import Login from './Paginas/Login';
 import Dashboard from './Paginas/Dashboard/Dashboard';
 import Dashboard2 from './Paginas/Dashboardagregar/Dashboard2';
 import Dashboard_Post from './Paginas/Dashboard_Post/Dashboard_Post';
+import Dashboard_Columns from './Paginas/Dashboard_Columns/Dashboard_Columns';
+import Dashboard_card from './Paginas/Dashboard_Cards/Dashboard_card';
 import DashboardPost from './Paginas/DashboardPost/PostColumn';
 import DashboardBuscar from './Paginas/DashboardBuscar/Dashboardbuscar';
 import DashboardPost2 from './Paginas/DashboardPost2/DashboardPost2';
-
+export const MY_ROUTE = '/Dashboard_columns/:slug';
 
 const BasicExample = () => (
   <Router>
@@ -25,10 +27,13 @@ const BasicExample = () => (
       }}/>*/}
       <Route path="/dashboardagregar" component={dashboard2}/>
       <Route path="/dashboard_Post" component={dashboard_post}/>
-      <Route path="/dashboardPost/:slug " render={(match) => {
+      <Route path="/dashboard_card" component={dashboard_card}/>
+
+
+      <Route exact strict path="/dashboard_columns/:slug" render={(match) => {
         return(
-            <Dashboard_Post {...match} />
-          );
+          <Dashboard_Columns {...match} />
+        );
       }}/>
       <Route path="/dashboardBuscar" component={dashboardbuscar}/>
       <Route path="/dashboardPost2" component={dashboardpost2}/>
@@ -56,6 +61,16 @@ const dashboard2 = () => (
 const dashboard_post = () => (
   <div>
     <Dashboard_Post />
+  </div>
+)
+const dashboard_columns = () => (
+  <div>
+    <Dashboard_Columns />
+  </div>
+)
+const dashboard_card = () => (
+  <div>
+    <Dashboard_card />
   </div>
 )
 

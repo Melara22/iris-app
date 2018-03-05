@@ -125,7 +125,7 @@ ul.a {
     position:absolute;
     font-family: Brandon-medium;
     
-    z-index: 10000000;    
+    z-index: 10;    
 }
 #header hr{
     border:1px solid #bdbdbd;

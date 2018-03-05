@@ -14,8 +14,8 @@ import{signOut, verfSession,getData} from '../Assets/js/script.js';
 class Menu2 extends Component {
   render() {
     verfSession();
+    
     getData();
-
     return (
       <div className="Menu2">
          
@@ -37,7 +37,7 @@ class Menu2 extends Component {
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
                                       <div id="ultradiv" className="img-rounded profile-img"><img style={{width:'30px', borderRadius: '50%'}}/></div>
-                                      <span id="namelog"></span><span className="caret"></span>
+                                      <span id="namelog"/><span className="caret"></span>
                                   </a>
                                   <ul className="dropdown-menu">
                                       <li>

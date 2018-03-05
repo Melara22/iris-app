@@ -23,14 +23,15 @@ import tw from '../Assets/Iconos/twitterlogo-color.png';
 import fb from '../Assets/Iconos/fb2.png';
 import post1 from '../Assets/Iconos/place_holder.jpg';
 import{deprueba} from '../Assets/js/script.js';
+import * as firebase from 'firebase';
+import {config} from '../Assets/js/cons.js';
+import {app, verifyDashboards2} from '../Assets/js/script.js';
 
 var id = 'ProgramadoresAndanDiciendo';
 var url = window.location.href;
 var id1 = url.substring(url.lastIndexOf('/') + 1 );
-deprueba();
+var API_fb= "";
 /*declaramos como constantes a las APIS*/
-const API_tw ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?username=@Andinod_';
-const API_fb = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=dff91550656ae9ad81dd5758343d1fa56d009afc7dbdc7786b8a1a5f1261c2c9&username='+id;
 
 class Columns extends Component {
 /*declaramos el constructor*/ 
@@ -43,57 +44,31 @@ constructor(props){
 }
 
 componentDidMount(){
-  var _this = this;
-  axios.get(API_tw)
-  .then(res => {
-    const posts = res.data;
-    _this.setState({ posts });
-  })
+  const {user} = this.props;
 
-  .catch(function(e){
-    console.log('ERROR' , e);
-  })
+  API_fb = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=c58d7f1fda4f2acd141c1395a2280fcde6cc33cca84ab8dd4362a962f6732ec9&username='+user;
+     axios.get(API_fb)
+    .then((res) => {
+      console.log(res.config.url)
 
-  axios.get(API_fb)
-  .then(function(res){
-    console.log(res)
-    _this.setState({
-      data: res.data.data
-    });
-  })
+      this.setState({
+        data: res.data.data
+      });
+    })
+    .catch(function(e){
+      console.log('ERROR', e);
+    })
 
-  .catch(function(e){
-    console.log('ERROR', e);
-  })
+  // console.log(user);
+ 
 }
-
   render() {
-     var id = 'ProgramadoresAndanDiciendo';
-    const renderPosttw = this.state.posts.map(function(posttw, i){
-      return(
-                             <div key={i} className="thumbnail">
-                                  <div className="caption">
-                                      
-                                      <p>{posttw.text}</p>
-                                    </div>
-                                
-                                   <div className="opciones2">
-                                         <a>{posttw.retweet_count} <img src={retweet} alt="share" /></a>
-                                        <a>{posttw.favorite_count} <img src={favorite} alt="share" /></a>
-                                        <a className="float-opcion">
-                                          {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                          </a>  
-                                  </div>                
-                              </div>        
-        );
-
-    });
 
     const renderPostfb = this.state.data.map(function(postfb, i){
       return(
                        <div key={i} className="thumbnail">
                                   <div className="caption">
-                                      
+                                      <hr/>
                                       <p>{postfb.content.message}</p>
                                     </div>
                                   <img src={postfb.content.picture} />
@@ -110,66 +85,12 @@ componentDidMount(){
         );
     });
     
+    
    
-    console.log(renderPostfb)
     return (
-   
-      <div className="Columns">
-               <div className="row">
-               
-
-               <div className="col-md-3 col-lg-3">
-                          <div className="post-view">
-
-                              <div className="col-md-8 logo-pagina">
-                              <h2><img src={tw} /></h2>
-                              </div>
-
-                              <div className="col-md-4 logo-pagina">
-                              
-                              
-                              </div>
-                               <div className="columns-post">
-                        {renderPosttw}
-                      </div>
-                   </div>
-
-                
-</div>
-
-
-                    <div className="col-md-3 col-lg-3">
-                          <div className="post-view">
-
-                              <div className="col-md-8 logo-pagina">
-                              <h2><img src={fb} />{id}</h2>
-                              </div>
-
-                              <div className="col-md-4 logo-pagina">
-                              
-                             
-                              </div>
-                      <div className="columns-post">
-                        {renderPostfb}
-                      </div>
-                        </div>
-                </div>
-                        
-                        
-                       
-                           <div className=" col-md-3 col-lg-3 post-div" align="center">
-                            <div className="content-post">
-                              <a data-toggle="modal" data-target="#myModal">
-                              <img src={agregar} />
-                              </a>
-                              <p>Agregar una pagina</p>
-                              <Modals />
-
-                            </div>
-                          </div>
-                    </div>   
-
-      </div>
+                <div className="columns-post">
+                    {renderPostfb}
+                  </div>
     );
   }
 }

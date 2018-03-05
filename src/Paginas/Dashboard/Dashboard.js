@@ -7,11 +7,7 @@ import IconLoading from '../../Componentes/icons/IconLoading';
 
 import imgstate from '../../Assets/Iconos/blank_state.png';
 import{verifyDashboards} from '../../Assets/js/script.js';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+
 
 class Dashboard extends Component {
   constructor(props) {

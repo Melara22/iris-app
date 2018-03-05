@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import '../Assets/ComponentesCSS/modals.css';
 
 import facebook from '../Assets/Iconos/fb.png';
+import AlertValidation from './alerts/alertValidation';
+import AlertAdd from './alerts/alertAdd';
 import tw from '../Assets/Iconos/twitterlogo-color.png';
 import layout from '../Assets/Iconos/layout.png';
 import layout1 from '../Assets/Iconos/layout1.png';
@@ -12,6 +14,41 @@ import{createDashboard, createSocialNetwork} from '../Assets/js/script.js';
 
 
 class Modals extends Component {
+    constructor(props) {
+    super(props);
+
+    this.state = {
+      msg: null
+    };
+
+    this.signInGoo = this.signInGoo.bind(this);
+  }
+
+  signInGoo() {
+    const goo = createDashboard();
+
+    goo.then((resp) => {
+
+      if (resp.status === true) {
+        //const {name, email, uid} = resp;
+        this.setState({msg: <AlertAdd />});
+
+        //checkIfUserExists(name, email, uid);
+      } else {
+        this.setState({msg: <AlertValidation />});
+        
+        //extermin();
+      }
+
+      console.log({then: resp});
+    }).catch((resp) => {
+      if (resp.status === false) {
+        this.setState({msg: <AlertValidation />});
+      }
+
+      // console.log({catch: resp});
+    });
+  }
   render() {
 
     return (
@@ -29,9 +66,9 @@ class Modals extends Component {
 
 			        <div className="redes">
     			     <input type="radio" className="radio_item" value="" name="item" id="radio1"/>
-                     <label className="label_item" for="radio1"> <img src={facebook} /> </label>
+                     <label className="label_item" htmlFor="radio1"> <img src={facebook} /> </label>
                      <input type="radio" className="radio_item" value="" name="item" id="radio2"/>
-                     <label className="label_item" for="radio2"> <img src={tw} /> </label>
+                     <label className="label_item" htmlFor="radio2"> <img src={tw} /> </label>
 			     </div>
 
 			     <form>
@@ -56,14 +93,17 @@ class Modals extends Component {
 
         	<div className="modal modal2 fade" id="myModal2" role="dialog">
 			    <div className="modal-dialog modal-dialog2 ">
+
 			      <div className="modal-content modal-content2">
-			        
+			         {this.state.msg}  
 			        <div className="modal-body modal-body2">
 			        	<div className="row">
 			         	 <form>
-			                  <h4>Nuevo Dashboard</h4>
+			                  <h4 id="modalActionVal">Nuevo Dashboard</h4>
 			                  <div className="form-group">
-			                  	<input className="form-control input-noborder" id="dname" placeholder="Nombre de dashboard" required/>
+			                  	<input className="form-control input-noborder" id="dname" placeholder="Dashboard name" required/>
+                                <hr/>
+                                <textarea className="form-control input-noborder" id="ddescription" placeholder="Dashboard description" required></textarea>
 			                  </div>
                 		</form>
 
@@ -132,7 +172,7 @@ class Modals extends Component {
                 		</div>
 
                 		<div className="btn-right">
-                		<a onClick={createDashboard} className="btn btn-primary btn-green">Crear dashboard</a>
+                		<a onClick={this.signInGoo} className="btn btn-primary btn-green" >Crear dashboard</a>
                 		</div>
                 		</form>
 
@@ -153,7 +193,9 @@ class Modals extends Component {
 			         	 <form >
 			                  <h4>Actualizar Dashboard</h4>
 			                  <div className="form-group">
-			                  	<input required className="form-control input-noborder" placeholder="Nombre de dashboard" />
+			                  	<input required className="form-control input-noborder" placeholder="Nombre de dashboard" id="dashnameUpd" />
+                                <br/>
+                                <textarea className="form-control input-noborder" id="descriptionUpd" placeholder="Dashboard description" required></textarea>
 			                  </div>
                 		</form>
 
@@ -163,7 +205,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" />Columnas</label>
+									  <label><input id="colUpd" type="radio" name="optradio" />Columnas</label>
 									</div>
                 				</div>
                 				<div className="col-md-8 layout" align="left">
@@ -177,7 +219,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" />Cards</label>
+									  <label><input type="radio" id="cardUpd" name="optradio" />Cards</label>
 									</div>
                 				</div>
 
@@ -195,7 +237,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" /><img src={publico} alt="public2" /></label>
+									  <label><input type="radio" id="publiUpd" name="optradio" /><img src={publico} alt="public2" /></label>
 									</div>
                 				</div>
                 				<div className="col-md-8 layout" align="left">
@@ -209,7 +251,7 @@ class Modals extends Component {
                 			<div className="row">
                 				<div className="col-md-4">
 	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" /><img src={privado} alt="privatesd" /></label>
+									  <label><input type="radio" id="privateUpd" name="optradio" /><img src={privado} alt="privated" /></label>
 									</div>
                 				</div>
 
@@ -222,7 +264,7 @@ class Modals extends Component {
                 		</div>
 
                 		<div className="btn-right">
-                		<a className="btn btn-primary btn-green">Actualizar dashboard</a>
+                		<a onClick={this.signInGoo} className="btn btn-primary btn-green">Actualizar dashboard</a>
                 		</div>
                 		</form>
 

@@ -1,0 +1,124 @@
+
+/*INDEX COMPLETO*/
+.dash{
+	background-color: #eeeeee;
+	height: 100vh;
+}
+.navbar-header{
+ 
+}
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 0!important;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand img{
+	width: 165px;
+}
+
+ .icon-menu{
+
+ }
+
+.icon-menu img{
+	width: 1.3em!important;
+}
+.separacion{
+	border-right: 1px solid rgb(48, 239, 223);
+}
+
+
+.profile-img{
+    margin-top: -5px;
+    margin-right: 5px;
+    float: left;
+    background: url(../../Assets/Iconos/fb2.png) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+}
+
+.user-link{
+	padding-right: 2em;
+}
+.btn-green:hover{
+	background-color:rgb(48, 239, 223)!important;
+	border-color: transparent!important;
+	
+}
+
+
+
+.postainer{
+
+    padding-right: 1em!important;
+    padding-left: 1em!important;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1366px;
+
+}
+
+
+
+/*POST - CARDS*/
+
+
+/*************
+POST - COLUMNS
+**************/
+
+
+
+
+
+/***********************
+PANTALLAS DE MAYOR TAMAÑO
+************************/
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 1920px){
+    .postainer{
+    padding-right: 1em!important;
+    padding-left: 1em!important;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1880px!important;
+
+}
+
+
+}
+@media screen and (max-width: 1366px){
+    .postainer{
+    padding-right: 1em!important;
+    padding-left: 1em!important;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1300px!important;
+
+}
+
+}

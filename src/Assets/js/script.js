@@ -27,59 +27,92 @@ var state=false;
 var ref=db.ref("users");
 
 export function signIn(){
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
+  return new Promise((resolve, reject) => {
 
-    // The signed-in user info.
-    var user = result.user;
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
 
-    // Data to compare/push
-        email = user.email;
-        name= user.displayName;
-        img = user.photoURL;
+      // The signed-in user info.
+      var user = result.user;
 
-    var edomain="";
-    var standardomain="@elaniin.com"
-    var i=0;
-    while(true){
-      if(email.charAt(i)!='@'){
-          i++;
+      // Data to compare/push
+          email = user.email;
+          name= user.displayName;
+          img = user.photoURL;
+
+      var edomain="";
+      var standardomain="@elaniin.com"
+      var i=0;
+
+      let customEmail = email.split('@');
+      let isError = true;
+
+      let dataReturn;
+
+      if (customEmail.length == 2) {
+        if (customEmail[1] === "elaniin.com") {
+          isError = false;
+
+          dataReturn = true;
+          uid = customEmail[0];
+          checkIfUserExists(name, email, uid);
+        }
       }
-      else{
-          var j = i;
-          var k=0;
-          while(true){
-            if(email.charAt(j)!=''){
-              j++;
-              k++;
-            }
-            else{
-              uid = (email.substr(0, i));
-              edomain=email.substr(i, k);
-              if(edomain == standardomain){
-                checkIfUserExists(name, email, uid);
-                return false;
-              }
-              else{
-                extermin();
-                return false;
-              }
-            }
-          }
+
+      if (isError) {
+        dataReturn = false;
+        extermin();
       }
-    }
-  // ...
-  }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
+
+      resolve({
+        status: dataReturn
+
+      });
+      
+      // while(true){
+      //   if(email.charAt(i)!='@'){
+      //       i++;
+      //   }
+      //   else{
+      //       var j = i;
+      //       var k=0;
+      //       while(true){
+      //         if(email.charAt(j)!=''){
+      //           j++;
+      //           k++;
+      //         }
+      //         else{
+      //           uid = (email.substr(0, i));
+      //           edomain=email.substr(i, k);
+      //           if(edomain == standardomain){
+      //             checkIfUserExists(name, email, uid);
+      //             return false;
+      //           }
+      //           else{
+      //             extermin();
+      //             return false;
+      //           }
+      //         }
+      //       }
+      //   }
+      // }
     // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+
+      reject({
+        status: 'Rejected'
+      });
+    });
   });
 }
 
@@ -87,7 +120,8 @@ export function signOut(){
   firebase.auth().signOut().then(function() {
     firebase.auth().signOut;
     testeo=0;
-    window.alert("deslogueado");
+    window.location.href="/"
+
   }).catch(function(error) {
     // An error happened.
   });
@@ -100,11 +134,11 @@ export function createUser() {
     name: name,
     email: email
   });
-  window.alert('Bienvenido a iris: ' + uid + '!');
-  verifyDashboards();
+  window.location.href="/dashboard"
 }
 
 export function createDashboard(){
+  return new Promise((resolve, reject) => {
   firebase.auth().onAuthStateChanged(function(user) {
   var query = firebase.database().ref("users");
   var cards=document.getElementById('cards').checked;
@@ -119,26 +153,32 @@ export function createDashboard(){
   var minutes = String(currentdate.getMinutes());
   var seconds = String(currentdate.getSeconds());
   var code = year+month+day+hours+minutes+seconds;
-
+  let isError = true;
+  let dataReturn;
   var dnametemp= document.getElementById('dname').value;
-    if ((cards == true || columns == true)&&(publi == true || priv == true) && dnametemp!="") {
+  var ddescription = document.getElementById('ddescription').value;
+    if ((cards == true || columns == true)&&(publi == true || priv == true) && dnametemp!="" && ddescription!="") {
+       isError = false;
+       dataReturn = true;
       query.once("value").then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var keys = childSnapshot.key;
           var key2 = childSnapshot.child("email").val();
           var namelog = firebase.auth().currentUser;
           if (namelog.email == key2) {
+            var url = window.location.href;
+            var id = url.substring(url.lastIndexOf('/') + 1 );
+            if (id == "DashboardBuscar" || id == "dashboard_columns" || id == "Dashboard"){
               var dashConect=db.ref("users/"+keys+"/Dashboard/");
               var conectado=dashConect.push({
                 did:code,
-                dname: dnametemp
+                dname: dnametemp,
+                ddescription:ddescription
               });
-            firebase.auth().onAuthStateChanged(function(user) {
-              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-               dashdirection.once("value").then(function(snapshot) {
+
+               dashConect.once("value").then(function(snapshot) {
                 snapshot.forEach(function(childSnapshot) {
                   var dashboardid = childSnapshot.child("did").val();
-                  console.log(dashboardid);
                   if (code == dashboardid) {
                     var keydashboard = childSnapshot.key;
                     var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
@@ -151,24 +191,74 @@ export function createDashboard(){
                       publi:publi,
                       priv: priv
                     });
-                    window.location.href="/Dashboard_post/"+code;
+                    window.location.href="/Dashboard_columns/"+code;
                   }
                   });
                 });
-            });
+            }
+
+            else{
+
+              var dashvas=db.ref("users/"+keys+"/Dashboard/");
+              dashvas.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                  var dashboardid = childSnapshot.child("did").val();
+
+                  if (id == dashboardid) {
+                    var keydashboard = childSnapshot.key;
+                     var dashConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard);
+
+                    
+                     db.ref().child("users/"+keys+"/Dashboard/"+keydashboard)
+                    .update({ 
+                        dname: dnametemp,
+                        ddescription:ddescription
+                      });
+                    var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
+                    styleConect.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+
+                        var keydesign = childSnapshot.key;
+                        db.ref().child("users/"+keys+"/Dashboard/"+keydashboard+"/Design/"+keydesign)
+                        .update({ 
+                             cards:cards,
+                             columns: columns  
+                          });
+                      });
+                    });
+                    var priva=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
+                    priva.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                        var keypriv = childSnapshot.key;
+                        db.ref().child("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity/"+keypriv)
+                        .update({ 
+                             publi:publi,
+                             priv: priv
+                          });
+                      });
+                    });
+                    window.location.reload();
+                  }
+                  });
+                });
+            }
+              
           }
           else{
-            window.alert("Dashboard no insertado");
           }
         // Cancel enumeration
       }); 
      });
     }
     else{
-          window.alert("llena todos los campos");
-
+          dataReturn = false;
         }
+    resolve({
+      status: dataReturn
+    });
+
   });
+});
 }
 
 export function createSocialNetwork(){
@@ -177,8 +267,21 @@ export function createSocialNetwork(){
   var query = firebase.database().ref("users");
   var fb=document.getElementById('radio1').checked;
   var tw=document.getElementById('radio2').checked;
-  var usname= document.getElementById('usname').value;
+  var dbusname = document.getElementById('usname').value;
+  var usname;
     if ((fb == true || tw == true) && usname!="") {
+      if(tw == true){
+        var countusnamechar = dbusname.split("@");
+         if (countusnamechar.length > 1) {
+            usname = dbusname;
+         }
+         else{
+            usname = "@"+dbusname;
+         }
+      }
+      else{
+        usname = dbusname;
+      }
       query.once("value").then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var keys = childSnapshot.key;
@@ -194,31 +297,28 @@ export function createSocialNetwork(){
                   snapshot.forEach(function(childSnapshot) {
                     var dashboardid = childSnapshot.child("did").val();
                     var keydash = childSnapshot.key;
-                    console.log(dashboardid);
                     if (id == dashboardid) {
                       var privacity=db.ref("users/"+keys+"/Dashboard/"+keydash+"/SocialNetwork");
                       snapshot.forEach(function(childSnapshot) {
                       var dashboardid = childSnapshot.child("did").val();
                       var keydash = childSnapshot.key;
-                      console.log(dashboardid);
                       });
                       privacity.push({
                         facebook:fb,
                         twitter:tw,
                         user: usname
                       });
-                      window.location.href="/Dashboard_post/"+id;
+                      window.location.reload();
                     }
                     });
                   });
               });
             }
           else{
-            window.alert("Dashboard no insertado");
           }
         // Cancel enumeration
-      }); 
-     });
+        }); 
+      });
     }
     else{
           window.alert("llena todos los campos");
@@ -230,7 +330,6 @@ export function createSocialNetwork(){
 export function extermin(){
   var user = firebase.auth().currentUser;
   user.delete().then(function() { 
-    window.alert("No puedes entrar con cuentas de correo que no sean de 'elaniin.com'");
     signOut();
     return false;
   }).catch(function(error) {
@@ -239,7 +338,6 @@ export function extermin(){
 }
 
 export function userExistsCallback() {
-    window.alert('Bienvenido: ' + uid + '!');
     verifyDashboards();
 }
 
@@ -262,7 +360,6 @@ export function gotData (data){
       var emailu = users[k].email;
       if(uidu == uid){
           var keysuser=k;
-          console.log(keysuser);
           state=true;
       }  
     }
@@ -296,10 +393,73 @@ export function verfSessionlog(){
 
 export function getData(){
   firebase.auth().onAuthStateChanged(function(user) {
-    var namelog = firebase.auth().currentUser;
-    document.getElementById("namelog").innerHTML=namelog.displayName;
-    var PhotoUrl = namelog.photoURL;
-    document.getElementById("ultradiv").style.backgroundImage="url("+PhotoUrl+")";
+    if(user){
+      var namelog = firebase.auth().currentUser;
+      document.getElementById("namelog").innerHTML=namelog.displayName;
+      var PhotoUrl = namelog.photoURL;
+      document.getElementById("ultradiv").style.backgroundImage="url("+PhotoUrl+")";
+    }
+  });
+}
+
+var dashboarname;
+export function getDashData(){
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          var query = firebase.database().ref("users");
+      query.once("value").then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var keys = childSnapshot.key;
+            var key2 = childSnapshot.child("email").val();
+            var namelog = firebase.auth().currentUser;
+            if (namelog.email == key2) {
+                  var dashdirection = db.ref("users/"+keys+"/Dashboard/");
+                   dashdirection.once("value").then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                      var dashboardid = childSnapshot.child("did").val();
+                      var url = window.location.href;
+                      var id = url.substring(url.lastIndexOf('/') + 1 );
+                      if(dashboardid == id){
+                        document.getElementById("modalActionVal").innerHTML="Actualizar Dashboard";
+                        dashboarname = childSnapshot.child("dname").val();
+                        var ddescription = childSnapshot.child("ddescription").val();
+                        document.getElementById("dashname").innerHTML=dashboarname;
+                        document.getElementById("dname").value =dashboarname;
+                        document.getElementById("ddescription").value =ddescription;
+                         dashdirection.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                              var keydashboard = childSnapshot.key;
+                              var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
+                              styleConect.once("value").then(function(snapshot) {
+                                snapshot.forEach(function(childSnapshot) {
+                                    if(childSnapshot.child("cards").val() == true){
+                                        document.getElementById("cards").checked=true;
+                                    }
+                                    else{
+                                        document.getElementById("columns").checked=true;
+                                    }
+                                });
+                              });
+                              var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
+                              privacity.once("value").then(function(snapshot) {
+                                snapshot.forEach(function(childSnapshot) {
+                                    if(childSnapshot.child("priv").val() == true){
+                                        document.getElementById("priv").checked=true;
+                                    }
+                                    else{
+                                        document.getElementById("publi").checked=true;
+                                    }
+                                });
+                              });
+                            });
+                          });
+                      }
+                    });
+                });
+            }
+           }); 
+      });
+      }
   });
 }
 
@@ -314,7 +474,6 @@ export function verifyDashboards(){
         if (namelog.email == key2) {var dashConect=db.ref("users/"+keys+"/Dashboard/");
             firebase.auth().onAuthStateChanged(function(user) {
               var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-              console.log(dashdirection);
                dashdirection.once("value").then(function(snapshot) {
                    var dashboards=snapshot.val();
                    if(dashboards != null){
@@ -341,7 +500,6 @@ export function verifyDashboards2(){
                   var dashConect=db.ref("users/"+keys+"/Dashboard/");
                   firebase.auth().onAuthStateChanged(function(user) {
                     var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-                    console.log(dashdirection);
                      dashdirection.once("value").then(function(snapshot) {
                          var dashboards=snapshot.val();
                          if(dashboards == null){
@@ -355,42 +513,134 @@ export function verifyDashboards2(){
     });
 }
 
-var rusernam;
-var bandera;
-export function deprueba(){
-  firebase.auth().onAuthStateChanged(function(user) {
-      db.ref("users").once("value").then(function(snapshot){
-        snapshot.forEach(function(childSnapshot){
-          var userkey=childSnapshot.key;
-          var uidb = childSnapshot.child("email").val();
-          var cUser = firebase.auth().currentUser;
-          if(cUser.email == uidb) {
-            var dashConect = db.ref("users/" + userkey + "/Dashboard");
-            dashConect.once("value").then(function(snapshot){
-              snapshot.forEach(function(childSnapshot){
-                var url = window.location.href;
-                var id = url.substring(url.lastIndexOf('/') + 1 );
-                var dashid = childSnapshot.child("did").val();
-                if(dashid == id){
-                  var dashkey= childSnapshot.key
-                  var socnet = db.ref("users/" + userkey + "/Dashboard/" +dashkey+ "/SocialNetwork");
-                  socnet.once("value").then(function(snapshot){
-                    snapshot.forEach(function(childSnapshot){
-                      rusernam = childSnapshot.child("user").val();
-                      setUsername(rusernam);
+export function verifiyAccess(){
+  var query = firebase.database().ref("users");
+  firebase.auth().onAuthStateChanged(function(user) {query.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          if(user){
+          var keys = childSnapshot.key;
+          var key2 = childSnapshot.child("email").val();
+          var namelog = firebase.auth().currentUser;
+              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
+               dashdirection.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                  var dashboardid = childSnapshot.child("did").val();
+                  var url = window.location.href;
+                  var code = url.substring(url.lastIndexOf('/') + 1 );
+                  if (code == dashboardid) {
+                    var keydashboard = childSnapshot.key;
+                    var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
+                    privacity.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                          var dpriv = childSnapshot.child("priv").val();
+                          if (dpriv == true && namelog.email != key2) {
+                            window.alert("Dashboard Privado");
+                            window.location.href="/Dashboard"
+                          } 
+                      });
                     });
+                  }
                   });
-                }
+                });
+        // Cancel enumeration
+      }
+      else{
+          var keys = childSnapshot.key;
+          var key2 = childSnapshot.child("email").val();         
+          var dashdirection = db.ref("users/"+keys+"/Dashboard/");
+           dashdirection.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var dashboardid = childSnapshot.child("did").val();
+              var url = window.location.href;
+              var code = url.substring(url.lastIndexOf('/') + 1 );
+              if (code == dashboardid) {
+                var keydashboard = childSnapshot.key;
+                var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
+                privacity.once("value").then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                      var dpriv = childSnapshot.child("priv").val();
+                  });
+                });
+              }
               });
             });
-          }
-        });
-    });
+      }
+      }); 
+     });
+    
+  });
+}
+export function verifyDesign(){
+  var query = firebase.database().ref("users");
+  firebase.auth().onAuthStateChanged(function(user) {
+      query.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var keys = childSnapshot.key;
+          var key2 = childSnapshot.child("email").val();
+          var namelog = firebase.auth().currentUser;
+              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
+               dashdirection.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                  var dashboardid = childSnapshot.child("did").val();
+                  var url = window.location.href;
+                  var code = url.substring(url.lastIndexOf('/') + 1 );
+                  if (code == dashboardid) {
+                    var keydashboard = childSnapshot.key;
+                    var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
+                    privacity.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                          var cardss = childSnapshot.child("cards").val();
+                          if (cardss != true) {
+                            window.location.href="/Dashboard_columns/"+code;
+                          }
+                      });
+                    });
+                  }
+                  });
+                });
+        // Cancel enumeration
+      }); 
+     });
+    
+  });
+}
+export function verifyDesign2(){
+  var query = firebase.database().ref("users");
+  firebase.auth().onAuthStateChanged(function(user) {
+      query.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var keys = childSnapshot.key;
+          var key2 = childSnapshot.child("email").val();
+          var namelog = firebase.auth().currentUser;
+              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
+               dashdirection.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                  var dashboardid = childSnapshot.child("did").val();
+                  var url = window.location.href;
+                  var code = url.substring(url.lastIndexOf('/') + 1 );
+                  if (code == dashboardid) {
+                    var keydashboard = childSnapshot.key;
+                    var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
+                    privacity.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                          var columnss = childSnapshot.child("columns").val();
+                          if (columnss != true) {
+                            window.location.href="/Dashboard_card/"+code;
+                          }
+                      });
+                    });
+                  }
+                  });
+                });
+        // Cancel enumeration
+      }); 
+     });
+    
   });
 }
 
-export function setUsername(rusername){
-  bandera=rusername
+export function refresh(){
+  window.location.reload();
 }
 
 export {app}
