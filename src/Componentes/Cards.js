@@ -55,7 +55,6 @@ class Cards extends Component {
       else if(socialNetwork[j]=="twitter"){
         APIDa[j] = 'https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?username='+user[j];
       }
-
     }
       let _this = this;
       axios.all(APIDa.map(l => axios.get(l)))
