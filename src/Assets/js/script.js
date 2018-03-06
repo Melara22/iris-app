@@ -198,26 +198,25 @@ export function createDashboard(){
             }
 
             else{
-
+              var keys = childSnapshot.key;
               var dashvas=db.ref("users/"+keys+"/Dashboard/");
               dashvas.once("value").then(function(snapshot) {
                 snapshot.forEach(function(childSnapshot) {
                   var dashboardid = childSnapshot.child("did").val();
-
-                  if (id == dashboardid) {
+                  var url = window.location.href;
+                  var id = url.substring(url.lastIndexOf('/') + 1 );
+                  if (id == dashboardid){
                     var keydashboard = childSnapshot.key;
                      var dashConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard);
-
-                    
                      db.ref().child("users/"+keys+"/Dashboard/"+keydashboard)
                     .update({ 
                         dname: dnametemp,
                         ddescription:ddescription
                       });
+
                     var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
                     styleConect.once("value").then(function(snapshot) {
                       snapshot.forEach(function(childSnapshot) {
-
                         var keydesign = childSnapshot.key;
                         db.ref().child("users/"+keys+"/Dashboard/"+keydashboard+"/Design/"+keydesign)
                         .update({ 
@@ -237,7 +236,7 @@ export function createDashboard(){
                           });
                       });
                     });
-                    window.location.reload();
+                   setTimeout(function(){ window.location.reload() }, 300); 
                   }
                   });
                 });
@@ -647,4 +646,16 @@ export function refresh(){
   window.location.reload();
 }
 
+function reload (){
+  window.location.reload();
+}
+export function Inactivity(){
+  var temp = setTimeout(reload, 900000);
+  document.addEventListener("click", function() {
+      // borrar el temporizador que redireccionaba
+      clearTimeout(temp);
+      // y volver a iniciarlo
+      temp = setTimeout(reload, 900000);
+  });
+}
 export {app}

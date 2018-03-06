@@ -72,7 +72,7 @@ verfSessionlog();
                     <button id="login" onClick={this.signInGoo} className="btn btn-primary boton-image monBouton">Sign up with Google</button>
                   
                     <div className="marca">
-                    <p>Powered by <a className="url-marca" href="">Elaniin </a>&<a className="url-marca" href=""> Inxights</a></p>
+                    <p>Powered by <a className="url-marca" href="https://elaniin.com/" target="_blank">Elaniin </a>&<a className="url-marca" target="_blank" href="http://app.inxights.co/"> Inxights</a></p>
                     </div>
                  </div>
             </div>

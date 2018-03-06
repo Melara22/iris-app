@@ -36,7 +36,7 @@ import tw from '../../Assets/Iconos/twitterlogo-color.png';
 
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
-import {app, verifyDashboards2, verifiyAccess,verifyDesign} from '../../Assets/js/script.js';
+import {app, verifyDashboards2, verifiyAccess,verifyDesign, Inactivity} from '../../Assets/js/script.js';
 import {MY_ROUTE} from '../../routes.js'
 
 import{verfSession, verifyDashboards, getData} from '../../Assets/js/script.js';
@@ -44,9 +44,7 @@ var url = window.location.href;
 var id = url.substring(url.lastIndexOf('/') + 1 );
 var userar=[];
 var socnetar=[];
-
-
-
+Inactivity();
 class Dashboard_card extends Component {
 constructor(props){
   super(props);
@@ -185,7 +183,7 @@ componentDidMount() {
             </div>
         </div>
     );}
-    
+   
     verifiyAccess();
     verifyDesign();
     console.log(this.props);

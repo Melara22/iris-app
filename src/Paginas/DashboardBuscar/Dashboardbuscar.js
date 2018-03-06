@@ -10,11 +10,13 @@ import nuevo from '../../Assets/Iconos/nuevo.png';
 import compartir from '../../Assets/Iconos/compartir.png';
 import agregar from '../../Assets/Iconos/Agregar_icon.png';
 import fb from '../../Assets/Iconos/fb.png';
+import animate from '../../animate.css'
 import settings from '../../Assets/Iconos/settings.png';
 import post3 from '../../Assets/img/prew.PNG';
 import post1 from '../../Assets/img/mara/post1.png';
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
+import imgstate from '../../Assets/Iconos/blank_state.png';
 import {app, verifyDashboards2, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
 import {
   BrowserRouter as Router,
@@ -22,6 +24,7 @@ import {
   Link,
 } from 'react-router-dom'
 import {MY_ROUTE} from '../../routes.js'
+let List
 
 
 /**
@@ -39,10 +42,12 @@ class DashboardBuscar extends Component {
     super(props);
 
     this.state = { 
-    users: [],  
+    dashs: [],  
     loading: [],
     search: []
     };
+
+    this.filterVal =false;
   }
   updateSearch(event){
     this.setState({search: event.target.value.substr(0,20)})
@@ -63,7 +68,7 @@ class DashboardBuscar extends Component {
                     dashdirection.once("value").then(function(snapshot) {
                       snapshot.forEach(function(childSnapshot) {
                         self.setState({
-                            users: self.state.users.concat(childSnapshot.val())
+                            dashs: self.state.dashs.concat(childSnapshot.val())
                         });
                       });
                     });
@@ -83,58 +88,64 @@ class DashboardBuscar extends Component {
 
   render() {
     verfSession();
-     const List = (props) => {
-    let filteredContact = props.users.filter(
-        (users) => {
-          var users2 = users.dname.toUpperCase();
-          var user = users2.toLowerCase()
-          return users2.indexOf(this.state.search) !== -1 || user.indexOf(this.state.search) !== -1;
+      List = (props) => {
+     let filteredContact = props.dashs.filter(
+        (dashs) => {
+          return dashs.dname.toLowerCase().indexOf(this.state.search.toString().toLowerCase()) !== -1;          
         }
       );
+    
 
-    getData();
+    if(filteredContact.length > 0){
+        getData();
+        return (
+              <div className=" mis-post">
+                <div className="row">
+                  
+                                
+                              
+              { filteredContact.map( (user,i) => { 
 
-    return (
-        <div className=" mis-post">
-          <div className="row">
-            
-                          
-                        
-        { filteredContact.map( (user,i) => { 
+               const { did, dname, ddescription } = user;
 
-         const { did, dname, ddescription } = user;
+               return (
+                <div className="col-md-3 col-lg-3" key = { i }>
+                 
+                 <div id="header">
+                  <ul className="a">
+                   <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><li><h3><a id="dashname" style={{color:"#232b2b", 
+                    textDecoration: "none"}}>{dname}</a></h3></li></Link>  
+                   
 
-         return (
-          <div className="col-md-3 col-lg-3" key = { i }>
-           
-           <div id="header">
-            <ul className="a">
-             <Link to={ MY_ROUTE.replace(':slug', did) }><li><h3><a id="dashname">{dname}</a></h3></li></Link>  
-             
-
-            </ul>
-              <hr/>
-          </div>
-          <div id="content">
-              <div id="scrollableContent">
-                  <div id="paddingContent">  
-                    <div className="prew">
-                        <p>{ddescription}</p>
+                  </ul>
+                    <hr/>
+                </div>
+                <div id="content">
+                    <div id="scrollableContent">
+                        <div id="paddingContent">  
+                          <div className="prew">
+                              <p>{ddescription}</p>
+                          </div>
+                        </div>
                     </div>
+                </div>
+                <div id="footer">
+                  <div className="page"></div>       
+                </div>
+                </div>
+               )
+
+
+              })}
                   </div>
               </div>
-          </div>
-          <div id="footer">
-            <div className="page"></div>       
-          </div>
-          </div>
-         )
-
-
-        })}
-            </div>
-        </div>
-    )
+          )
+    }
+    else{
+      return ( <center class="animated pulse"><br/><img src={imgstate} alt="nostate" /><h2 style={{color:"#BDBDBD"}}>No results found</h2></center>);
+    }
+    
+    
 }
     return (
 
@@ -181,7 +192,7 @@ class DashboardBuscar extends Component {
 
                      <div className="row">
                           <div className="col-xs-12 col-md-12 col-lg-12 section-buscar" align="center">
-                            <form>
+                            <form autocomplete="off">
                              <div className="form-group">
                               <input className="form-control input-buscar" id="searchbar" placeholder="Search" onChange={this.updateSearch.bind(this)}/>
                              </div>
@@ -189,10 +200,7 @@ class DashboardBuscar extends Component {
                           <Modals />
                           </div>  
                     </div>
-                     <List users = { this.state.users } />
-                    
-
-                    
+                     <List dashs = { this.state.dashs }/>
           </div>
         </section>
 
