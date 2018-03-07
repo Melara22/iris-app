@@ -109,7 +109,7 @@ class Cards extends Component {
         var usersplit = usernamevar.split("@");
         if(usersplit.length>1){
          return (
-                 <div  className="col-md-3 space ">
+                 <div  className="col-md-3 col-lg-5 space ">
                    <div className="card" key={i}>
                   
               
@@ -119,7 +119,8 @@ class Cards extends Component {
                   
                       
                        <div className="card-content">
-                       <h5><img style={{marginTop:'-10px', marginLeft:'3px'}} src={tw} />{postsn.content.username}</h5>
+                       <h4 className="card-title"><img style={{}} src={tw} />{postsn.content.username}</h4>
+                      
                           <div className="texto-card">
                             <p className="card-text">
                             {postsn.content.message}
@@ -142,7 +143,7 @@ class Cards extends Component {
         }
         else{
          return (
-                 <div  className="col-md-3 space ">
+                 <div  className="col-md-3 col-lg-5 space ">
                     <div className="card" key={i}>
                         <a className="img-card">
                         <DefaultPlaceholdeR />
@@ -183,7 +184,7 @@ class Cards extends Component {
     return (
       <div className="Cards">
 
-                     <div  align="center">
+                     <div align="center">
                         {renderPostsn}   
                     </div>  
        

@@ -7,10 +7,17 @@ body {
 
 .contenedor{
   padding-top: 10em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login{
-	 background: url('../../Assets/img/Login.jpg'); 
+	 background: url('../../Assets/img/Login.jpg');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat; 
 	 height: 100vh;
 }
 .login-container{
@@ -18,7 +25,12 @@ body {
    margin-left: 100px;
    margin-right: 100px;
    align-items: center;
+   display: flex;
+   justify-content: center;
+   width: 100%; 
 }
+
+
 
 .starter-template {
   padding-top: 150px;
@@ -54,15 +66,23 @@ body {
   color: #757575!important;
 }
 
+.logo2 {
+  width: 30%;
+}
+
 .boton-image{
   border-radius: 0px!important;
   background-color: #2979FF;
   border-color: #2979FF;
+  color: white;
+  font-family: Brandon-medium;
+  font-weight: 100;
 }
 
 .boton-image:hover{ 
   background-color:#2979FF!important;
-  border-color: transparent;
+  border-color: transparent!important;
+  color: white!important;
 }
 
 
@@ -81,8 +101,13 @@ body {
 .monBouton:before{
      background-image : url(https://ballotpedia.s3.amazonaws.com/images/thumb/5/53/Google_%22G%22_Logo.svg/150px-Google_%22G%22_Logo.svg.png);
      background-size: 100%;
+     color: white!important;
 }
 
+.text-botonimage{
+  color: white!important;
+  text-decoration: none!important;
+}
 
 .marca p{
   margin-top: 80px;
@@ -91,6 +116,11 @@ body {
 
 .url-marca{
   color: #B388FF;
+  text-decoration: none;
+}
+.url-marca:hover{
+  color: #B388FF;
+  text-decoration: none;
 }
 
 
@@ -121,6 +151,95 @@ body {
 }
 
 @media screen and (max-width: 1920px){
+  .login-container{
+  margin-top: 10em!important;
+   margin-left: 100px;
+   margin-right: 100px;
+   align-items: center;
+   display: flex;
+   justify-content: center; 
+}
+  .login-texto{
+  top:4px; 
+  background: #B388FF;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  padding-left: 80px;
+  padding-right: 80px;
+  text-align: left;
+
+}
+
+}
 
 
+@media screen and (max-width: 1280px) and (min-height: 660px){
+  .login-container{
+   margin-top: 5em!important;
+   margin-left: 100px;
+   margin-right: 100px;
+   align-items: center;
+   display: flex;
+   justify-content: center; 
+}
+
+.login-texto{
+  top:4px; 
+  background: #B388FF;
+  padding-top: 84px;
+  padding-bottom: 84px;
+  padding-left: 60px;
+  padding-right: 60px;
+  text-align: left;
+
+}
+
+  
+}
+
+@media screen and (max-width: 1366px) and (min-height: 670px) {
+.login-container{
+  margin-top: 0em!important;
+   margin-left: 100px;
+   margin-right: 100px;
+   align-items: center;
+   display: flex;
+   justify-content: center; 
+}
+
+.login-texto{
+  top:4px; 
+  background: #B388FF;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  padding-left: 60px;
+  padding-right: 60px;
+  text-align: left;
+
+}
+
+
+}
+
+
+@media (max-width: 1366px) and (min-height: 768px){
+.login-container{
+  margin-top: 4em!important;
+   margin-left: 100px;
+   margin-right: 100px;
+   align-items: center;
+   display: flex;
+   justify-content: center; 
+}
+
+.login-texto{
+  top:4px; 
+  background: #B388FF;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  padding-left: 60px;
+  padding-right: 60px;
+  text-align: left;
+
+}
 }

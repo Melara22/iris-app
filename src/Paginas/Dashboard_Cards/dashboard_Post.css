@@ -1,9 +1,6 @@
 
 /*INDEX COMPLETO*/
-.dash{
-	background-color: #eeeeee;
-	height: 100vh;
-}
+    
 .navbar-header{
  
 }
@@ -52,14 +49,18 @@
 
 
 
-.postainer{
+.postainer1{
 
     padding-right: 1em!important;
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
-    width: 1366px;
+    width: 100%!important;
 
+}
+.mis-post > .row{
+  width: 100%!important;
+  margin-left: 0em;
 }
 
 
@@ -78,46 +79,41 @@ POST - COLUMNS
 /***********************
 PANTALLAS DE MAYOR TAMAÑO
 ************************/
-@media (min-width: 768px) {
-.col-sm-15 {
-        width: 20%;
-        float: left;
-    }
-}
 
-@media (min-width: 992px) {
-    .col-md-15 {
-        width: 20%;
-        float: left;
-    }
-}
+
+
 
 @media (min-width: 1200px) {
-    .col-lg-15 {
+    .col-lg-5 {
+        width: 25%;
+        float: left;
+    }
+}
+@media (min-width: 1600px) {
+    .col-lg-5 {
         width: 20%;
         float: left;
     }
 }
-
 @media screen and (max-width: 1920px){
-    .postainer{
+    .postainer1{
     padding-right: 1em!important;
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
-    width: 1880px!important;
+    width: 100%!important;
 
 }
 
 
 }
 @media screen and (max-width: 1366px){
-    .postainer{
+    .postainer1{
     padding-right: 1em!important;
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
-    width: 1300px!important;
+    width: 100%!important;
 
 }
 

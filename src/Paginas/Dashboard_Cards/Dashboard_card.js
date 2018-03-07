@@ -10,30 +10,26 @@ import './dashboard_Post.css';
 
 import Menu from '../../Componentes/menu';
 import Cards from '../../Componentes/Cards';
-import Cards2 from '../../Componentes/Cards2';
+
 
 import Modals from '../../Componentes/modals';
-import Columns from '../../Componentes/Columns';
-import Columns2 from '../../Componentes/Columns2';
+
 import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
 import nuevo from '../../Assets/Iconos/nuevo.png';
 import compartir from '../../Assets/Iconos/compartir.png';
-
 import like from '../../Assets/Iconos/likes.png';
 import share from '../../Assets/Iconos/retweet.png';
-
 import agregar from '../../Assets/Iconos/Agregar_icon.png';
 import favorite from '../../Assets/Iconos/favorite.png';
 import post1 from '../../Assets/img/twitter.png';
-
 import arrow from '../../Assets/Iconos/arrow.png';
 import fb from '../../Assets/Iconos/fb.png';
 import tw from '../../Assets/Iconos/twitterlogo-color.png';
 
-
+/*Backedn*/
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
 import {app, verifyDashboards2, verifiyAccess,verifyDesign, Inactivity} from '../../Assets/js/script.js';
@@ -179,32 +175,8 @@ componentDidMount() {
 
             <div>
                 <Cards user={userar} socialNetwork={socnetar}/> 
-              </div>
-            </div>
-        </div>
-    );}
-   
-    verifiyAccess();
-    verifyDesign();
-    console.log(this.props);
-     if(this.props != id){
-    return (
-      this.state.loading.length <= 0 ? <IconLoading /> : (
-      <div className="Dashboard_card">
-        
-          <section className="dash">
-              <div className="container postainer">
-
-                <div className="starter-template">
-
-                     
-                     <Menu/>
-
-                </div>
-                <List users = { this.state.users } />  
-                <div className="row " align="center">
-                        {this.userLogged && (
-                         <div className="col-md-3">
+                {this.userLogged && (
+                         <div className="col-md-3 col-lg-5">
                               <div className="card post-nuevo">
                                   <a className="img-card">
                                 </a>
@@ -221,7 +193,33 @@ componentDidMount() {
                               </div>
                               <Modals />
                           </div>)}
-                    </div>  
+              </div>
+            </div>
+        </div>
+    );}
+   
+    verifiyAccess();
+    verifyDesign();
+    console.log(this.props);
+     if(this.props != id){
+    return (
+      this.state.loading.length <= 0 ? <IconLoading /> : (
+      <div className="Dashboard_card">
+        
+          <section>
+              <div className="container postainer1">
+
+                <div className="starter-te">
+
+                     
+                     <Menu/>
+
+                </div>
+                                <List users = { this.state.users } /> 
+              
+
+                        
+                   
                     
           </div>
         </section>
