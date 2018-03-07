@@ -201,31 +201,21 @@ componentDidMount() {
     verifiyAccess();
     verifyDesign();
     console.log(this.props);
-     if(this.props != id){
     return (
       this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Dashboard_card">
         
           <section>
               <div className="container postainer1">
-
-                <div className="starter-te">
-
-                     
+                <div className="starter-te">                     
                      <Menu/>
-
                 </div>
-                <List users = { this.state.users } />  
-                
-
-                                
-                    
-          </div>
+                <List users = { this.state.users } />                
+              </div>
         </section>
       </div>
       )
     );
-  }
 
 
   }
