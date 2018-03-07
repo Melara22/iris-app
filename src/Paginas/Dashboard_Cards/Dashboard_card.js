@@ -55,6 +55,9 @@ constructor(props){
 
 componentWillMount() {
       
+          setTimeout(() => {
+            this.setState({loading: [1, 2, 3]});
+          }, 2000 );
     firebase.auth().onAuthStateChanged((user) => {
         if(!user){
           this.userLogged = !!user;
@@ -135,9 +138,7 @@ componentDidMount() {
               });
             });
 
-          setTimeout(() => {
-            this.setState({loading: [1, 2, 3]});
-          }, 2000 );
+      
 
         }
 

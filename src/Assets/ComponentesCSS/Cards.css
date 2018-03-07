@@ -5,7 +5,7 @@
     line-height: 1.42857143;
     background-color: #fff;
     border-radius: 1.2em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
+    box-shadow: 0 4px 4px 0 #E0E0E0, 0 6px 15px 0 #E0E0E0!important;
     transition: box-shadow .25s;
     height: 28em!important;
     line-height: 1.42857143!important;

@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 
 class IconLoading extends Component {
@@ -19,6 +18,7 @@ class IconLoading extends Component {
 		    display: 'flex',
 		    justifyContent: 'center',
 		    alignItems: 'center',
+		    zIndex:10000,
 		};
 
 		return(

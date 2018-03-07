@@ -154,7 +154,7 @@ verifyDashboards2();
       <div className="DashboardBuscar">
         
           <section className="dash">
-              <div className="container buscar-contenedor">
+              <div className="container">
 
                 <div className="starter-template">
 
