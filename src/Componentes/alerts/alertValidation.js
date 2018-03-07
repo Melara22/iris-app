@@ -15,7 +15,7 @@ class AlertValidation extends Component {
 		 
     	return (			  
 	        <div className="alert alert-danger alert-dismissible">
-	            <p>Hubo un error al actualizar tu Dashboard, Verifica si los campos estan correctos <a href="" className="close" data-dismiss="alert" aria-label="close"> &times;</a>
+	            <p>Hubo un error al actualizar tu Dashboard, Verifica si los campos estan correctos 
 	         </p>
 	        </div>
 		);  

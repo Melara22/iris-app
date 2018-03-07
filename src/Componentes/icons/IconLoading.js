@@ -7,7 +7,7 @@ class IconLoading extends Component {
 		  renderer: 'svg',
 		  loop: true,
 		  autoplay: true,
-		  path: 'assets/animations/loading.json'
+		  path: '/assets/animations/loading.json'
 		});
 	}
 
@@ -18,7 +18,7 @@ class IconLoading extends Component {
 		    display: 'flex',
 		    justifyContent: 'center',
 		    alignItems: 'center',
-		    zIndex:10000,
+		    zIndex:100000,
 		};
 
 		return(

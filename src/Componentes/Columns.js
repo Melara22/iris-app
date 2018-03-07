@@ -39,7 +39,8 @@ constructor(props){
   super(props);
   this.state = {
     posts:[],
-    data:[]
+    data:[],
+    
   }
 }
 

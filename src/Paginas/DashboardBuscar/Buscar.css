@@ -141,7 +141,7 @@ ul.a {
     background: transparent;
     position:absolute;
     font-family: Brandon-medium;
-    z-index: 1000000;
+    z-index: 100;
       
 }
 #content {

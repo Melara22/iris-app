@@ -46,8 +46,9 @@ constructor(props){
   super(props);
 
   this.state = {
-    loading: [],
-    users: [] 
+    
+    users: [],
+    
   };
 
   
@@ -55,9 +56,6 @@ constructor(props){
 
 componentWillMount() {
       
-          setTimeout(() => {
-            this.setState({loading: [1, 2, 3]});
-          }, 2000 );
     firebase.auth().onAuthStateChanged((user) => {
         if(!user){
           this.userLogged = !!user;
@@ -138,8 +136,7 @@ componentDidMount() {
               });
             });
 
-      
-
+ 
         }
 
  
@@ -152,7 +149,7 @@ componentDidMount() {
 
     return (
 
-      
+     
         <div className="">
           <div className="">
             
@@ -197,13 +194,14 @@ componentDidMount() {
               </div>
             </div>
         </div>
+        
     );}
    
     verifiyAccess();
     verifyDesign();
     console.log(this.props);
     return (
-      this.state.loading.length <= 0 ? <IconLoading /> : (
+    
       <div className="Dashboard_card">
         
           <section>
@@ -215,7 +213,7 @@ componentDidMount() {
               </div>
         </section>
       </div>
-      )
+      
     );
 
 

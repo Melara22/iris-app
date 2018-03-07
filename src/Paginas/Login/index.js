@@ -4,6 +4,7 @@ import '../../Assets/ComponentesCSS/alerts.css';
 import {Redirect} from 'react-router-dom'
 import AlertSuccess from '../../Componentes/alerts/alertSuccess.js';
 import AlertDanger from '../../Componentes/alerts/alertDanger.js';
+import IconLoading from '../../Componentes/icons/IconLoading';
 import logo from '../../Assets/Iconos/login.png';
 import '../../Assets/js/script.js';
 import{signIn, signOut, createUser, extermin, verfSessionlog,checkIfUserExists} from '../../Assets/js/script.js';
@@ -14,7 +15,8 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      msg: null
+      msg: null,
+       loading: [],
     };
 
     this.signInGoo = this.signInGoo.bind(this);
@@ -45,6 +47,11 @@ class Login extends Component {
       // console.log({catch: resp});
     });
   }
+componentDidMount(){
+  setTimeout(() => {
+            this.setState({loading: [1, 2, 3]});
+          },2000);
+}
 
   render() {
     // verfSessionlog();
@@ -53,6 +60,7 @@ class Login extends Component {
 
 verfSessionlog();
     return (
+      this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Login">
       
   <section className="login">
@@ -93,6 +101,7 @@ verfSessionlog();
     </div>
     </section>
       </div>
+      )
     );
   }
 }

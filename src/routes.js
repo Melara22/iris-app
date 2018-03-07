@@ -13,6 +13,7 @@ import Dashboard_card from './Paginas/Dashboard_Cards/Dashboard_card';
 import DashboardPost from './Paginas/DashboardPost/PostColumn';
 import DashboardBuscar from './Paginas/DashboardBuscar/Dashboardbuscar';
 import DashboardPost2 from './Paginas/DashboardPost2/DashboardPost2';
+import Private from './Paginas/Dashboard-private/private';
 export const MY_ROUTE = '/Dashboard_columns/:slug';
 
 const BasicExample = () => (
@@ -37,6 +38,7 @@ const BasicExample = () => (
       }}/>
       <Route path="/dashboardBuscar" component={dashboardbuscar}/>
       <Route path="/dashboardPost2" component={dashboardpost2}/>
+        <Route path="/Dashboard-private" component={privateD}/>
       <Route path="/topics" component={Topics}/>
     </div>
   </Router>
@@ -71,6 +73,12 @@ const dashboard_columns = () => (
 const dashboard_card = () => (
   <div>
     <Dashboard_card />
+  </div>
+)
+
+const privateD = () => (
+  <div>
+    <Private />
   </div>
 )
 

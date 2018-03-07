@@ -3,7 +3,7 @@ import axios  from 'axios';
 import moment from 'moment';
 import 'moment/locale/es';
 import '../Assets/ComponentesCSS/Cards.css';
-
+import IconLoading from './icons/IconLoading';
 
 import Modals from './modals';
 /*Imagenes*/
@@ -27,9 +27,6 @@ var id = 'ProgramadoresAndanDiciendo';
 let imgval;
 
 
-
-
-
 class Cards extends Component {
 
   constructor(props){
@@ -37,7 +34,8 @@ class Cards extends Component {
     this.state = {
       posts:[],
        data:[],
-       users:[]
+       users:[],
+       loading: []
     }
   }
 
@@ -86,6 +84,10 @@ class Cards extends Component {
       .catch(function(e){
         console.log('ERROR ', e);
       })
+
+      setTimeout(() => {
+            this.setState({loading: [1, 2, 3]});
+          },2000);
   }
 
   render() {
@@ -182,6 +184,7 @@ class Cards extends Component {
 
   
     return (
+      this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Cards">
 
                      <div align="center">
@@ -189,6 +192,7 @@ class Cards extends Component {
                     </div>  
        
       </div>
+      )
     );
   }
   

@@ -10,7 +10,7 @@ import AlertAddSn from './alerts/alertAddSn';
 import tw from '../Assets/Iconos/twitterlogo-color.png';
 import layout from '../Assets/Iconos/layout.png';
 import layout1 from '../Assets/Iconos/layout1.png';
-import publico from '../Assets/Iconos/icono_publico.png';
+import publico from '../Assets/Iconos/publico.png';
 import privado from '../Assets/Iconos/privado.png';
 import{createDashboard, createSocialNetwork, } from '../Assets/js/script.js';
 
@@ -131,7 +131,7 @@ class Modals extends Component {
 			                  <div className="form-group">
 			                  	<input className="form-control input-noborder" id="dname" placeholder="Dashboard name" style={{border:"none", boxShadow: "none"}} required/>
                                 <hr/>
-                                <textarea className="form-control input-noborder" id="ddescription" placeholder="Dashboard description" style={{resize: "none", border:"none", boxShadow: "none"}} required></textarea>
+                                <textarea className="form-control input-noborder ddescription" id="ddescription" placeholder="Dashboard description" style={{resize: "none", border:"none", boxShadow: "none"}} required></textarea>
                                 <hr/>
 			                  </div>
                 		</form>

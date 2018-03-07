@@ -4,3 +4,38 @@
 .menuicon:hover{
 	transform: scale(1.3);
 }
+
+.state-url{
+
+}
+
+.state-url{
+  position: static !important;
+}
+.state-url-large {
+  margin-right: 5em;
+  padding:10px;
+
+}
+
+.info-url{
+	margin-left: 0em;
+	margin-right: 0em;
+	line-height: 0.7em;
+	text-decoration: none;
+}
+.info-url input{
+	width: 22em;
+	background: transparent;
+	border-color: transparent;
+	
+	border-bottom: 1px solid #B187FF;
+}
+.info-url p{
+	font-family: Brandon-medium;
+	text-decoration: none;
+}
+
+
+
+

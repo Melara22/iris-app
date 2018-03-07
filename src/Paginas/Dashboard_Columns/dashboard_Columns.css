@@ -36,6 +36,7 @@
 }
 
 
+
 .profile-img{
     margin-top: -5px;
     margin-right: 5px;
@@ -58,7 +59,7 @@
 
 
 
-.postainer{
+.postainer2{
 
     padding-right: 1em!important;
     padding-left: 1em!important;
@@ -106,24 +107,24 @@ PANTALLAS DE MAYOR TAMAÑO
 }
 
 @media screen and (max-width: 1920px){
-    .postainer{
+    .postainer2{
     padding-right: 1em!important;
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
-    width: 1880px!important;
+    width: 100%!important;
 
 }
 
 
 }
 @media screen and (max-width: 1366px){
-    .postainer{
+    .postainer2{
     padding-right: 1em!important;
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
-    width: 1300px!important;
+    width: 100%!important;
 
 }
 

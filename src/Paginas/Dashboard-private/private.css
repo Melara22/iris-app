@@ -1,0 +1,23 @@
+#private a{
+	text-decoration: none;
+	font-family: Brandon-light;
+	color: rgb(255, 191, 255);
+	cursor: context-menu;
+}
+
+#private a > h1{
+	font-family: Brandon-medium!important;
+	color: rgb(209, 209, 247)!important;
+	font-size: 50px;
+	filter: brightness(90%);
+}
+
+#private a > p{
+	color: rgb(255, 191, 255)!important;
+	font-size: 17px;
+}
+
+#private img{
+	width: 250px;
+}
+

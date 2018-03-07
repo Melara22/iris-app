@@ -1,3 +1,6 @@
+.modal{
+  z-index: 10000!important;
+}
 .modal1:before {
   content: '';
   display: inline-block;
@@ -6,7 +9,26 @@
   margin-right: -4px;
 }
 #dname:focus{
-  outline: none!important;
+  border-radius:0px;
+  border-top-color:transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;  
+  border-bottom:1px solid #B187FF!important; 
+}
+.ddescription:focus{
+   border-radius:0px;
+  border-top-color:transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;  
+  border-bottom:1px solid #B187FF!important; 
+}
+#dname{
+  border-bottom:1px solid #B187FF!important; 
+  border-radius:0px;
+}
+.ddescription{
+    border-bottom:1px solid #B187FF!important; 
+    border-radius: 0px;
 }
 .adddash {
   transition : filter 500ms linear
@@ -19,6 +41,9 @@
   text-align: left;
   vertical-align: middle;
   
+}
+.seleccion-col{
+  z-index: 10000!important;
 }
 
 .modal-content1  {
@@ -148,7 +173,7 @@ input[type="radio"]:checked:before {
 }
 
 .radio img{
-  width: 130%;
+  width: 40%;
 }
 
 .radio{color: #757575!important;

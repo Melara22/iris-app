@@ -13,7 +13,7 @@ import Cards from '../../Componentes/Cards';
 
 import Modals from '../../Componentes/modals';
 import Columns from '../../Componentes/Columns';
-import Columns2 from '../../Componentes/Columns2';
+import Columns2 from '../../Componentes/Columns';
 import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
@@ -137,7 +137,7 @@ componentDidMount() {
             });
           setTimeout(() => {
             this.setState({loading: [1, 2, 3]});
-          }, 2000 );
+          },3000);
         }
 
  
@@ -165,7 +165,7 @@ if(facebook==true){
            <div className="post-view">
 
                               <div className="col-md-12 logo-pagina" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                              <h2><img style={{marginTop:'-10px', marginLeft:'3px', width:"10px!important"}} src={fb}/>&nbsp;&nbsp;{user}</h2>
+                              <h2><img style={{marginTop:'-10px', marginLeft:'3px', width:"8px!important"}} src={fb}/>&nbsp;&nbsp;{user}</h2>
                               </div><Columns facebook={facebook} user={user} />       
                         </div>
           </div>
@@ -219,7 +219,7 @@ if(facebook==true){
       <div className="Dashboard_columns">
         
           <section >
-              <div className="container postainer">
+              <div className="container postainer2">
 
                 <div className="starter-template">
 
