@@ -526,8 +526,11 @@ export function verifyDashboards2(){
 }
 
 export function verifiyAccess(){
+
+  
   var query = firebase.database().ref("users");
-  firebase.auth().onAuthStateChanged(function(user) {query.once("value").then(function(snapshot) {
+  firebase.auth().onAuthStateChanged(function(user) {
+        query.once("value").then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           if(user){
           var keys = childSnapshot.key;
@@ -546,8 +549,7 @@ export function verifiyAccess(){
                       snapshot.forEach(function(childSnapshot) {
                           var dpriv = childSnapshot.child("priv").val();
                           if (dpriv == true && namelog.email != key2 ) {
-                            window.alert("Dashboard Privado");
-                            window.location.href="/Dashboard"
+                            window.location.href="/Dashboard-private"
                           } 
                       });
                     });
@@ -572,8 +574,7 @@ export function verifiyAccess(){
                   snapshot.forEach(function(childSnapshot) {
                       var dpriv = childSnapshot.child("priv").val();
                       if (dpriv == true) {
-                            window.alert("Dashboard Privado");
-                            window.location.href="/Dashboard"
+                            window.location.href="/Dashboard-private";
                       } 
                   });
                 });
