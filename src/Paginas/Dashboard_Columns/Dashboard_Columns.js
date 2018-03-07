@@ -159,15 +159,14 @@ componentDidMount() {
          const { twitter, facebook, user } = userx;
 if(facebook==true){
          return (
+
           <div  key = { i }>
            <div className="col-md-3 col-lg-3">
            <div className="post-view">
 
-                              <div className="col-md-12 logo-pagina">
+                              <div className="col-md-12 logo-pagina" style={{ marginBottom:"-390px", marginTop:"15px"}}>
                               <h2><img style={{marginTop:'-10px', marginLeft:'3px', width:"10px!important"}} src={fb}/>&nbsp;&nbsp;{user}</h2>
-                              </div>
-                                
-           <Columns facebook={facebook} user={user} />       
+                              </div><Columns facebook={facebook} user={user} />       
                         </div>
           </div>
           </div>
@@ -180,7 +179,7 @@ if(facebook==true){
            <div className="col-md-3 col-lg-3">
            <div className="post-view">
 
-                              <div className="col-md-12 logo-pagina">
+                              <div className="col-md-12 logo-pagina" style={{ marginBottom:"-390px", marginTop:"15px"}}>
                               <h2><img style={{marginTop:'-10px', marginLeft:'3px'}} src={tw} />&nbsp;&nbsp;{user}</h2>
                               </div>
                   <Columns2 twitter={twitter} user={user} />              

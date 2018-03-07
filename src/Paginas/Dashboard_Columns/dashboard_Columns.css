@@ -10,6 +10,9 @@
 .post-view{
   margin-bottom: 30px;
 }
+.content-post{
+  margin-bottom: 30px!important;
+}
 .navbar-brand {
     float: left;
     height: 50px;

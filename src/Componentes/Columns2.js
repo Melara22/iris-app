@@ -62,7 +62,7 @@ componentDidMount(){
      var id = 'ProgramadoresAndanDiciendo';
     const renderPosttw = this.state.posts.map(function(posttw, i){
       return(
-                             <div key={i} className="thumbnail">
+                             <div key={i} className="thumbnail" style={{marginLeft:"10px"}}>
                                   <div className="caption">
                                       
                                       <p>{posttw.content.message}</p>

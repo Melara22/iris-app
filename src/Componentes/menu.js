@@ -105,7 +105,7 @@ class Menu extends Component {
 
          return (
            <li key = { i }>
-            <Link to={ MY_ROUTE.replace(':slug', did) }><a id="dashname" onClick={refresh}>{dname}</a></Link>
+            <Link style={{textDecoration:"none"}}  to={ MY_ROUTE.replace(':slug', did) }><a style={{textDecoration:"none"}}  id="dashname" onClick={refresh}>{dname}</a></Link>
         </li>
          )
 
@@ -148,7 +148,7 @@ class Menu extends Component {
                           
                             <li className="dropdown user-link" >
                                 <a className="dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"> 
-                                <a id="dashname" role="button"></a>
+                                <a style={{textDecoration:"none"}} id="dashname" role="button"></a>
                                  <img src={arrow} style={{marginLeft:'10px'}} alt="hola" />
                                 </a>
                                  <List users = { this.state.users } /> 

@@ -66,7 +66,7 @@ componentDidMount(){
 
     const renderPostfb = this.state.data.map(function(postfb, i){
       return(
-                       <div key={i} className="thumbnail">
+                       <div key={i} className="thumbnail" style={{marginLeft:"10px"}}>
                                   <div className="caption">
                                       <p>{postfb.content.message}</p>
                                     </div>
