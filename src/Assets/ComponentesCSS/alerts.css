@@ -38,7 +38,7 @@
 
 .alert-success p{
 	font-family: Brandon-medium;
-	color: #1B5E20;
+	color: white;
 	display: flex;
 	justify-content: center;
 
@@ -51,7 +51,7 @@
 }
 
 .alert-success .close{
-	color: #1B5E20!important;
+	color: white!important;
 	opacity: 1!important;
 }
 
@@ -80,10 +80,16 @@
 	border-radius: 0!important;
 	
 }
-
 .alert-network{
 	padding: 0;
 	width: 100%;
-	margin-top: 51px;
-    margin-bottom: -20px;
+	position: absolute;
+	top: 4vh;
+}
+@media screen and (max-width: 1366px){
+
+	.alert-network{
+		position: absolute;
+		top: 7.6vh;
+	}
 }

@@ -68,7 +68,6 @@ componentDidMount(){
       return(
                        <div key={i} className="thumbnail">
                                   <div className="caption">
-                                      <hr/>
                                       <p>{postfb.content.message}</p>
                                     </div>
                                   <img src={postfb.content.picture} />
@@ -81,6 +80,7 @@ componentDidMount(){
                                         {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
                                         </a>
                               </div>
+                              
                          </div>     
         );
     });

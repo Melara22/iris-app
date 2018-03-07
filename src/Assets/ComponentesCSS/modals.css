@@ -5,7 +5,12 @@
   vertical-align: middle;
   margin-right: -4px;
 }
-
+.adddash {
+  transition : filter 500ms linear
+}
+.adddash:hover {
+  filter: brightness(150%);
+}
 .modal-dialog1 {
   display: inline-block;
   text-align: left;

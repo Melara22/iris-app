@@ -1,6 +1,7 @@
  
 import React, { Component } from 'react';
 import Modals from './modals';
+import './menu.css';
 
 import AlertValidation from './alerts/alertValidation';
 import AlertAdd from './alerts/alertAdd';
@@ -120,6 +121,7 @@ class Menu extends Component {
       <div className="Menu">
 
                       {this.deprueba()}
+
           <div align="center">
         <Modals />
          </div>
@@ -156,9 +158,22 @@ class Menu extends Component {
 
                           <ul className="nav navbar-nav navbar-right">
                             
-                            <li><a className="icon-menu" href=""><img src={notifi} alt="icon-c1" /></a></li>
+                            <li><a className="icon-menu" href=""><img className="menuicon" src={notifi} alt="icon-c1" /></a></li>
                             {this.modalAction()}
-                            <li className="separacion"><a className="icon-menu" href=""><img src={compartir} alt="icon-compártir" /></a></li>
+                            <li className="dropdown separacion">
+                                  <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                      <img className="menuicon" width="20" style={{marginTop:"-20px;"}} src={compartir} alt="icon-compártir" />
+                                  </a>
+                                  <ul className="dropdown-menu" style={{width:"50%;"}}>
+                                      <li>
+                                      <center>
+                                          <a>URL de dashboard  Estado:</a><a id="dashstate">Privado</a>
+                                          <input type="text"  disabled id="urlpass"/>
+                                      </center>
+                                      </li>
+                                    
+                                  </ul>
+                            </li>
                             
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -180,7 +195,11 @@ class Menu extends Component {
                             
                           </ul>
                         </div>
-                </nav>)
+                        <div className="alert-network">
+                            <YouAreOffline /> 
+                      </div> 
+                </nav>
+                )
 
     }
     else{
@@ -210,10 +229,10 @@ class Menu extends Component {
   var url = window.location.href;
   var id = url.substring(url.lastIndexOf('/') + 1 );
   if(id == "DashboardBuscar" || id == "dashboard_columns" || id == "Dashboard"){
-    return (<li><a className="icon-menu"><img src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>);
+    return (<li><a className="icon-menu"><img className="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>);
   }
   else{
-    return (<li><a className="icon-menu"><img src={settings} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>); 
+    return (<li><a className="icon-menu"><img className="menuicon" src={settings} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>); 
   }
 
 }

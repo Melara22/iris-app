@@ -2,7 +2,7 @@
 /*INDEX COMPLETO*/
 .dash{
 	background-color: #eeeeee;
-	height: 100vh;
+	height: 100%!important;
 }
 .navbar-header{
  

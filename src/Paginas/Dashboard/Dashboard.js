@@ -47,7 +47,7 @@ class Dashboard extends Component {
                      Aliquam interdum dolor neque, ut aliquet leo cursus at.
                       In laoreet mi sed nisl ullamcorper tempus. Suspendisse fermentum varius dictum. Nulla sed metus turpis.</p>
 
-                    <a className="btn btn-primary btn-green"  data-toggle="modal" data-target="#myModal2">Crear nuevo</a>
+                    <a className="btn btn-primary btn-green adddash"  data-toggle="modal" data-target="#myModal2">Crear nuevo</a>
 
                     <Modals />
 

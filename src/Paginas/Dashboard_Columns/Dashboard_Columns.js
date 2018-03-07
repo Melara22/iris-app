@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 /*CSS*/
-import './dashboard_Post.css';
+import './dashboard_Columns.css';
 
 import Menu from '../../Componentes/menu';
 import Cards from '../../Componentes/Cards';
@@ -29,8 +29,8 @@ import favorite from '../../Assets/Iconos/favorite.png';
 import post1 from '../../Assets/img/twitter.png';
 
 import arrow from '../../Assets/Iconos/arrow.png';
-import fb from '../../Assets/Iconos/fb.png';
-import tw from '../../Assets/Iconos/twitterlogo-color.png';
+import fb from '../../Assets/Iconos/fb2.png';
+import tw from '../../Assets/Iconos/tw2.png';
 import { YouAreOffline } from '../../Componentes/alerts/alertOffline.js';
 
 
@@ -53,7 +53,6 @@ constructor(props){
     users: [],  
   };
 
-  this.renderList = this.renderList.bind(this);
 }
 componentWillMount() {
       
@@ -142,13 +141,6 @@ componentDidMount() {
         }
 
  
-  renderList() {
-    return(
-      <div>
-        Content!
-      </div>
-    );
-  }
 
   render() {
 
@@ -157,8 +149,8 @@ componentDidMount() {
      const List = (props) => {
 
     return (
-        <div className=" mis-post">
-          <div className="row">
+        <div className="">
+          <div className="">
             
                           
                         
@@ -172,7 +164,7 @@ if(facebook==true){
            <div className="post-view">
 
                               <div className="col-md-12 logo-pagina">
-                              <h2><img style={{marginTop:'-10px', marginLeft:'3px'}} src={fb} />{user}</h2>
+                              <h2><img style={{marginTop:'-10px', marginLeft:'3px', width:"10px!important"}} src={fb}/>&nbsp;&nbsp;{user}</h2>
                               </div>
                                 
            <Columns facebook={facebook} user={user} />       
@@ -189,7 +181,7 @@ if(facebook==true){
            <div className="post-view">
 
                               <div className="col-md-12 logo-pagina">
-                              <h2><img style={{marginTop:'-10px', marginLeft:'3px'}} src={tw} />{user}</h2>
+                              <h2><img style={{marginTop:'-10px', marginLeft:'3px'}} src={tw} />&nbsp;&nbsp;{user}</h2>
                               </div>
                   <Columns2 twitter={twitter} user={user} />              
                         </div> 
@@ -205,7 +197,7 @@ if(facebook==true){
         <div className=" col-md-3 col-lg-3 post-div" id="addcompo" align="center">
                   <div className="content-post">
                     <a data-toggle="modal" data-target="#myModal">
-                    <img src={agregar} />
+                    <img src={agregar} id="addimg"/>
                     </a>
                     <p>Agregar una pagina</p>
                     <Modals />
@@ -226,10 +218,8 @@ if(facebook==true){
     return (
       this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Dashboard_columns">
-        <div className="alert-network">
-                <YouAreOffline /> 
-                </div> 
-          <section className="dash">
+        
+          <section >
               <div className="container postainer">
 
                 <div className="starter-template">
@@ -243,7 +233,9 @@ if(facebook==true){
                     
           </div>
         </section>
+
       </div>
+
       )
     );
   }

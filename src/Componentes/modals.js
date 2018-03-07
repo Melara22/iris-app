@@ -5,12 +5,14 @@ import '../Assets/ComponentesCSS/modals.css';
 import facebook from '../Assets/Iconos/fb.png';
 import AlertValidation from './alerts/alertValidation';
 import AlertAdd from './alerts/alertAdd';
+import AlertValidationSn from './alerts/alertValidationSn';
+import AlertAddSn from './alerts/alertAddSn';
 import tw from '../Assets/Iconos/twitterlogo-color.png';
 import layout from '../Assets/Iconos/layout.png';
 import layout1 from '../Assets/Iconos/layout1.png';
 import publico from '../Assets/Iconos/icono_publico.png';
 import privado from '../Assets/Iconos/privado.png';
-import{createDashboard, createSocialNetwork} from '../Assets/js/script.js';
+import{createDashboard, createSocialNetwork, } from '../Assets/js/script.js';
 
 
 class Modals extends Component {
@@ -18,10 +20,12 @@ class Modals extends Component {
     super(props);
 
     this.state = {
-      msg: null
+      msg: null,
+      sn: null
     };
 
     this.signInGoo = this.signInGoo.bind(this);
+    this.createsn = this.createsn.bind(this);
   }
 
   signInGoo() {
@@ -49,6 +53,30 @@ class Modals extends Component {
       // console.log({catch: resp});
     });
   }
+  createsn() {
+    const goo = createSocialNetwork();
+
+    goo.then((resp) => {
+      if (resp.status === true) {
+        //const {name, email, uid} = resp;
+        this.setState({sn: <AlertAddSn />});
+
+        //checkIfUserExists(name, email, uid);
+      } else {
+        this.setState({sn: <AlertValidationSn />});
+        
+        //extermin();
+      }
+
+      console.log({then: resp});
+    }).catch((resp) => {
+      if (resp.status === false) {
+        this.setState({sn: <alertValidationSn />});
+      }
+
+      // console.log({catch: resp});
+    });
+  }
   render() {
 
     return (
@@ -58,7 +86,7 @@ class Modals extends Component {
 
 			  
 			    <div className="modal-content modal-content1">
-			     
+			     {this.state.sn}  
 			      <div className="modal-body modal-body1">
 			      
 			        <h2>Seleccione una red social</h2>
@@ -77,7 +105,7 @@ class Modals extends Component {
 					    <input type="email" className="form-control input-color-blue" id="usname"/>
 					  </div>
 			     </form>
-			      <a onClick={createSocialNetwork} className="btn bt-primary btnAgregar">Agregar cuenta</a>
+			      <a onClick={this.createsn} className="btn bt-primary btnAgregar">Agregar cuenta</a>
 			      </div>
 
 			      
@@ -172,7 +200,7 @@ class Modals extends Component {
                 		</div>
 
                 		<div className="btn-right">
-                		<a onClick={this.signInGoo} className="btn btn-primary btn-green" >Crear dashboard</a>
+                		<a onClick={this.signInGoo} className="btn btn-primary btn-green adddash" id="adddashbutt" >Crear dashboard</a>
                 		</div>
                 		</form>
 

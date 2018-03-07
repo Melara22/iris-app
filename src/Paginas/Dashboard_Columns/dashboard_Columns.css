@@ -2,10 +2,13 @@
 /*INDEX COMPLETO*/
 .dash{
 	background-color: #eeeeee;
-	height: 100vh;
+	height: 100%!important;
 }
 .navbar-header{
  
+}
+.post-view{
+  margin-bottom: 30px;
 }
 .navbar-brand {
     float: left;
@@ -58,7 +61,7 @@
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
-    width: 1366px;
+    width: 100%;
 
 }
 

@@ -261,14 +261,18 @@ export function createDashboard(){
 }
 
 export function createSocialNetwork(){
-    
+return new Promise((resolve, reject) => {    
   firebase.auth().onAuthStateChanged(function(user) {
   var query = firebase.database().ref("users");
   var fb=document.getElementById('radio1').checked;
   var tw=document.getElementById('radio2').checked;
   var dbusname = document.getElementById('usname').value;
   var usname;
+  let isError = true;
+  let dataReturn;
     if ((fb == true || tw == true) && usname!="") {
+      isError = false;
+      dataReturn = true;
       if(tw == true){
         var countusnamechar = dbusname.split("@");
          if (countusnamechar.length > 1) {
@@ -320,9 +324,12 @@ export function createSocialNetwork(){
       });
     }
     else{
-          window.alert("llena todos los campos");
-
-        }
+      dataReturn = false;
+    }
+    resolve({
+      status: dataReturn
+    });
+  });
   });
 }
 
@@ -418,12 +425,14 @@ export function getDashData(){
                       var dashboardid = childSnapshot.child("did").val();
                       var url = window.location.href;
                       var id = url.substring(url.lastIndexOf('/') + 1 );
+                      document.getElementById("urlpass").value=url;
                       if(dashboardid == id){
-                        document.getElementById("modalActionVal").innerHTML="Actualizar Dashboard";
+                        document.getElementById("adddashbutt").innerHTML="Actualizar Dashboard";
+                        document.getElementById("adddashbutt").innerHTML="Actualizar Dashboard";
                         dashboarname = childSnapshot.child("dname").val();
                         var ddescription = childSnapshot.child("ddescription").val();
                         document.getElementById("dashname").innerHTML=dashboarname;
-                        document.getElementById("dname").value =dashboarname;
+                        document.getElementById("dname").value = dashboarname;
                         document.getElementById("ddescription").value =ddescription;
                          dashdirection.once("value").then(function(snapshot) {
                           snapshot.forEach(function(childSnapshot) {
@@ -444,9 +453,11 @@ export function getDashData(){
                                 snapshot.forEach(function(childSnapshot) {
                                     if(childSnapshot.child("priv").val() == true){
                                         document.getElementById("priv").checked=true;
+                                        document.getElementById("dashstate").innerHTML="Privado";
                                     }
                                     else{
                                         document.getElementById("publi").checked=true;
+                                        document.getElementById("dashstate").innerHTML="Público";
                                     }
                                 });
                               });
@@ -658,4 +669,5 @@ export function Inactivity(){
       temp = setTimeout(reload, 900000);
   });
 }
+
 export {app}

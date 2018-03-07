@@ -5,6 +5,12 @@
 .navbar-header{
  
 }
+.adddash {
+	transition : filter 500ms linear
+}
+.adddash:hover {
+  filter: brightness(150%);
+}
 .navbar-brand {
     float: left;
     height: 50px;

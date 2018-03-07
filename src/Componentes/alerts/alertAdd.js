@@ -4,22 +4,29 @@ import {Redirect} from 'react-router-dom'
 
 import logo from '../../Assets/Iconos/logo_login.png';
 import '../../Assets/js/script.js';
-import{signIn, signOut, createUser, extermin, verfSessionlog} from '../../Assets/js/script.js';
+import{signIn, signOut, createUser, extermin, verfSessionlog, actionval} from '../../Assets/js/script.js';
 
 
 class AlertAdd extends Component {
   render() {
-    return (
-
-  
-        <div className="alert alert-success" id="login-success">
-             
-              <p>Dashboard creado satisfactoriamente <a href="" className="close" aria-label="close"> &#10004;</a></p>
+  	var url = window.location.href;
+		var id = url.substring(url.lastIndexOf('/') + 1 );
+		if (id != "DashboardBuscar" || id != "dashboard_columns" || id != "Dashboard"){
+		 
+    	return (			  
+	        <div className="alert alert-success" id="login-success">
+              <p id="validatealertdash">Dashboard actualizado satisfactoriamente <a href="" className="close" aria-label="close"> &#10004;</a></p>
             </div>
+		);  
+    }
+    else{
+		return (			  
+	        <div className="alert alert-success" id="login-success">
+              <p id="validatealertdash">Dashboard creado satisfactoriamente <a href="" className="close" aria-label="close"> &#10004;</a></p>
+            </div>
+		); 
 
-
-
-    );
+    }
   }
 }
 

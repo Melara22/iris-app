@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Buscar.css';
-
+import '../../Componentes/menu.css';
 import Modals from '../../Componentes/modals';
 import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
@@ -147,6 +147,7 @@ class DashboardBuscar extends Component {
     
     
 }
+verifyDashboards2();
     return (
 
       this.state.loading.length <= 0 ? <IconLoading /> : (
@@ -166,8 +167,8 @@ class DashboardBuscar extends Component {
                           </div>
                           <ul className="nav navbar-nav navbar-right">
                             
-                            <li><a className="icon-menu"><img src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
-                            <li className="separacion"><a className="icon-menu" href=""><img src={compartir} alt="icon-compártir" /></a></li>
+                            <li ><a className="icon-menu" href=""><img class="menuicon" src={notifi} alt="icon-compártir" /></a></li>
+                            <li className="separacion"><a className="icon-menu"><img class="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       

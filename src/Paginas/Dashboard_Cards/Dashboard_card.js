@@ -156,8 +156,8 @@ componentDidMount() {
     return (
 
       
-        <div className=" mis-post">
-          <div className="row">
+        <div className="">
+          <div className="">
             
                           
                         
@@ -202,7 +202,7 @@ componentDidMount() {
 
                 </div>
                 <List users = { this.state.users } />  
-                <div className="row " align="center">
+                
                         {this.userLogged && (
                          <div className="col-md-3">
                               <div className="card post-nuevo">
@@ -221,7 +221,6 @@ componentDidMount() {
                               </div>
                               <Modals />
                           </div>)}
-                    </div>  
                     
           </div>
         </section>

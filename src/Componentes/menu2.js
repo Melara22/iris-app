@@ -1,6 +1,7 @@
  
 import React, { Component } from 'react';
 import Modals from './modals';
+import './menu.css';
 
 
 import logomenu from '../Assets/Iconos/logo_fondo@2x.png';
@@ -30,9 +31,8 @@ class Menu2 extends Component {
 
                           <ul className="nav navbar-nav navbar-right">
                             
-                            <li><a className="icon-menu" href=""><img src={notifi} alt="icon-c1" /></a></li>
-                            <li><a className="icon-menu"><img src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
-                            <li className="separacion"><a className="icon-menu" href=""><img src={compartir} alt="icon-compártir" /></a></li>
+                            <li><a className="icon-menu" href=""><img class="menuicon" src={notifi} alt="icon-c1" /></a></li>
+                            <li className="separacion"><a style ={{cursor: "pointer"}}className="icon-menu"><img class="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
