@@ -111,14 +111,19 @@
 
 @media screen and (max-width: 1920px){
  .state-div{
-	padding-left: 40em;
-	padding-right: 40em;
+	padding-left: 20em;
+	padding-right: 20em;
 }
-
+}
+@media screen and (max-width: 1280px){
+ .state-div{
+	padding-left: 18em;
+	padding-right: 18em;
+}
 }
 @media screen and (max-width: 1366px){
 	.state-div{
-	padding-left: 24.2em;
-	padding-right: 24.2em;
+	padding-left: 15em;
+	padding-right: 15em;
 }
 }

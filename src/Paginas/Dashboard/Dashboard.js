@@ -31,7 +31,7 @@ class Dashboard extends Component {
       this.state.loading.length <= 0 ? <IconLoading /> : (
         <div className="Dashboard">
           <section className="dash">
-            <div className="container postainer">
+            <div className="container">
 
               <div className="starter-template">
               <Menu2/>

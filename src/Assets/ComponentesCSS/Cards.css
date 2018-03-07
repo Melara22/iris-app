@@ -168,6 +168,7 @@
   height: 21vh!important;
   object-fit:cover; 
   transition: all .25s ease;
+  cursor: context-menu;
 } 
 }
 @media screen and (max-width: 1366px){

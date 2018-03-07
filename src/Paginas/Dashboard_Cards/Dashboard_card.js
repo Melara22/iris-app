@@ -217,25 +217,8 @@ componentDidMount() {
                 </div>
                 <List users = { this.state.users } />  
                 
-                        {this.userLogged && (
-                         <div className="col-md-3">
-                              <div className="card post-nuevo">
-                                  <a className="img-card">
-                                </a>
-                                  <div className="content-post" align="center">
-                                      <a data-toggle="modal" data-target="#myModal">
 
-                                     <img src={agregar} alt="agregar" />
-                                      </a>
-                                      <p>Agregar una pagina</p>
-
-                                      
-                                  </div>
-                              
-                              </div>
-                              <Modals />
-                          </div>)}
-                                <List users = { this.state.users } /> 
+                                
                     
           </div>
         </section>
