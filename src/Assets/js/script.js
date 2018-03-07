@@ -412,13 +412,15 @@ var dashboarname;
 export function getDashData(){
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
+          document.getElementById("cards").checked=false;
+          document.getElementById("columns").checked=false;
           var query = firebase.database().ref("users");
       query.once("value").then(function(snapshot) {
           snapshot.forEach(function(childSnapshot) {
-            var keys = childSnapshot.key;
             var key2 = childSnapshot.child("email").val();
             var namelog = firebase.auth().currentUser;
             if (namelog.email == key2) {
+                  var keys = childSnapshot.key;
                   var dashdirection = db.ref("users/"+keys+"/Dashboard/");
                    dashdirection.once("value").then(function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
@@ -427,42 +429,42 @@ export function getDashData(){
                       var id = url.substring(url.lastIndexOf('/') + 1 );
                       document.getElementById("urlpass").value=url;
                       if(dashboardid == id){
-                        document.getElementById("adddashbutt").innerHTML="Actualizar Dashboard";
+                        document.getElementById("modalActionVal").innerHTML="Actualizar Dashboard";
                         document.getElementById("adddashbutt").innerHTML="Actualizar Dashboard";
                         dashboarname = childSnapshot.child("dname").val();
                         var ddescription = childSnapshot.child("ddescription").val();
                         document.getElementById("dashname").innerHTML=dashboarname;
                         document.getElementById("dname").value = dashboarname;
                         document.getElementById("ddescription").value =ddescription;
-                         dashdirection.once("value").then(function(snapshot) {
+                        var dashdirectionintro = db.ref("users/"+keys+"/Dashboard/");
+                        var keydashboard = childSnapshot.key;
+                        var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design/");
+                        styleConect.once("value").then(function(snapshot) {
                           snapshot.forEach(function(childSnapshot) {
-                              var keydashboard = childSnapshot.key;
-                              var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
-                              styleConect.once("value").then(function(snapshot) {
-                                snapshot.forEach(function(childSnapshot) {
-                                    if(childSnapshot.child("cards").val() == true){
-                                        document.getElementById("cards").checked=true;
-                                    }
-                                    else{
-                                        document.getElementById("columns").checked=true;
-                                    }
-                                });
-                              });
-                              var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
-                              privacity.once("value").then(function(snapshot) {
-                                snapshot.forEach(function(childSnapshot) {
-                                    if(childSnapshot.child("priv").val() == true){
-                                        document.getElementById("priv").checked=true;
-                                        document.getElementById("dashstate").innerHTML="Privado";
-                                    }
-                                    else{
-                                        document.getElementById("publi").checked=true;
-                                        document.getElementById("dashstate").innerHTML="Público";
-                                    }
-                                });
-                              });
-                            });
+                            console.log(keydashboard);
+                              if(childSnapshot.child("cards").val() == true && childSnapshot.child("columns").val() == false){
+                                  document.getElementById("columns").checked=false;
+                                  document.getElementById("cards").checked=true;
+                              }
+                              else if (childSnapshot.child("cards").val() == false && childSnapshot.child("columns").val() == true){
+                                  document.getElementById("cards").checked=false;
+                                  document.getElementById("columns").checked=true;
+                              }
                           });
+                        });
+                        var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity/");
+                        privacity.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                              if(childSnapshot.child("priv").val() == true){
+                                  document.getElementById("priv").checked=true;
+                                  document.getElementById("dashstate").innerHTML="Privado";
+                              }
+                              else{
+                                  document.getElementById("publi").checked=true;
+                                  document.getElementById("dashstate").innerHTML="Público";
+                              }
+                          });
+                        });
                       }
                     });
                 });
