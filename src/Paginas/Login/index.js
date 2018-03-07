@@ -4,7 +4,7 @@ import '../../Assets/ComponentesCSS/alerts.css';
 import {Redirect} from 'react-router-dom'
 import AlertSuccess from '../../Componentes/alerts/alertSuccess.js';
 import AlertDanger from '../../Componentes/alerts/alertDanger.js';
-import logo from '../../Assets/Iconos/logo_login.png';
+import logo from '../../Assets/Iconos/login.png';
 import '../../Assets/js/script.js';
 import{signIn, signOut, createUser, extermin, verfSessionlog,checkIfUserExists} from '../../Assets/js/script.js';
 import { YouAreOffline } from '../../Componentes/alerts/alertOffline.js';
@@ -66,17 +66,17 @@ verfSessionlog();
               {this.state.msg}
           
             <div className="contenido-login">
-                <img src={logo} alt="logo" />
+                <img className="logo2" src={logo} alt="logo" />
                   <h1>Iniciar sesión</h1>
                     <p>Asegurate que tu cuenta sea elaniin.com para poder ingresar.</p>
-                    <button id="login" onClick={this.signInGoo} className="btn btn-primary boton-image monBouton">Sign up with Google</button>
+                    <button id="login" onClick={this.signInGoo} className="btn boton-image monBouton"><a className="text-botonimage">Sign up with Google</a></button>
                   
                     <div className="marca">
                     <p>Powered by <a className="url-marca" href="https://elaniin.com/" target="_blank">Elaniin </a>&<a className="url-marca" target="_blank" href="http://app.inxights.co/"> Inxights</a></p>
                     </div>
                  </div>
-            </div>
-          
+            </div >
+             
               <div className="col-md-8 login-texto">
                 <h1>¡Bienvenido a Iris!</h1>
                 <p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -86,6 +86,7 @@ verfSessionlog();
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
+              
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 .alert{
 	padding:8px!important;
+	width: 100%;
 }
 
 .alert-danger{
@@ -34,6 +35,7 @@
 	border-bottom-right-radius: 0;
 	border-top-left-radius: 7px;
 	border-top-right-radius: 7px; 
+	width: 100%;
 }
 
 .alert-success p{
