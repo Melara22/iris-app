@@ -234,7 +234,6 @@ export function createDashboard(){
                           });
                       });
                     });
-                   setTimeout(function(){ window.location.reload() }, 300); 
                   }
                   });
                 });
@@ -246,8 +245,7 @@ export function createDashboard(){
         // Cancel enumeration
       }); 
      });
-    setTimeout(function(){ window.location.href="/Dashboard_columns/"+code }, 300); 
-    
+setTimeout(function(){ window.location.reload() }, 400); 
     }
     else{
           dataReturn = false;

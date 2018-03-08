@@ -36,10 +36,8 @@ import { YouAreOffline } from '../../Componentes/alerts/alertOffline.js';
 
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
-import {app, verifyDashboards2, verifiyAccess, verifyDesign2, Inactivity} from '../../Assets/js/script.js';
+import {app, verifyDashboards2, verifiyAccess, verifyDesign2, Inactivity, verfSession, verifyDashboards, getData} from '../../Assets/js/script.js';
 import {MY_ROUTE} from '../../routes.js'
-
-import{verfSession, verifyDashboards, getData} from '../../Assets/js/script.js';
 var url = window.location.href;
 var id = url.substring(url.lastIndexOf('/') + 1 );
 Inactivity();
@@ -211,8 +209,8 @@ if(facebook==true){
 
 }   
     verifiyAccess();
-    verifyDesign2();
     verifyDashboards2();
+    verifyDesign2();
     console.log(this.props);
      if(this.props != id){
     return (
