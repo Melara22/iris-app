@@ -8,14 +8,14 @@ import Modals from './modals';
 /*Imagenes*/
 
 import agregar from '../Assets/Iconos/Agregar_icon.png';
-import like from '../Assets/Iconos/likes.png';
+import likefb from '../Assets/Iconos/likefb.png';
 import love from '../Assets/Iconos/reacciones/love.png';
 import wow from '../Assets/Iconos/reacciones/wow.png';
 
 import share from '../Assets/Iconos/share.png';
 import retweet from '../Assets/Iconos/retweet@2x.png';
 import favorite from '../Assets/Iconos/like@2x.png';
-
+import sha from '../Assets/Iconos/sha.png';
 import views from '../Assets/Iconos/views.png';
 
 import logo from '../Assets/img/mara/logo.png';
@@ -40,7 +40,7 @@ constructor(props){
   this.state = {
     posts:[],
     data:[],
-    
+
   }
 }
 
@@ -73,10 +73,10 @@ componentDidMount(){
                                     </div>
                                   <img src={postfb.content.picture} />
                                    <div className="opciones2">
-                                         <a>{postfb.reactions.like} <img src={like} alt="share" /></a>
+                                         <a>{postfb.reactions.like} <img src={likefb} alt="share" /></a>
                                         <a>{postfb.reactions.love} <img src={love} alt="share" /></a>
                                         <a>{postfb.reactions.wow} <img src={wow} alt="share" /></a>
-                                       <a>{postfb.shares} <img src={share} alt="share" /></a>
+                                       <a>{postfb.shares} <img src={sha} alt="share" /></a>
                                         <a className="float-opcion">
                                         {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
                                         </a>

@@ -3,18 +3,19 @@ import axios  from 'axios';
 import moment from 'moment';
 import 'moment/locale/es';
 import '../Assets/ComponentesCSS/Cards.css';
-import IconLoading from './icons/IconLoading';
+
 
 import Modals from './modals';
 /*Imagenes*/
 import agregar from '../Assets/Iconos/Agregar_icon.png';
-import like from '../Assets/Iconos/likes.png';
+
 import divierte from '../Assets/Iconos/reacciones/divierte.png';
 import love from '../Assets/Iconos/reacciones/love.png';
 import wow from '../Assets/Iconos/reacciones/wow.png';
 import retweet from '../Assets/Iconos/retweet@2x.png';
 import share from '../Assets/Iconos/share.png';
 
+import likefb from '../Assets/Iconos/likefb.png';
 import tw from '../Assets/Iconos/twitterlogo-color.png';
 import favorite from '../Assets/Iconos/like@2x.png';
 import post1 from '../Assets/Iconos/place_holder.jpg';
@@ -35,7 +36,7 @@ class Cards extends Component {
       posts:[],
        data:[],
        users:[],
-       loading: []
+       
     }
   }
 
@@ -85,9 +86,7 @@ class Cards extends Component {
         console.log('ERROR ', e);
       })
 
-      setTimeout(() => {
-            this.setState({loading: [1, 2, 3]});
-          },2000);
+      
   }
 
   render() {
@@ -160,7 +159,7 @@ class Cards extends Component {
                                </div> 
 
                                <div className="opciones">
-                                <a>{postsn.reactions.like} <img src={like} alt="share" /></a>
+                                <a>{postsn.reactions.like} <img src={likefb} alt="share" /></a>
                                 <a>{postsn.reactions.love} <img src={love} alt="share" /></a>
                                 <a>{postsn.reactions.wow} <img src={wow} alt="share" /></a>
                                 
@@ -184,7 +183,7 @@ class Cards extends Component {
 
   
     return (
-      this.state.loading.length <= 0 ? <IconLoading /> : (
+    
       <div className="Cards">
 
                      <div align="center">
@@ -192,7 +191,7 @@ class Cards extends Component {
                     </div>  
        
       </div>
-      )
+      
     );
   }
   

@@ -21,7 +21,7 @@ import notifi from '../../Assets/Iconos/notificaciones.png';
 import nuevo from '../../Assets/Iconos/nuevo.png';
 import compartir from '../../Assets/Iconos/compartir.png';
 
-import like from '../../Assets/Iconos/likes.png';
+
 import share from '../../Assets/Iconos/retweet.png';
 
 import agregar from '../../Assets/Iconos/Agregar_icon.png';

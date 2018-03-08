@@ -105,7 +105,7 @@ class Modals extends Component {
 					    <input type="email" className="form-control input-color-blue" id="usname"/>
 					  </div>
 			     </form>
-			      <a onClick={this.createsn} className="btn bt-primary btnAgregar">Agregar cuenta</a>
+			      <a onClick={this.createsn} className="btn bt-primary btnAgregar adddash">Agregar cuenta</a>
 			      </div>
 
 			      

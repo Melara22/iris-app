@@ -8,7 +8,7 @@ import Modals from './modals';
 /*Imagenes*/
 
 import agregar from '../Assets/Iconos/Agregar_icon.png';
-import like from '../Assets/Iconos/likes.png';
+import likefb from '../Assets/Iconos/likefb.png';
 import love from '../Assets/Iconos/reacciones/love.png';
 import wow from '../Assets/Iconos/reacciones/wow.png';
 
@@ -89,7 +89,7 @@ componentDidMount(){
                                     </div>
                                   <img src={postfb.content.picture} />
                                    <div className="opciones2">
-                                         <a>{postfb.reactions.like} <img src={like} alt="share" /></a>
+                                         <a>{postfb.reactions.like} <img src={likefb} alt="share" /></a>
                                         <a>{postfb.reactions.love} <img src={love} alt="share" /></a>
                                         <a>{postfb.reactions.wow} <img src={wow} alt="share" /></a>
                                        <a>{postfb.shares} <img src={share} alt="share" /></a>
