@@ -42,5 +42,10 @@
 	text-decoration: none;
 }
 
+#dashstate{
+	color: black;
+	cursor: context-menu;
+}
+
 
 

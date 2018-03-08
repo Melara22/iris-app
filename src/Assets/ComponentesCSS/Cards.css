@@ -39,10 +39,11 @@
 } 
 .card-content {
   margin-top: -2em;
-   padding: 2px 16px;
+  padding: 2px 16px;
   text-align:left;
   flex-wrap: nowrap;
   max-height: calc(100vh - 210px);
+  padding-bottom: 1px;
 
 }
 .card-title {
@@ -65,32 +66,34 @@
 }
 .texto-card{
   margin-top: -1em;
-  padding: 10px;
-  height: 105px;
-  overflow: scroll;
+  height: 113px;
+  overflow-y: scroll;
+  border:2px solid white;
 }
 .card-read-more {
   border-top: 1px solid #D4D4D4;
 }
 .opciones{
-  position: absolute;
+    position: absolute;
+    left: 0;
     bottom: 0;
-    width: 90%;
-    margin: 5px;
+    width: 100%;
+    margin: 0px;
     border-top: 1px solid #e0e0e0;
-    padding-top: 0.6em;
+    padding-top:0.2em; 
+    padding-left: 0.2em;
+    padding-right: 0.2em; 
 }
 .opciones a{
-  padding:1px!important;
+  padding:0.1px!important;
   font-family: Brandon-light;
   font-size: 11px;
-
   text-decoration:none; 
 }
 
-.opciones img{
-  width: 4.2%!important;
-}
+
+
+
 
 .float-opcion{
   float: right;
@@ -101,6 +104,12 @@
   font-weight: lighter;
 }
 
+.float-opciona{
+  float: left;
+}
+.float-opciona img{
+  width:30%!important; 
+}
 .col-lg-5 {
     position: relative;
     min-height: 1px;
@@ -140,11 +149,18 @@
 
 
 
+
 @media (min-width: 1366px) {
     .col-lg-15 {
         width: 25%;
         float: left;
     }
+    .texto-card{
+  margin-top: -1em;
+  height: 110px;
+  overflow-y: scroll;
+  border:2px solid white;
+}
 }
 @media (min-width: 1600px) {
     .col-lg-5 {
@@ -161,8 +177,15 @@
     margin-right: auto;
     margin-left: auto;
     width: 100%!important;
-
+  
 }
+.texto-card{
+  margin-top: -1em;
+  height: 115px;
+  overflow-y: scroll;
+  border:2px solid white;
+}
+
 
 .img-card img{
   width: 100%;
@@ -187,14 +210,7 @@
   object-fit:cover; 
   transition: all .25s ease;
 } 
-.card-content {
-  margin-top: 0em;
-   padding: 2px 16px;
-  text-align:left;
-  flex-wrap: nowrap;
-  max-height: calc(100vh - 210px);
 
-}
 }
 
 @media screen and (max-width: 1280px){
@@ -219,5 +235,11 @@
   flex-wrap: nowrap;
   max-height: calc(100vh - 210px);
 
+}
+.texto-card{
+  margin-top: -1em;
+  height: 130px;
+  overflow-y: scroll;
+  border:2px solid white;
 }
 }

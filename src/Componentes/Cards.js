@@ -22,10 +22,11 @@ import post1 from '../Assets/Iconos/place_holder.jpg';
 import arrow from '../Assets/Iconos/arrow.png';
 import fb from '../Assets/Iconos/fb.png';
 
-
+var numeral = require('numeral');
 /*Conexion de api*/
 var id = 'ProgramadoresAndanDiciendo';
 let imgval;
+
 
 
 class Cards extends Component {
@@ -129,8 +130,9 @@ class Cards extends Component {
                           </div>
 
                            <div className="opciones">
-                             <a>{postsn.retweet} <img src={retweet} alt="share" /></a>
-                             <a>{postsn.favorite} <img src={favorite} alt="share" /></a>
+                             <a className="float-opciona">{postsn.retweet} <img src={retweet} alt="share" /></a>
+                             <a className="float-opciona">{postsn.favorite} <img src={favorite} alt="share" /></a>
+                             
                              <a className="float-opcion">
                                {moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
                                </a>
@@ -149,6 +151,7 @@ class Cards extends Component {
                         <a className="img-card">
                         <DefaultPlaceholdeR />
                       </a>
+                      
                         <div className="card-content">
                          <h4 className="card-title"><img src={fb} alt="icon-fb" /> {postsn.content.username}</h4>
                           
@@ -157,20 +160,22 @@ class Cards extends Component {
                                {postsn.content.message}
                                 </p>
                                </div> 
-
-                               <div className="opciones">
-                                <a>{postsn.reactions.like} <img src={likefb} alt="share" /></a>
-                                <a>{postsn.reactions.love} <img src={love} alt="share" /></a>
-                                <a>{postsn.reactions.wow} <img src={wow} alt="share" /></a>
-                                
-                                <a>{postsn.shares} <img src={share} alt="share" /></a>
-                                <a className="float-opcion">
-                                {moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                </a>
-                              </div>
                            
                           </div>
+                      <div className="opciones">
                       
+                                <a className="float-opciona">{numeral(postsn.reactions.like).format('0 a')} <img className="likefb" src={likefb} alt="share" /></a>
+                                <a className="float-opciona">{numeral(postsn.reactions.love).format('0 a')} <img src={love} alt="share" /></a>
+                                <a className="float-opciona">{numeral(postsn.reactions.wow).format('0 a')} <img src={wow} alt="share" /></a>
+                                <a className="float-opciona">{numeral(postsn.shares).format('0 a')} <img src={share} alt="share"/></a>
+
+                                
+
+                         
+                               <a className="float-opcion">
+                                {moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                                </a>
+                      </div>
                    </div>
                </div>
                               
