@@ -109,7 +109,7 @@ class DashboardBuscar extends Component {
                const { did, dname, ddescription } = user;
 
                return (
-                <div className="col-md-3 col-lg-3" style={{marginBottom:"30px!important;"}} key = { i }>
+                <div className="col-md-3 col-lg-3 col-dash" style={{marginBottom:"30px!important;"}} key = { i }>
                  
                  <div id="header">
                   <ul className="a">
@@ -133,7 +133,7 @@ class DashboardBuscar extends Component {
                   <div className="page"></div>       
                 </div>
                 
-                <br/>
+                
                 </div>
                )
 

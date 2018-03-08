@@ -74,6 +74,9 @@
 
 }
 
+.col-dash{
+    margin: 15px 0px!important;
+}
 .input-buscar:focus {
   border-color: transparent;
   box-shadow: inset 0 1px 1px transparent;
@@ -84,7 +87,7 @@
 }
 
 .mis-post{
-    padding-top: 5em;
+    padding-top: 0em;
 }
 
 

@@ -9,7 +9,7 @@ import Datos from './Datos';
 
 import compartir from '../../Assets/Iconos/compartir.png';
 import agregar from '../../Assets/Iconos/Agregar_icon.png';
-import like from '../../Assets/Iconos/likes.png';
+
 import share from '../../Assets/Iconos/retweet.png';
 import favorite from '../../Assets/Iconos/favorite.png';
 import views from '../../Assets/Iconos/views.png';

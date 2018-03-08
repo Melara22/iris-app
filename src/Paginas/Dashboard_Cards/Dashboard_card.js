@@ -20,7 +20,7 @@ import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
 import nuevo from '../../Assets/Iconos/nuevo.png';
 import compartir from '../../Assets/Iconos/compartir.png';
-import like from '../../Assets/Iconos/likes.png';
+
 import share from '../../Assets/Iconos/retweet.png';
 import agregar from '../../Assets/Iconos/Agregar_icon.png';
 import favorite from '../../Assets/Iconos/favorite.png';
@@ -48,6 +48,7 @@ constructor(props){
   this.state = {
     
     users: [],
+    loading:[]
     
   };
 
@@ -135,7 +136,9 @@ componentDidMount() {
                });
               });
             });
-
+          setTimeout(() => {
+            this.setState({loading: [1, 2]});
+          },3000);
  
         }
 
@@ -181,7 +184,7 @@ componentDidMount() {
                                   <div className="content-post" align="center">
                                       <a data-toggle="modal" data-target="#myModal">
 
-                                     <img src={agregar} alt="agregar" />
+                                     <img src={agregar} alt="agregar" id="addimg" />
                                       </a>
                                       <p>Agregar una pagina</p>
 
@@ -201,7 +204,7 @@ componentDidMount() {
     verifyDesign();
     console.log(this.props);
     return (
-    
+       this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Dashboard_card">
         
           <section>
@@ -213,7 +216,7 @@ componentDidMount() {
               </div>
         </section>
       </div>
-      
+      )
     );
 
 
