@@ -25,8 +25,9 @@ class Dashboard extends Component {
   }
 
   render() {
-    verifyDashboards();
     // console.log(this.props);
+    
+    verifyDashboards();
     return (
       this.state.loading.length <= 0 ? <IconLoading /> : (
         <div className="Dashboard">

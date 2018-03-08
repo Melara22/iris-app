@@ -175,7 +175,6 @@ export function createDashboard(){
                 dname: dnametemp,
                 ddescription:ddescription
               });
-
                dashConect.once("value").then(function(snapshot) {
                 snapshot.forEach(function(childSnapshot) {
                   var dashboardid = childSnapshot.child("did").val();
@@ -191,7 +190,6 @@ export function createDashboard(){
                       publi:publi,
                       priv: priv
                     });
-                    window.location.href="/Dashboard_columns/"+code;
                   }
                   });
                 });
@@ -248,6 +246,8 @@ export function createDashboard(){
         // Cancel enumeration
       }); 
      });
+    setTimeout(function(){ window.location.href="/Dashboard_columns/"+code }, 300); 
+    
     }
     else{
           dataReturn = false;
@@ -343,10 +343,6 @@ export function extermin(){
   });
 }
 
-export function userExistsCallback() {
-    verifyDashboards();
-}
-
 // Tests to see if /users/<userId> has any data. 
 export function checkIfUserExists(name, email, uid) {
   ref.on('value', gotData);  
@@ -374,7 +370,7 @@ export function gotData (data){
         createUser();
       }
       else{
-        userExistsCallback();
+        window.location.href="/Dashboard";
       }
   }
 }

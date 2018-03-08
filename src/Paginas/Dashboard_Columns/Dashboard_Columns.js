@@ -212,6 +212,7 @@ if(facebook==true){
 }   
     verifiyAccess();
     verifyDesign2();
+    verifyDashboards2();
     console.log(this.props);
      if(this.props != id){
     return (
