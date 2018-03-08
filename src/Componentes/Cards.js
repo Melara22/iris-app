@@ -131,7 +131,7 @@ class Cards extends Component {
 
                            <div className="opciones">
                              <a className="float-opciona">{postsn.retweet} <img src={retweet} alt="share" /></a>
-                             <a className="float-opciona">{postsn.favorite} <img src={favorite} alt="share" /></a>
+                             <a className="float-opciona iconshare">{postsn.favorite} <img src={favorite} alt="share" /></a>
                              
                              <a className="float-opcion">
                                {moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
@@ -165,13 +165,9 @@ class Cards extends Component {
                       <div className="opciones">
                       
                                 <a className="float-opciona">{numeral(postsn.reactions.like).format('0 a')} <img className="likefb" src={likefb} alt="share" /></a>
-                                <a className="float-opciona">{numeral(postsn.reactions.love).format('0 a')} <img src={love} alt="share" /></a>
-                                <a className="float-opciona">{numeral(postsn.reactions.wow).format('0 a')} <img src={wow} alt="share" /></a>
-                                <a className="float-opciona">{numeral(postsn.shares).format('0 a')} <img src={share} alt="share"/></a>
-
-                                
-
-                         
+                                <a className="float-opciona icon">{numeral(postsn.reactions.love).format('0 a')} <img src={love} alt="share" /></a>
+                                <a className="float-opciona icon2">{numeral(postsn.reactions.wow).format('0 a')} <img src={wow} alt="share" /></a>
+                                <a className="float-opciona icon3">{numeral(postsn.shares).format('0 a')} <img src={share} alt="share"/></a>
                                <a className="float-opcion">
                                 {moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
                                 </a>
