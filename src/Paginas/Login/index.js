@@ -64,7 +64,7 @@ verfSessionlog();
       <div className="Login">
       
   <section className="login">
-    <div className="container">
+    <div className="">
 
       <div className="contenedor">
         <div className="row login-container">

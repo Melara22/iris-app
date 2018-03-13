@@ -6,7 +6,7 @@ body {
 /*LOGIN PARTE DE LOGUEO*/
 
 .contenedor{
-  padding-top: 10em;
+  
   width: 100%;
   display: flex;
   align-items: center;
@@ -19,11 +19,14 @@ body {
    background-position: center;
    background-repeat: no-repeat; 
 	 height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .login-container{
-	margin-top: 100px!important;
-   margin-left: 100px;
-   margin-right: 100px;
+	
+   margin-left: 25em;
+   margin-right: 25em;
    align-items: center;
    display: flex;
    justify-content: center;
@@ -133,6 +136,9 @@ transition-duration: 0.5s;
   padding-left: 80px;
   padding-right: 80px;
   text-align: left;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 
@@ -152,12 +158,13 @@ transition-duration: 0.5s;
 
 @media screen and (max-width: 1920px){
   .login-container{
-  margin-top: 10em!important;
-   margin-left: 100px;
-   margin-right: 100px;
+  
+   margin-left: 30em;
+   margin-right: 30em;
    align-items: center;
    display: flex;
    justify-content: center; 
+
 }
   .login-texto{
   top:4px; 
@@ -167,6 +174,9 @@ transition-duration: 0.5s;
   padding-left: 80px;
   padding-right: 80px;
   text-align: left;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 
@@ -175,22 +185,26 @@ transition-duration: 0.5s;
 
 @media screen and (max-width: 1280px) and (min-height: 660px){
   .login-container{
-   margin-top: 5em!important;
-   margin-left: 100px;
-   margin-right: 100px;
+  
+   margin-left: 15em;
+   margin-right: 15em;
    align-items: center;
    display: flex;
    justify-content: center; 
 }
 
 .login-texto{
-  top:4px; 
+  top:-10px; 
   background: #B388FF;
-  padding-top: 84px;
-  padding-bottom: 84px;
+  padding-top: 5em;
+  padding-bottom: 5em;
   padding-left: 60px;
   padding-right: 60px;
   text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 
@@ -199,9 +213,8 @@ transition-duration: 0.5s;
 
 @media screen and (max-width: 1366px) and (min-height: 670px) {
 .login-container{
-  margin-top: 0em!important;
-   margin-left: 100px;
-   margin-right: 100px;
+  
+
    align-items: center;
    display: flex;
    justify-content: center; 
@@ -210,11 +223,14 @@ transition-duration: 0.5s;
 .login-texto{
   top:4px; 
   background: #B388FF;
-  padding-top: 80px;
-  padding-bottom: 100px;
+  padding-top: 5em;
+  padding-bottom: 5em;
   padding-left: 60px;
   padding-right: 60px;
   text-align: left;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 
@@ -224,9 +240,9 @@ transition-duration: 0.5s;
 
 @media (max-width: 1366px) and (min-height: 768px){
 .login-container{
-  margin-top: 4em!important;
-   margin-left: 100px;
-   margin-right: 100px;
+ 
+   margin-left: 15em;
+   margin-right: 15em;
    align-items: center;
    display: flex;
    justify-content: center; 
@@ -235,11 +251,14 @@ transition-duration: 0.5s;
 .login-texto{
   top:4px; 
   background: #B388FF;
-  padding-top: 80px;
-  padding-bottom: 100px;
+  padding-top: 5em;
+  padding-bottom: 5em;
   padding-left: 60px;
   padding-right: 60px;
   text-align: left;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 }
