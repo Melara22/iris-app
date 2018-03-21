@@ -21,9 +21,6 @@
 	width: 165px;
 }
 
- .icon-menu{
-
- }
 
 .icon-menu img{
 	width: 1.3em!important;
@@ -47,6 +44,7 @@
 .btn-green:hover{
 	background-color:rgb(48, 239, 223)!important;
 	border-color: transparent!important;
+
 	
 }
 
@@ -74,6 +72,24 @@
 .col-dash{
     margin: 15px 0px!important;
 }
+.col-dash:hover{
+    -webkit-transform: scale(1.05);
+    transition-duration: 0.5s;
+}
+.col-dash h3{
+    color: #424242;
+    font-family: Franlink-medium;
+    font-size: 17px;
+    font-weight: 550;
+}
+.col-dash p{
+    color: #BDBDBD;
+    font-family: Franlink-regular;
+    font-size: 12px;
+    font-weight: 300;
+    margin-top: -1em;
+    text-align: justify;
+}
 .input-buscar:focus {
   border-color: transparent;
   box-shadow: inset 0 1px 1px transparent;
@@ -89,8 +105,8 @@
 
 
 
-ul.a {
-    list-style-type: circle;
+ ul.a {
+   
     margin: 10px;
 }
 
@@ -100,9 +116,28 @@ ul.a {
  margin-left: 25px;
 }
 
+.a a{
+    color: rgb(43, 234, 223);
+    width: 10px;
+    height: 10px;
+    font-size: 18px;
+}
+
 .page{
    margin:10px;
 }
+
+.icon-trash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+}
+.icon-trash img{
+    width: 30%;
+}
+
+
    
    
  .thumbnail img{
@@ -132,6 +167,8 @@ ul.a {
     width: 80%;
 }
 
+
+
 #footer {
     margin-bottom: 10px;
     height:50px;
@@ -148,13 +185,17 @@ ul.a {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    height:300px;
+    height:100%;
     padding: 50px 10px;
     overflow: hidden;
     -webkit-box-shadow: 0 0 15px #BDBDBD; 
 
 }
 
+.a{
+    list-style-type: disc!important;
+
+}
 
 #content #scrollableContent {
     height: 100%;
@@ -163,15 +204,15 @@ ul.a {
     margin-top: 20px;
 }
 
-#content #scrollableContent p {
-    font-family: Brandon-light;
-    font-size: 17px;
-    text-align: justify;
-}
+
 
 #content #scrollableContent #paddingContent {
     padding: 10px;
 
+}
+#paddingContent a{
+    color: rgb(43, 234, 223)!important;
+    letter-spacing: 0.2px;
 }
 
 .awe-overlay-bg-single {

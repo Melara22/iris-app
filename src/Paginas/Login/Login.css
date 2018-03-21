@@ -130,7 +130,7 @@ transition-duration: 0.5s;
 /*LOGIN PARTE TEXTO DE BIENVENIDA*/
 .login-texto{
   top:26px; 
-  background: #B388FF;
+  background: rgb(161, 123, 252);
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 80px;
@@ -168,7 +168,7 @@ transition-duration: 0.5s;
 }
   .login-texto{
   top:4px; 
-  background: #B388FF;
+  
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 80px;
@@ -195,7 +195,7 @@ transition-duration: 0.5s;
 
 .login-texto{
   top:-10px; 
-  background: #B388FF;
+  
   padding-top: 5em;
   padding-bottom: 5em;
   padding-left: 60px;
@@ -222,7 +222,7 @@ transition-duration: 0.5s;
 
 .login-texto{
   top:4px; 
-  background: #B388FF;
+ 
   padding-top: 5em;
   padding-bottom: 5em;
   padding-left: 60px;
@@ -250,7 +250,7 @@ transition-duration: 0.5s;
 
 .login-texto{
   top:4px; 
-  background: #B388FF;
+
   padding-top: 5em;
   padding-bottom: 5em;
   padding-left: 60px;

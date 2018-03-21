@@ -17,7 +17,19 @@ body {
 	font-family: Brandon-it ;
 	src:url(Assets/Fonts/Brandon_light_it.otf);
 }
+@font-face{
+	font-family: Franlink-regular;
+	src:url(Assets/Fonts/LibreFranklin-Regular.ttf);
+}
 
+@font-face{
+	font-family: Franlink-medium;
+	src:url(Assets/Fonts/LibreFranklin-Medium.ttf);
+}
+@font-face{
+	font-family: Franlink-ligth;
+	src:url(Assets/Fonts/LibreFranklin-Thin.ttf);
+}
 body a{
 	cursor: pointer;
 }

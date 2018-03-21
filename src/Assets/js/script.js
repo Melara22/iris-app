@@ -143,8 +143,8 @@ export function createDashboard(){
   var query = firebase.database().ref("users");
   var cards=document.getElementById('cards').checked;
   var columns=document.getElementById('columns').checked;
-  var publi=document.getElementById('publi').checked;
-  var priv=document.getElementById('priv').checked;
+  var publi="";
+  var priv="";
   var currentdate = new Date();
   var year = String(currentdate.getFullYear());
   var month = String(currentdate.getMonth()+ 1);
@@ -450,12 +450,12 @@ export function getDashData(){
                         privacity.once("value").then(function(snapshot) {
                           snapshot.forEach(function(childSnapshot) {
                               if(childSnapshot.child("priv").val() == true){
-                                  document.getElementById("priv").checked=true;
-                                  document.getElementById("dashstate").innerHTML="Privado";
+                                  //document.getElementById("priv").checked=true;
+                                  //document.getElementById("dashstate").innerHTML="Privado";
                               }
                               else{
-                                  document.getElementById("publi").checked=true;
-                                  document.getElementById("dashstate").innerHTML="Público";
+                                  //document.getElementById("publi").checked=true;
+                                  //document.getElementById("dashstate").innerHTML="Público";
                               }
                           });
                         });

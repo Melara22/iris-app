@@ -147,7 +147,7 @@ class Modals extends Component {
                 				</div>
                 				<div className="col-md-8 layout" align="left">
 	                				<img src={layout} alt="radio-opcion" />
-	                				<p>Lorem ipsum</p>
+	                				<p>Visualiza distintas cuentas en forma de columnas</p>
                 				</div>
                 			</div>
 
@@ -163,7 +163,7 @@ class Modals extends Component {
 
                 				<div className="col-md-8 layout" align="left">
                 				<img src={layout1} alt="radio-opcion2" />
-                				<p>Lorem ipsum</p>
+                				<p>Visualiza distintas cuentas en forma de tarjetas</p>
                 				</div>
                 			</div>
                 		</div>
@@ -172,32 +172,23 @@ class Modals extends Component {
                 			<h4>Privacidad</h4>
 
                 			<div className="row">
-                				<div className="col-md-4">
-	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" id="publi" /><img src={publico} alt="opcion2.2" /></label>
-									</div>
+                				<div className="col-md-6 privacy">
+	                				<div>
+                                        <img src={publico} alt="opcion2.2" with="10"/>
+                                        <label className="switch">
+                                            <input type="checkbox"/>
+                                            <span className="slider"></span>
+                                        </label>
+                                        <img src={privado} alt="privado" with="10"/>
+                                    </div>
+
                 				</div>
-                				<div className="col-md-8 layout" align="left">
-	                				
-	                				<p>Publico para todos los usuarios</p>
-                				</div>
+                				
                 			</div>
 
                 			<br />
 
-                			<div className="row">
-                				<div className="col-md-4">
-	                				<div className="radio radio-danger">
-									  <label><input type="radio" name="optradio" id="priv" /><img src={privado} alt="privado"/></label>
-									</div>
-                				</div>
-
-
-                				<div className="col-md-8 layout" align="left">
-                				
-                				<p>Privado</p>
-                				</div>
-                			</div>
+                			
                 		</div>
 
                 		<div className="btn-right">

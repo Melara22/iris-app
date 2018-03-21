@@ -10,10 +10,13 @@ import nuevo from '../../Assets/Iconos/nuevo.png';
 import compartir from '../../Assets/Iconos/compartir.png';
 import agregar from '../../Assets/Iconos/Agregar_icon.png';
 import fb from '../../Assets/Iconos/fb.png';
+
 import animate from '../../animate.css'
+
 import settings from '../../Assets/Iconos/settings.png';
 import post3 from '../../Assets/img/prew.PNG';
 import post1 from '../../Assets/img/mara/post1.png';
+import erase from '../../Assets/Iconos/erase.png';
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
 import imgstate from '../../Assets/Iconos/blank_state.png';
@@ -109,16 +112,18 @@ class DashboardBuscar extends Component {
                const { did, dname, ddescription } = user;
 
                return (
-                <div className="col-md-3 col-lg-3 col-dash" style={{marginBottom:"30px!important;"}} key = { i }>
+                <div className="col-md-4 col-lg-4 col-dash" style={{marginBottom:"30px!important;"}} key = { i }>
                  
                  <div id="header">
                   <ul className="a">
-                   <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><li><h3><a id="dashname" style={{color:"#232b2b", 
-                    textDecoration: "none"}}>{dname}</a></h3></li></Link>  
-                   
-
+                  <div className="col-md-8 header-name">
+                   <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><li><h3 id="dashname" >{dname}</h3></li></Link>  
+                   </div>
+                  <div className="col-md-4 icon-trash">
+                    <img src={erase} alt="trash"/>
+                  </div>
                   </ul>
-                    <hr/>
+                  
                 </div>
                 <div id="content">
                     <div id="scrollableContent">
@@ -126,14 +131,12 @@ class DashboardBuscar extends Component {
                           <div className="prew">
                               <p>{ddescription}</p>
                           </div>
+
+                          <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><a>Ir a Dashboard</a></Link>
                         </div>
                     </div>
                 </div>
-                <div id="footer">
-                  <div className="page"></div>       
-                </div>
-                
-                
+             
                 </div>
                )
 

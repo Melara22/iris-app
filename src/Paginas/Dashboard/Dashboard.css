@@ -58,10 +58,10 @@
 	background-color:rgb(48, 239, 223);
 	border-radius: 0px;
 	border-color: transparent;
-	font-family:Brandon-medium;
-	padding-left: 2em;
-	padding-right: 2em;
-	font-size: 20px;
+	font-family: Franlink-regular;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 18px;
 }
 .btn-green:hover{
 	background-color:rgb(48, 239, 223)!important;

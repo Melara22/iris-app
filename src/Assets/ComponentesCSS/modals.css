@@ -23,12 +23,15 @@
   border-bottom:1px solid #B187FF!important; 
 }
 #dname{
-  border-bottom:1px solid #B187FF!important; 
+  border-bottom:1px solid #E0E0E0!important; 
   border-radius:0px;
+  font-family: Franlink-ligth;
+  
 }
 .ddescription{
-    border-bottom:1px solid #B187FF!important; 
+    border-bottom:1px solid #E0E0E0!important; 
     border-radius: 0px;
+    font-family: Franlink-ligth!important;
 }
 .adddash {
   transition : filter 100ms linear
@@ -164,10 +167,15 @@ input[type="radio"]:checked:before {
 
 }
 .modal-body2 h4{
-  font-family: Brandon-light;
+  font-family: Franlink-regular;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: lighter;
   color: #757575;
+}
+
+.modal-body2 label{
+  font-family: Franlink-ligth;
+  font-size: 12px;
 }
 
 .layout img{
@@ -185,10 +193,10 @@ input[type="radio"]:checked:before {
 }
 
 .layout p{
-  color:#757575!important;
- font-size: 15px;
+  color:#bdbdbd!important;
+ font-size: 12px;
  font-weight: bold;
- font-family: Brandon-light;
+ font-family: Franlink-regular;
 }
 .btn-right{
   float: right;
@@ -199,7 +207,8 @@ input[type="radio"]:checked:before {
   border-left: 0px!important;
   border-right: 0px!important;
   background: transparent;
-  font-family: Brandon-light;
+ 
+  font-weight: 500!important;
   width: 100%!important;
 } 
  .radio_item{
@@ -217,3 +226,52 @@ input[type="radio"]:checked:before {
 label {
 cursor: pointer;   
 } 
+
+.switch input { 
+    display:none;
+}
+.switch {
+    display:inline-block;
+    width:60px;
+    height:30px;
+    margin:8px;
+    transform:translateY(50%);
+    position:relative;
+}
+
+.slider {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    border-radius:30px;
+    background: #eeeeee;
+    cursor:pointer;
+    border:4px solid transparent;
+    overflow:hidden;
+     transition:.4s;
+}
+.slider:before {
+    position:absolute;
+    content:"";
+    width:100%;
+    height:100%;
+    background:rgb(161, 123, 252);
+    border-radius:30px;
+    transform:translateX(-30px);
+    transition:.4s;
+}
+
+input:checked + .slider:before {
+    transform:translateX(30px);
+    background:rgb(161, 123, 252);
+}
+input:checked + .slider {
+    
+}
+
+.privacy img{
+  width: 20%;
+}
+

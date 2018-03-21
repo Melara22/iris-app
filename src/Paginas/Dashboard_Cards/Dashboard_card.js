@@ -177,7 +177,7 @@ componentDidMount() {
             <div>
                 <Cards user={userar} socialNetwork={socnetar}/> 
                 {this.userLogged && (
-                         <div className="col-md-3 col-lg-5">
+                         <div className="col-md-3 col-lg-3">
                               <div className="card post-nuevo">
                                   <a className="img-card">
                                 </a>

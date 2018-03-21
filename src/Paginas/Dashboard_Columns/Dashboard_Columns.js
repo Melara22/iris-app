@@ -189,18 +189,7 @@ componentDidMount() {
 
 
         })}
-        {this.userLogged && (
-        <div className=" col-md-3 col-lg-3 post-div" id="addcompo" align="center">
-                  <div className="content-post">
-                    <a data-toggle="modal" data-target="#myModal">
-                    <img src={agregar} id="addimg"/>
-                    </a>
-                    <p>Agregar una pagina</p>
-                    <Modals />
-
-                  </div>
-                </div>
-                )}
+        
             </div>
         
     )
