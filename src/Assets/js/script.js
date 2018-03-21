@@ -421,7 +421,7 @@ export function getDashData(){
                       var dashboardid = childSnapshot.child("did").val();
                       var url = window.location.href;
                       var id = url.substring(url.lastIndexOf('/') + 1 );
-                      document.getElementById("urlpass").value=url;
+                      //document.getElementById("urlpass").value=url;
                       if(dashboardid == id){
                         document.getElementById("modalActionVal").innerHTML="Actualizar Dashboard";
                         document.getElementById("adddashbutt").innerHTML="Actualizar Dashboard";
