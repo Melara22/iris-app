@@ -4,6 +4,7 @@ import Modals from './modals';
 import './menu.css';
 
 import AlertValidation from './alerts/alertValidation';
+
 import AlertAdd from './alerts/alertAdd';
 import logomenu from '../Assets/Iconos/logo_fondo@2x.png';
 import imgstate from '../Assets/Iconos/blank_state.png';
@@ -159,19 +160,14 @@ class Menu extends Component {
                             <li><a className="icon-menu" href=""><img className="menuicon" src={notifi} alt="icon-c1" /></a></li>
                             {this.modalAction()}
                             <li className="dropdown separacion state-url">
-                                  <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                  <a className="dropdown-toggle" id="tglr" className="popover-toggle" title="Popover Header" role="button" aria-haspopup="true" aria-expanded="false">
                                       <img className="menuicon" width="20" style={{marginTop:"-20px;"}} src={compartir} alt="icon-compártir" />
                                   </a>
-                                  <ul className="dropdown-menu state-url-large" style={{width:"100%;"}}>
-                                      <li className="info-url">
-                                      <center>
-                                      <p>URL de Dashboard</p>
-                                          <p>Estado: <a id="dashstate">Privado</a></p>
-                                          <input type="text"  disabled id="urlpass"/>
-                                      </center>
-                                      </li>
-                                    
-                                  </ul>
+                                  <div id="customdiv" style="display: none">
+            Here <b>I</b> am
+        </div>
+
+                                  
                             </li>
                             
                             <li className="dropdown user-link" >
