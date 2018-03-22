@@ -75,7 +75,7 @@
 .icon-menu img{
 	width: 1.3em!important;
 }
-
+.icon-trash {cursor: pointer;}
 
 .profile-img{
     margin-top: -5px;

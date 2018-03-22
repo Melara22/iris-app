@@ -86,7 +86,6 @@ class Menu extends Component {
 
   render() {
     let self = this;
-    console.log(this.userLogged);
 
      List = (props) => {
     let filteredContact = props.users.filter(
@@ -139,9 +138,8 @@ class Menu extends Component {
                 <nav className="navbar navbar-default navbar-fixed-top">
                         <div className="container-fluid">
                           <div className="navbar-header">
-                            <a className="navbar-brand" href="/DashboardBuscar">
-                            <img src={logomenu} alt="logo" />
-                            </a>
+                            <Link style={{textDecoration:"none"}} to="/Dashboard"><a className="navbar-brand" href="/DashboardBuscar">
+                            <img src={logomenu} alt="logo" /></a></Link>  
                           </div>
                           <ul className="nav navbar-nav nombre-dashboard">
                             

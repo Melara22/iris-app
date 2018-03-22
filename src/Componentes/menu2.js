@@ -11,6 +11,11 @@ import nuevo from '../Assets/Iconos/nuevo.png';
 import compartir from '../Assets/Iconos/compartir.png';
 import arrow from '../Assets/Iconos/arrow.png';
 import{signOut, verfSession,getData} from '../Assets/js/script.js';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom'
 
 class Menu2 extends Component {
   render() {
@@ -23,9 +28,8 @@ class Menu2 extends Component {
            <nav className="navbar navbar-default navbar-fixed-top">
                         <div className="container-fluid">
                           <div className="navbar-header">
-                            <a className="navbar-brand" href="">
-                            <img src={logomenu} alt="logo" />
-                            </a>
+                            <Link style={{textDecoration:"none"}} to="/Dashboard"><a className="navbar-brand" href="/DashboardBuscar">
+                            <img src={logomenu} alt="logo" /></a></Link>  
                           </div>
                           
 
@@ -35,7 +39,6 @@ class Menu2 extends Component {
                             <li className=""><a style ={{cursor: "pointer"}}className="icon-menu"><img class="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                      
                                       <div id="ultradiv" className="img-rounded profile-img"><img style={{width:'30px', borderRadius: '50%'}}/></div>
                                       <span id="namelog"/><span className="caret"></span>
                                   </a>

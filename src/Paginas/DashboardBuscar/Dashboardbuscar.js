@@ -20,7 +20,7 @@ import erase from '../../Assets/Iconos/erase.png';
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
 import imgstate from '../../Assets/Iconos/blank_state.png';
-import {app, verifyDashboards2, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
+import {app, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
 import {
   BrowserRouter as Router,
   Route,
@@ -152,7 +152,7 @@ class DashboardBuscar extends Component {
     
     
 }
-verifyDashboards2();
+
     return (
 
       this.state.loading.length <= 0 ? <IconLoading /> : (

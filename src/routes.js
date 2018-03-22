@@ -14,7 +14,7 @@ import DashboardPost from './Paginas/DashboardPost/PostColumn';
 import DashboardBuscar from './Paginas/DashboardBuscar/Dashboardbuscar';
 import DashboardPost2 from './Paginas/DashboardPost2/DashboardPost2';
 import Private from './Paginas/Dashboard-private/private';
-export const MY_ROUTE = '/Dashboard_columns/:slug';
+export const MY_ROUTE = '/Dashboard_card/:slug';
 
 const BasicExample = () => (
   <Router>

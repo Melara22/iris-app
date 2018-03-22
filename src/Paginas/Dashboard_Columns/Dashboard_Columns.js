@@ -36,7 +36,7 @@ import { YouAreOffline } from '../../Componentes/alerts/alertOffline.js';
 
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
-import {app, verifyDashboards2, verifiyAccess, verifyDesign2, Inactivity, verfSession, verifyDashboards, getData} from '../../Assets/js/script.js';
+import {app, verifiyAccess, verifyDesign2, Inactivity, verfSession, verifyDashboards, getData} from '../../Assets/js/script.js';
 import {MY_ROUTE} from '../../routes.js'
 var url = window.location.href;
 var id = url.substring(url.lastIndexOf('/') + 1 );
@@ -197,7 +197,6 @@ componentDidMount() {
 
 }   
     verifiyAccess();
-    verifyDashboards2();
     verifyDesign2();
     console.log(this.props);
      if(this.props != id){

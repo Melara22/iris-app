@@ -435,7 +435,6 @@ export function getDashData(){
                         var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design/");
                         styleConect.once("value").then(function(snapshot) {
                           snapshot.forEach(function(childSnapshot) {
-                            console.log(keydashboard);
                               if(childSnapshot.child("cards").val() == true && childSnapshot.child("columns").val() == false){
                                   document.getElementById("columns").checked=false;
                                   document.getElementById("cards").checked=true;
@@ -467,56 +466,6 @@ export function getDashData(){
       });
       }
   });
-}
-
-export function verifyDashboards(){
-  firebase.auth().onAuthStateChanged(function(user) {
-  var query = firebase.database().ref("users");
-  query.once("value").then(function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-        var keys = childSnapshot.key;
-        var key2 = childSnapshot.child("email").val();
-        var namelog = firebase.auth().currentUser;
-        if (namelog.email == key2) {var dashConect=db.ref("users/"+keys+"/Dashboard/");
-            firebase.auth().onAuthStateChanged(function(user) {
-              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-               dashdirection.once("value").then(function(snapshot) {
-                   var dashboards=snapshot.val();
-                   if(dashboards != null){
-                      window.location.href="/DashboardBuscar";
-                    }
-                });
-            });
-        }
-       }); 
-  });
-});
-}
-
-
-export function verifyDashboards2(){
-  firebase.auth().onAuthStateChanged(function(user) {
-    var query = firebase.database().ref("users");
-      query.once("value").then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-              var keys = childSnapshot.key;
-              var key2 = childSnapshot.child("email").val();
-              var namelog = firebase.auth().currentUser;
-              if (namelog.email == key2) {
-                  var dashConect=db.ref("users/"+keys+"/Dashboard/");
-                  firebase.auth().onAuthStateChanged(function(user) {
-                    var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-                     dashdirection.once("value").then(function(snapshot) {
-                         var dashboards=snapshot.val();
-                         if(dashboards == null){
-                            window.location.href="/Dashboard";
-                          }
-                      });
-                  });
-              }
-            }); 
-      });
-    });
 }
 
 export function verifiyAccess(){
@@ -581,68 +530,27 @@ export function verifiyAccess(){
     
   });
 }
+
 export function verifyDesign(){
-  var query = firebase.database().ref("users");
-  firebase.auth().onAuthStateChanged(function(user) {
-      query.once("value").then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          var keys = childSnapshot.key;
-          var key2 = childSnapshot.child("email").val();
-          var namelog = firebase.auth().currentUser;
-              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-               dashdirection.once("value").then(function(snapshot) {
-                snapshot.forEach(function(childSnapshot) {
-                  var dashboardid = childSnapshot.child("did").val();
-                  var url = window.location.href;
-                  var code = url.substring(url.lastIndexOf('/') + 1 );
-                  if (code == dashboardid) {
-                    var keydashboard = childSnapshot.key;
-                    var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
-                    privacity.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                          var cardss = childSnapshot.child("cards").val();
-                          if (cardss != true) {
-                            window.location.href="/Dashboard_columns/"+code;
-                          }
-                      });
-                    });
-                  }
-                  });
-                });
-        // Cancel enumeration
-      }); 
-     });
-    
-  });
+
 }
 export function verifyDesign2(){
+ 
+}
+export function deleteData(event){
+  console.log(event);
   var query = firebase.database().ref("users");
   firebase.auth().onAuthStateChanged(function(user) {
       query.once("value").then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
-          var keys = childSnapshot.key;
-          var key2 = childSnapshot.child("email").val();
           var namelog = firebase.auth().currentUser;
-              var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-               dashdirection.once("value").then(function(snapshot) {
-                snapshot.forEach(function(childSnapshot) {
-                  var dashboardid = childSnapshot.child("did").val();
-                  var url = window.location.href;
-                  var code = url.substring(url.lastIndexOf('/') + 1 );
-                  if (code == dashboardid) {
-                    var keydashboard = childSnapshot.key;
-                    var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
-                    privacity.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                          var columnss = childSnapshot.child("columns").val();
-                          if (columnss != true) {
-                            window.location.href="/Dashboard_card/"+code;
-                          }
-                      });
-                    });
-                  }
-                  });
-                });
+          var key2 = childSnapshot.child("email").val();
+           if (namelog.email == key2) {
+            var keys = childSnapshot.key;
+            var dashdirection = db.ref("users/"+keys+"/Dashboard/");
+            dashdirection.child(event).remove();
+            console.log("ahuevo");
+          }
         // Cancel enumeration
       }); 
      });
@@ -650,9 +558,14 @@ export function verifyDesign2(){
   });
 }
 
+
 export function refresh(){
   window.location.reload();
 }
+
+
+
+
 
 function reload (){
   window.location.reload();
