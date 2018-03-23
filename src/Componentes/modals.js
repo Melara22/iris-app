@@ -176,7 +176,7 @@ class Modals extends Component {
 	                				<div>
                                         <img src={publico} alt="opcion2.2" with="10"/>
                                         <label className="switch">
-                                            <input type="checkbox"/>
+                                            <input type="checkbox" id="check"/>
                                             <span className="slider"></span>
                                         </label>
                                         <img src={privado} alt="privado" with="10"/>

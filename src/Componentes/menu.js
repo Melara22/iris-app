@@ -161,9 +161,9 @@ class Menu extends Component {
                             {this.modalAction()}
                             <li className="dropdown separacion state-url">
                                   <a className="dropdown-toggle" id="tglr" className="popover-toggle" title="Popover Header" role="button" aria-haspopup="true" aria-expanded="false">
-                                      <img className="menuicon" width="20" style={{marginTop:"-20px;"}} src={compartir} alt="icon-compártir" />
+                                      <img className="menuicon" width="20" style={{marginTop:"-20px"}} src={compartir} alt="icon-compártir" />
                                   </a>
-                                  <div id="customdiv" style="display: none">
+                                  <div id="customdiv" style={{display: "none"}}>
             Here <b>I</b> am
         </div>
 
@@ -203,7 +203,7 @@ class Menu extends Component {
         <nav className="navbar navbar-default navbar-fixed-top">
               <div className="container-fluid">
                 <div className="navbar-header">
-                  <a className="navbar-brand" href="/DashboardBuscar">
+                  <a className="navbar-brand" href="/Dashboard">
                   <img src={logomenu} alt="logo" />
                   </a>
                 </div>
@@ -223,7 +223,7 @@ class Menu extends Component {
   modalAction(){
   var url = window.location.href;
   var id = url.substring(url.lastIndexOf('/') + 1 );
-  if(id == "DashboardBuscar" || id == "dashboard_columns" || id == "Dashboard"){
+  if(id == "dashboard_cards" || id == "Dashboard"){
     return (<li><a className="icon-menu"><img className="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>);
   }
   else{

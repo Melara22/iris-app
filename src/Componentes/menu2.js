@@ -35,8 +35,8 @@ class Menu2 extends Component {
 
                           <ul className="nav navbar-nav navbar-right">
                             
-                            <li><a className="icon-menu" href=""><img class="menuicon" src={notifi} alt="icon-c1" /></a></li>
-                            <li className=""><a style ={{cursor: "pointer"}}className="icon-menu"><img class="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
+                            <li><a className="icon-menu" href=""><img className="menuicon" src={notifi} alt="icon-c1" /></a></li>
+                            <li className=""><a style ={{cursor: "pointer"}}className="icon-menu"><img className="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       <div id="ultradiv" className="img-rounded profile-img"><img style={{width:'30px', borderRadius: '50%'}}/></div>

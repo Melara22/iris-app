@@ -50,10 +50,10 @@ class Cards extends Component {
 
     for(var j=0; j<user.length; j++ ){
       if(socialNetwork[j]=="Facebook"){
-        APIDa[j] = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=c58d7f1fda4f2acd141c1395a2280fcde6cc33cca84ab8dd4362a962f6732ec9&username='+user[j];
+        APIDa[j] = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user[j];
       }
       else if(socialNetwork[j]=="twitter"){
-        APIDa[j] = 'https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?username='+user[j];
+        APIDa[j] = 'https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user[j];
       }
     }
       let _this = this;

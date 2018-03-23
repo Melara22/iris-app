@@ -11,7 +11,7 @@ class AlertAdd extends Component {
   render() {
   	var url = window.location.href;
 		var id = url.substring(url.lastIndexOf('/') + 1 );
-		if (id != "DashboardBuscar" || id != "dashboard_columns" || id != "Dashboard"){
+		if (id != "DashboardBuscar" && id != "dashboard_columns" && id != "Dashboard"){
 		 
     	return (			  
 	        <div className="alert alert-success" id="login-success">

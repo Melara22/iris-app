@@ -11,7 +11,7 @@ import notifi from '../../Assets/Iconos/notificaciones.png';
 import nuevo from '../../Assets/Iconos/nuevo.png';
 import erase from '../../Assets/Iconos/erase.png';
 import imgstate from '../../Assets/Iconos/blank_state.png';
-import{app, verifyDashboards, signOut, verfSession,getData,getDashData, deleteData} from '../../Assets/js/script.js';
+import{app, verifyDashboards, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
 import {
   BrowserRouter as Router,
   Route,
@@ -68,7 +68,6 @@ class Dashboard extends Component {
          }); 
     });
     const rootRef = app.database().ref().child('users');
-        const userRef = rootRef.child('vavava');
         firebase.auth().onAuthStateChanged(function(user) {
           rootRef.once('value', function(snapshot){
             snapshot.forEach(function(childSnapshot){
@@ -89,20 +88,66 @@ class Dashboard extends Component {
             });
           });
         });
-  }
 
-  render() {
-    // console.log(this.props);
-    return (
-    this.state.loading.length <= 0 ? <IconLoading /> : (  
-    <div className="Dashboard">
-      <section className="dash">
-        {this.valueState()}
-      </section>
-    </div>    
-    ));
   }
-  valueState(){
+deleteData(event){
+
+    let self = this;
+  console.log(event);
+    self.setState({
+        dashs:[]
+    });
+  var query = firebase.database().ref("users");
+  firebase.auth().onAuthStateChanged(function(user) {
+      query.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var namelog = firebase.auth().currentUser;
+          var key2 = childSnapshot.child("email").val();
+           if (namelog.email == key2) {
+            var keys = childSnapshot.key;
+            var dashdirection = app.database().ref("users/"+keys+"/Dashboard/");
+            dashdirection.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var dashboardid = childSnapshot.child("did").val();
+              if (event == dashboardid) {
+                console.log("XDDDDDDD");
+                var keydashboard = childSnapshot.key;
+                var privacity=app.database().ref("users/"+keys+"/Dashboard/"+keydashboard);
+                privacity.remove();
+                const rootRef = app.database().ref().child('users');
+                firebase.auth().onAuthStateChanged(function(user) {
+                  rootRef.once('value', function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                      var uskey = childSnapshot.key;
+                      var useremail = childSnapshot.child("email").val();
+                      var namelog = firebase.auth().currentUser;
+                        if (namelog.email == useremail) {
+                          var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+                            dashdirection.once("value").then(function(snapshot) {
+                              snapshot.forEach(function(childSnapshot) {
+                                self.setState({
+                                    dashs: self.state.dashs.concat(childSnapshot.val())
+                                });
+                              });
+                            });
+                        }
+                        /**/
+                    });
+                  });
+                });
+              }
+              });
+            });
+          }
+        // Cancel enumeration
+      }); 
+     });
+    
+  });
+  
+}
+ valueState(){
+  
     console.log(this.state.evaluate);
     if (this.state.evaluate != "lleno") {
       return (
@@ -137,7 +182,7 @@ class Dashboard extends Component {
           { filteredContact.map( (user,i) => { 
           const { did, dname, ddescription } = user;
           return (
-          <div className="col-md-4 col-lg-4 col-dash" style={{marginBottom:"30px!important;"}} key = { i }>
+          <div className="col-md-4 col-lg-4 col-dash" style={{marginBottom:"30px"}} key = { i }>
              <div id="header">
                 <ul className="a">
                    <div className="col-md-8 header-name">
@@ -148,7 +193,7 @@ class Dashboard extends Component {
                       </Link>  
                    </div>
                    <div className="col-md-4 icon-trash val">
-                      <img src={erase} alt="trash" onClick={event => deleteData(did)}/>
+                      <img src={erase} alt="trash" onClick={event => this.deleteData(did)}/>
                    </div>
                 </ul>
              </div>
@@ -158,7 +203,7 @@ class Dashboard extends Component {
                       <div className="prew">
                          <p>{ddescription}</p>
                       </div>
-                      <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><a>Ir a Dashboard</a></Link>
+                      <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><li>Ir a Dashboard</li></Link>
                    </div>
                 </div>
              </div>
@@ -170,7 +215,7 @@ class Dashboard extends Component {
     )}
     else{
     return ( 
-    <center class="animated pulse">
+    <center className="animated pulse" id ="nore">
        <br/><img src={imgstate} alt="nostate" />
        <h2 style={{color:"#BDBDBD"}}>No results found</h2>
     </center>
@@ -193,8 +238,8 @@ class Dashboard extends Component {
                           </div>
                           <ul className="nav navbar-nav navbar-right">
                             
-                            <li ><a className="icon-menu" href=""><img class="menuicon" src={notifi} alt="icon-compártir" /></a></li>
-                            <li className="separacion"><a className="icon-menu"><img class="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
+                            <li ><a className="icon-menu" href=""><img className="menuicon" src={notifi} alt="icon-compártir" /></a></li>
+                            <li className="separacion"><a className="icon-menu"><img className="menuicon" src={nuevo} alt="icon-2" data-toggle="modal" data-target="#myModal2"/></a></li>
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
@@ -219,7 +264,7 @@ class Dashboard extends Component {
 
                      <div className="row">
                           <div className="col-xs-12 col-md-12 col-lg-12 section-buscar" align="center">
-                            <form autocomplete="off">
+                            <form autoComplete="off">
                              <div className="form-group">
                               <input className="form-control input-buscar" id="searchbar" placeholder="Search" onChange={this.updateSearch.bind(this)}/>
                              </div>
@@ -234,7 +279,22 @@ class Dashboard extends Component {
       </div>
       );
   }
+  
   }
+
+
+  render() {
+    // console.log(this.props);
+    return (
+    this.state.loading.length <= 0 ? <IconLoading /> : (  
+    <div className="Dashboard">
+      <section className="dash">
+        {this.valueState()}
+      </section>
+    </div>    
+    ));
+  }
+
 }
 
 export default Dashboard;

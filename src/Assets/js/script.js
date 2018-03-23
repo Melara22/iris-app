@@ -13,26 +13,23 @@ provider.setCustomParameters({
   'hd': 'elaniin.com'
 });
 
-var USERS_LOCATION ="https://iris-platform.firebaseio.com/users"
-var testeo;
+
 //Domino de correos permitidos
 
 
 //Variables globales
 var uid;
+var keypriv;
+var keys;
+var dashConect;
 var name;
 var email;
-var img;
-var state=false;
 var ref=db.ref("users");
 
 export function signIn(){
   return new Promise((resolve, reject) => {
 
     firebase.auth().signInWithPopup(provider).then(function(result) {
-      
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
 
       // The signed-in user info.
       var user = result.user;
@@ -40,10 +37,7 @@ export function signIn(){
       // Data to compare/push
           email = user.email;
           name= user.displayName;
-          img = user.photoURL;
 
-      var edomain="";
-      var standardomain="@elaniin.com"
       var i=0;
 
       let customEmail = email.split('@');
@@ -51,7 +45,7 @@ export function signIn(){
 
       let dataReturn;
 
-      if (customEmail.length == 2) {
+      if (customEmail.length === 2) {
         if (customEmail[1] === "elaniin.com") {
           isError = false;
 
@@ -72,21 +66,21 @@ export function signIn(){
       });
       
       // while(true){
-      //   if(email.charAt(i)!='@'){
+      //   if(email.charAt(i)!=='@'){
       //       i++;
       //   }
       //   else{
       //       var j = i;
       //       var k=0;
       //       while(true){
-      //         if(email.charAt(j)!=''){
+      //         if(email.charAt(j)!==''){
       //           j++;
       //           k++;
       //         }
       //         else{
       //           uid = (email.substr(0, i));
       //           edomain=email.substr(i, k);
-      //           if(edomain == standardomain){
+      //           if(edomain === standardomain){
       //             checkIfUserExists(name, email, uid);
       //             return false;
       //           }
@@ -101,12 +95,12 @@ export function signIn(){
     // ...
     }).catch(function(error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      //var errorCode = error.code;
+      //var errorMessage = error.message;
       // The email of the user's account used.
-      var email = error.email;
+      //var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+      //var credential = error.credential;
       // ...
 
       reject({
@@ -119,7 +113,6 @@ export function signIn(){
 export function signOut(){
   firebase.auth().signOut().then(function() {
     firebase.auth().signOut;
-    testeo=0;
     window.location.href="/"
 
   }).catch(function(error) {
@@ -143,8 +136,8 @@ export function createDashboard(){
   var query = firebase.database().ref("users");
   var cards=document.getElementById('cards').checked;
   var columns=document.getElementById('columns').checked;
-  var publi="";
-  var priv="";
+  var priv=document.getElementById("check").checked;
+  console.log(priv);
   var currentdate = new Date();
   var year = String(currentdate.getFullYear());
   var month = String(currentdate.getMonth()+ 1);
@@ -157,7 +150,7 @@ export function createDashboard(){
   let dataReturn;
   var dnametemp= document.getElementById('dname').value;
   var ddescription = document.getElementById('ddescription').value;
-    if ((cards == true || columns == true)&&(publi == true || priv == true) && dnametemp!="" && ddescription!="") {
+    if ((cards === true || columns === true)&& dnametemp!=="" && ddescription!=="") {
        isError = false;
        dataReturn = true;
       query.once("value").then(function(snapshot) {
@@ -165,10 +158,10 @@ export function createDashboard(){
           var keys = childSnapshot.key;
           var key2 = childSnapshot.child("email").val();
           var namelog = firebase.auth().currentUser;
-          if (namelog.email == key2) {
+          if (namelog.email === key2) {
             var url = window.location.href;
             var id = url.substring(url.lastIndexOf('/') + 1 );
-            if (id == "DashboardBuscar" || id == "dashboard_columns" || id == "Dashboard"){
+            if (id === "DashboardBuscar" || id === "dashboard_columns" || id === "Dashboard"){
               var dashConect=db.ref("users/"+keys+"/Dashboard/");
               var conectado=dashConect.push({
                 did:code,
@@ -178,7 +171,7 @@ export function createDashboard(){
                dashConect.once("value").then(function(snapshot) {
                 snapshot.forEach(function(childSnapshot) {
                   var dashboardid = childSnapshot.child("did").val();
-                  if (code == dashboardid) {
+                  if (code === dashboardid) {
                     var keydashboard = childSnapshot.key;
                     var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design");
                     styleConect.push({
@@ -186,10 +179,18 @@ export function createDashboard(){
                       columns: columns
                     });
                     var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
-                    privacity.push({
-                      publi:publi,
-                      priv: priv
-                    });
+                    if(priv === true){
+                      privacity.push({
+                        publi:false,
+                        priv: true
+                      });
+                    }
+                    else{
+                      privacity.push({
+                        publi:true,
+                        priv: false
+                      });
+                    }
                   }
                   });
                 });
@@ -203,7 +204,7 @@ export function createDashboard(){
                   var dashboardid = childSnapshot.child("did").val();
                   var url = window.location.href;
                   var id = url.substring(url.lastIndexOf('/') + 1 );
-                  if (id == dashboardid){
+                  if (id === dashboardid){
                     var keydashboard = childSnapshot.key;
                      var dashConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard);
                      db.ref().child("users/"+keys+"/Dashboard/"+keydashboard)
@@ -226,12 +227,23 @@ export function createDashboard(){
                     var priva=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
                     priva.once("value").then(function(snapshot) {
                       snapshot.forEach(function(childSnapshot) {
-                        var keypriv = childSnapshot.key;
+                      if(priv === true){
+                        keypriv = childSnapshot.key;
                         db.ref().child("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity/"+keypriv)
                         .update({ 
-                             publi:publi,
-                             priv: priv
+                             publi:false,
+                             priv: true
                           });
+                      }
+                      else{
+                       keypriv = childSnapshot.key;
+                        db.ref().child("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity/"+keypriv)
+                        .update({ 
+                             publi:true,
+                             priv: false
+                          });
+                      }
+                        
                       });
                     });
                   }
@@ -268,10 +280,10 @@ return new Promise((resolve, reject) => {
   var usname;
   let isError = true;
   let dataReturn;
-    if ((fb == true || tw == true) && usname!="") {
+    if ((fb === true || tw === true) && usname!=="") {
       isError = false;
       dataReturn = true;
-      if(tw == true){
+      if(tw === true){
         var countusnamechar = dbusname.split("@");
          if (countusnamechar.length > 1) {
             usname = dbusname;
@@ -288,17 +300,17 @@ return new Promise((resolve, reject) => {
           var keys = childSnapshot.key;
           var key2 = childSnapshot.child("email").val();
           var namelog = firebase.auth().currentUser;
-          if (namelog.email == key2) {
+          if (namelog.email === key2) {
               var dashConect=db.ref("users/"+keys+"/Dashboard/");
               var url = window.location.href;
               var id = url.substring(url.lastIndexOf('/') + 1 );
               firebase.auth().onAuthStateChanged(function(user) {
-                var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-                 dashdirection.once("value").then(function(snapshot) {
+                 dashConect = db.ref("users/"+keys+"/Dashboard/");
+                 dashConect.once("value").then(function(snapshot) {
                   snapshot.forEach(function(childSnapshot) {
                     var dashboardid = childSnapshot.child("did").val();
                     var keydash = childSnapshot.key;
-                    if (id == dashboardid) {
+                    if (id === dashboardid) {
                       var privacity=db.ref("users/"+keys+"/Dashboard/"+keydash+"/SocialNetwork");
                       snapshot.forEach(function(childSnapshot) {
                       var dashboardid = childSnapshot.child("did").val();
@@ -348,7 +360,7 @@ export function checkIfUserExists(name, email, uid) {
 
 export function gotData (data){
   var users = data.val();
-  if(users == null){
+  if(users === null){
     createUser();
   }
   else{
@@ -358,13 +370,13 @@ export function gotData (data){
       var k = keys[i];
       var uidu  = users[k].uid;
       var emailu = users[k].email;
-      if(uidu == uid){
+      if(uidu === uid){
           var keysuser=k;
           state=true;
       }  
     }
    // Se verifica si se ha encontrado algun user existente con el mismo id
-    if(state==false){
+    if(state===false){
         createUser();
       }
       else{
@@ -413,7 +425,7 @@ export function getDashData(){
           snapshot.forEach(function(childSnapshot) {
             var key2 = childSnapshot.child("email").val();
             var namelog = firebase.auth().currentUser;
-            if (namelog.email == key2) {
+            if (namelog.email === key2) {
                   var keys = childSnapshot.key;
                   var dashdirection = db.ref("users/"+keys+"/Dashboard/");
                    dashdirection.once("value").then(function(snapshot) {
@@ -422,7 +434,7 @@ export function getDashData(){
                       var url = window.location.href;
                       var id = url.substring(url.lastIndexOf('/') + 1 );
                       //document.getElementById("urlpass").value=url;
-                      if(dashboardid == id){
+                      if(dashboardid === id){
                         document.getElementById("modalActionVal").innerHTML="Actualizar Dashboard";
                         document.getElementById("adddashbutt").innerHTML="Actualizar Dashboard";
                         dashboarname = childSnapshot.child("dname").val();
@@ -435,11 +447,11 @@ export function getDashData(){
                         var styleConect=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Design/");
                         styleConect.once("value").then(function(snapshot) {
                           snapshot.forEach(function(childSnapshot) {
-                              if(childSnapshot.child("cards").val() == true && childSnapshot.child("columns").val() == false){
+                              if(childSnapshot.child("cards").val() === true && childSnapshot.child("columns").val() === false){
                                   document.getElementById("columns").checked=false;
                                   document.getElementById("cards").checked=true;
                               }
-                              else if (childSnapshot.child("cards").val() == false && childSnapshot.child("columns").val() == true){
+                              else if (childSnapshot.child("cards").val() === false && childSnapshot.child("columns").val() === true){
                                   document.getElementById("cards").checked=false;
                                   document.getElementById("columns").checked=true;
                               }
@@ -448,7 +460,7 @@ export function getDashData(){
                         var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity/");
                         privacity.once("value").then(function(snapshot) {
                           snapshot.forEach(function(childSnapshot) {
-                              if(childSnapshot.child("priv").val() == true){
+                              if(childSnapshot.child("priv").val() === true){
                                   //document.getElementById("priv").checked=true;
                                   //document.getElementById("dashstate").innerHTML="Privado";
                               }
@@ -485,13 +497,13 @@ export function verifiyAccess(){
                   var dashboardid = childSnapshot.child("did").val();
                   var url = window.location.href;
                   var code = url.substring(url.lastIndexOf('/') + 1 );
-                  if (code == dashboardid) {
+                  if (code === dashboardid) {
                     var keydashboard = childSnapshot.key;
                     var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
                     privacity.once("value").then(function(snapshot) {
                       snapshot.forEach(function(childSnapshot) {
                           var dpriv = childSnapshot.child("priv").val();
-                          if (dpriv == true && namelog.email != key2 ) {
+                          if (dpriv === true && namelog.email !== key2 ) {
                             window.location.href="/Dashboard-private"
                           } 
                       });
@@ -510,13 +522,13 @@ export function verifiyAccess(){
               var dashboardid = childSnapshot.child("did").val();
               var url = window.location.href;
               var code = url.substring(url.lastIndexOf('/') + 1 );
-              if (code == dashboardid) {
+              if (code === dashboardid) {
                 var keydashboard = childSnapshot.key;
                 var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard+"/Privacity");
                 privacity.once("value").then(function(snapshot) {
                   snapshot.forEach(function(childSnapshot) {
                       var dpriv = childSnapshot.child("priv").val();
-                      if (dpriv == true) {
+                      if (dpriv === true) {
                             window.location.href="/Dashboard-private";
                       } 
                   });
@@ -545,11 +557,21 @@ export function deleteData(event){
         snapshot.forEach(function(childSnapshot) {
           var namelog = firebase.auth().currentUser;
           var key2 = childSnapshot.child("email").val();
-           if (namelog.email == key2) {
+           if (namelog.email === key2) {
             var keys = childSnapshot.key;
             var dashdirection = db.ref("users/"+keys+"/Dashboard/");
-            dashdirection.child(event).remove();
-            console.log("ahuevo");
+            dashdirection.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+              var dashboardid = childSnapshot.child("did").val();
+              if (event === dashboardid) {
+                console.log("XDDDDDDD");
+                var keydashboard = childSnapshot.key;
+                var privacity=db.ref("users/"+keys+"/Dashboard/"+keydashboard);
+                privacity.remove();
+                
+              }
+              });
+            });
           }
         // Cancel enumeration
       }); 

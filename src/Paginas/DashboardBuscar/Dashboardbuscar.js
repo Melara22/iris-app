@@ -7,23 +7,13 @@ import IconLoading from '../../Componentes/icons/IconLoading';
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
 import notifi from '../../Assets/Iconos/notificaciones.png';
 import nuevo from '../../Assets/Iconos/nuevo.png';
-import compartir from '../../Assets/Iconos/compartir.png';
-import agregar from '../../Assets/Iconos/Agregar_icon.png';
-import fb from '../../Assets/Iconos/fb.png';
 
-import animate from '../../animate.css'
-
-import settings from '../../Assets/Iconos/settings.png';
-import post3 from '../../Assets/img/prew.PNG';
-import post1 from '../../Assets/img/mara/post1.png';
 import erase from '../../Assets/Iconos/erase.png';
 import * as firebase from 'firebase';
 import {config} from '../../Assets/js/cons.js';
 import imgstate from '../../Assets/Iconos/blank_state.png';
-import {app, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
+import {app, signOut, verfSession,getData,} from '../../Assets/js/script.js';
 import {
-  BrowserRouter as Router,
-  Route,
   Link,
 } from 'react-router-dom'
 import {MY_ROUTE} from '../../routes.js'
@@ -59,14 +49,13 @@ class DashboardBuscar extends Component {
     componentDidMount() {
         const self = this;
         const rootRef = app.database().ref().child('users');
-        const userRef = rootRef.child('vavava');
         firebase.auth().onAuthStateChanged(function(user) {
           rootRef.once('value', function(snapshot){
             snapshot.forEach(function(childSnapshot){
               var uskey = childSnapshot.key;
               var useremail = childSnapshot.child("email").val();
               var namelog = firebase.auth().currentUser;
-                if (namelog.email == useremail) {
+                if (namelog.email === useremail) {
                   var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
                     dashdirection.once("value").then(function(snapshot) {
                       snapshot.forEach(function(childSnapshot) {
@@ -166,7 +155,7 @@ class DashboardBuscar extends Component {
                     <nav className="navbar navbar-default navbar-fixed-top">
                         <div className="container-fluid">
                           <div className="navbar-header">
-                            <a className="navbar-brand" href="#">
+                            <a className="navbar-brand" >
                             <img src={logomenu} alt="logo" />
                             </a>
                           </div>
@@ -177,7 +166,7 @@ class DashboardBuscar extends Component {
                             <li className="dropdown user-link" >
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                       
-                                      <div id="ultradiv" className="img-rounded profile-img"><img style={{width:'30px', borderRadius: '50%'}}/></div>
+                                      <div id="ultradiv" className="img-rounded profile-img"><img alt="ultr" style={{width:'30px', borderRadius: '50%'}}/></div>
                                       <span id="namelog"/><span className="caret"></span>
                                   </a>
                                   <ul className="dropdown-menu">
