@@ -4,7 +4,6 @@ import Modals from './modals';
 import './menu.css';
 
 import AlertValidation from './alerts/alertValidation';
-
 import AlertAdd from './alerts/alertAdd';
 import logomenu from '../Assets/Iconos/logo_fondo@2x.png';
 import imgstate from '../Assets/Iconos/blank_state.png';
@@ -160,14 +159,24 @@ class Menu extends Component {
                             <li><a className="icon-menu" href=""><img className="menuicon" src={notifi} alt="icon-c1" /></a></li>
                             {this.modalAction()}
                             <li className="dropdown separacion state-url">
-                                  <a className="dropdown-toggle" id="tglr" className="popover-toggle" title="Popover Header" role="button" aria-haspopup="true" aria-expanded="false">
-                                      <img className="menuicon" width="20" style={{marginTop:"-20px"}} src={compartir} alt="icon-compártir" />
+                                  <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                      <img className="menuicon" width="20" style={{marginTop:"-20px;"}} src={compartir} alt="icon-compártir" />
                                   </a>
-                                  <div id="customdiv" style={{display: "none"}}>
-            Here <b>I</b> am
-        </div>
-
-                                  
+                                  <ul className="dropdown-menu menu-url" style={{width:"100%;paddingTop:0;"}}>
+                                      <li className="info-url">
+                                      <center>
+                                        <div className="header-url">
+                                            <p>Compartir Dashboard</p>
+                                        </div>
+                                        <div className="content-url">
+                                          <p >Copia este URL para compartir</p>
+                                          <span><input type="text"  disabled id="urlpass"/>
+                                          <button className="btn btn-url" type="button">Copiar</button></span>
+                                          </div>
+                                      </center>
+                                      </li>
+                                    
+                                  </ul>
                             </li>
                             
                             <li className="dropdown user-link" >

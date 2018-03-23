@@ -25,16 +25,16 @@
 	text-decoration: none;
 }
 .info-url input{
-	width: 30em;
+	width: 20em;
 	margin-top: -1em;
 	text-align: center;
 	background: transparent;
-	border-color: transparent;
+	border-color: #27232324;
 	line-height: 1em;
-	border-bottom: 1px solid #B187FF;
+	
 }
 .info-url p{
-	font-family: Brandon-medium;
+	
 	text-decoration: none;
 }
 .info-url a{
@@ -49,3 +49,50 @@
 
 
 
+#customdiv{
+	display: none;
+}
+
+.header-url {
+	background: rgb(238, 230, 255);
+	padding: 0.8em;
+	text-align: left;
+ 	font-family: Franlink-medium!important;
+ 	font-weight: bolder;
+ 	display: flex;
+ 	align-items: center;
+}
+
+.menu-url{
+	padding: 0!important;
+	margin-right: 2em;
+	-webkit-box-shadow: 0 0 0 0 transparent!important;
+	border:1px solid #fafafa!important; 
+}
+
+.header-url p{
+	margin:0!important;
+}
+
+.content-url p{
+	font-family: Franlink-regular;
+	font-size: 12px;
+	font-weight: 500;
+	text-align: left;
+}
+.content-url{
+	padding: 1em;
+}
+.btn-url{
+	background: rgb(181, 65, 253);
+	color: white;
+	font-family: Franlink-regular;
+	padding:3px 12px!important;
+	border-radius: 0;
+}
+.btn-url:hover{
+	color: white;
+	filter:brightness(110%);
+	transition-duration: 0.7s;
+
+}
