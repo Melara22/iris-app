@@ -45,7 +45,7 @@ constructor(props){
 componentDidMount(){
   const {user} = this.props;
 
-  API_tw ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?username='+user;
+  API_tw ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user;
    axios.get(API_tw)
   .then(res => {
     const posts = res.data;

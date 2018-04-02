@@ -257,7 +257,6 @@ export function createDashboard(){
         // Cancel enumeration
       }); 
      });
-setTimeout(function(){ window.location.reload() }, 400); 
     }
     else{
           dataReturn = false;

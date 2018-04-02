@@ -138,8 +138,8 @@ class Menu extends Component {
                 <nav className="navbar navbar-default navbar-fixed-top">
                         <div className="container-fluid">
                           <div className="navbar-header">
-                            <Link style={{textDecoration:"none"}} to="/Dashboard"><a className="navbar-brand" href="/DashboardBuscar">
-                            <img src={logomenu} alt="logo" /></a></Link>  
+                            <Link style={{textDecoration:"none"}} to="/Dashboard">
+                            <img className="navbar-brand" src={logomenu} alt="logo" /></Link>  
                           </div>
                           <ul className="nav navbar-nav nombre-dashboard">
                             

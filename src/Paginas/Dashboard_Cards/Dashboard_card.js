@@ -218,8 +218,11 @@ componentDidMount() {
           );
     }
     else{
+      console.log("Entre");
       return (
-        <div className="row hola">                  
+        
+        <div className="row hola">  
+
             { props.users.map( (userx,i) => { 
 
              const { twitter, facebook, user } = userx;
@@ -250,6 +253,16 @@ componentDidMount() {
              )
            }
             })}
+            <div className=" col-md-3 col-lg-3 post-div" align="center">
+                  <div className="content-post">
+                    <a data-toggle="modal" data-target="#myModal">
+                    <img src={agregar} />
+                    </a>
+                    <p>Agregar una pagina</p>
+                    <Modals />
+
+                  </div>
+                </div>
         </div>  
     )
      }
