@@ -221,7 +221,7 @@ componentDidMount() {
       console.log("Entre");
       return (
         
-        <div className="row hola">  
+        <div className="row inside-post">  
 
             { props.users.map( (userx,i) => { 
 
@@ -232,8 +232,12 @@ componentDidMount() {
                <div key = { i } className="col-md-3 col-lg-3">
                <div className="post-view">
 
-                   <div className="col-md-12 logo-pagina" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                    <h2><img style={{marginTop:'-10px', marginLeft:'3px', width:"8px!important"}} src={fb}/>&nbsp;&nbsp;{user}</h2>
+                   <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+                   
+                    
+                    <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <img className="profile-social" src={fb}/>&nbsp;<h2>{user}</h2>
+                 
                     </div><Columns facebook={facebook} user={user} />       
                     </div>
               </div>
@@ -244,7 +248,7 @@ componentDidMount() {
               
                <div key = { i } className="col-md-3 col-lg-3">
                <div className="post-view">
-                  <div className="col-md-12 logo-pagina" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+                  <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
                     <h2><img style={{marginTop:'-10px', marginLeft:'3px'}} src={tw} />&nbsp;&nbsp;{user}</h2>
                   </div>
                     <Columns2 twitter={twitter} user={user} />              
@@ -253,10 +257,10 @@ componentDidMount() {
              )
            }
             })}
-            <div className=" col-md-3 col-lg-3 post-div" align="center">
-                  <div className="content-post">
+            <div className=" col-md-3 col-lg-3 ">
+                  <div className="post-view add-column">
                     <a data-toggle="modal" data-target="#myModal">
-                    <img src={agregar} />
+                    <img src={agregar} id="addimg"/>
                     </a>
                     <p>Agregar una pagina</p>
                     <Modals />

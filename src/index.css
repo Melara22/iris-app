@@ -30,6 +30,10 @@ body {
 	font-family: Franlink-ligth;
 	src:url(Assets/Fonts/LibreFranklin-Thin.ttf);
 }
+@font-face{
+	font-family: Franlink-bold;
+	src:url(Assets/Fonts/LibreFranklin-Bold.ttf);
+}
 body a{
 	cursor: pointer;
 }

@@ -66,24 +66,60 @@ componentDidMount(){
   render() {
 
     const renderPostfb = this.state.data.map(function(postfb, i){
-      return(
-                       <div key={i} className="thumbnail" style={{marginLeft:"10px"}}>
+     if(postfb.content.type == "video"){
+       return(
+                       <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
                                   <div className="caption">
+                                  <p className="date">
+                                        {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                                        </p>
+
                                       <p>{postfb.content.message}</p>
+                                      <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
                                     </div>
-                                  <img src={postfb.content.picture} />
+
+                                    <video height="300" controls>
+                                      <source src={postfb.content.source}/>
+                                    </video>
+                                  
                                    <div className="opciones2">
                                          <a>{postfb.reactions.like} <img src={likefb} alt="share" /></a>
                                         <a>{postfb.reactions.love} <img src={love} alt="share" /></a>
                                         <a>{postfb.reactions.wow} <img src={wow} alt="share" /></a>
                                        <a>{postfb.shares} <img src={sha} alt="share" /></a>
-                                        <a className="float-opcion">
-                                        {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                        </a>
+                                        
                               </div>
-                              
-                         </div>     
+                               
+                         </div> 
+
         );
+     }
+     else {
+         return(
+                       <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+                                  <div className="caption">
+                                  <p className="date">
+                                        {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                                        </p>
+
+                                      <p>{postfb.content.message}</p>
+                                      <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
+                                    </div>
+
+                                  <img src={postfb.content.picture} />
+
+                                   <div className="opciones2">
+                                         <a>{postfb.reactions.like} <img src={likefb} alt="share" /></a>
+                                        <a>{postfb.reactions.love} <img src={love} alt="share" /></a>
+                                        <a>{postfb.reactions.wow} <img src={wow} alt="share" /></a>
+                                       <a>{postfb.shares} <img src={sha} alt="share" /></a>
+                                        
+                              </div>
+                               
+                         </div> 
+
+        );
+     }
     });
     
     

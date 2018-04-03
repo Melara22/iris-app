@@ -72,12 +72,101 @@
 
 
 /*************
-POST - COLUMNS
+POST - COLUMNS nuevo diseño
 **************/
+.inside-post{
+    display: -webkit-box;
+    flex-wrap: wrap;
+    white-space: wrap;
+    width: 100%;
+    cursor: -webkit-grab;
+}
+::-webkit-scrollbar:horizontal {
+        width:5em!important;
+    }
+.inside-post > .col-md-3 {
+     display: block;
+      float: none;
+     height: 100%;
+      width:25vw;
+   }
+
+   .add-column{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: transparent;
+    outline: 2px dashed #BDBDBD;
+    box-shadow: 0 0 0 transparent!important;
+   }
+
+   .add-column p {
+    font-family: 'Franlink-regular';
+    font-size: 1vw;
+    font-weight: bolder;
+    color: rgb(203, 203, 203);
+   }
+   .header-column{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+   }
+
+   .header-column .profile{
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+    vertical-align: middle;
+   }
+    .profile-social{
+        vertical-align: middle;
+    }
+
+    .header-column img{
+        width: 5%;
+    }
+    .header-column h2{
+        font-family: 'Franlink-bold';
+        font-size: 15px;
+    }
+    .line{
+        height: 2px;
+        outline: 1px solid red;
+        width: 100%;
+    }
+
+/*post de columnas*/
+.card-column{
+    border-radius: 0!important;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #eeeeee;
+}
+    .card-column .date{
+        color: #bdbdbd;
+        font-size: 11px!important;
+        font-family: 'Franlink-regular';
+        font-weight: bolder;
 
 
+    }
+    .card-column p{
+        color: #9E9E9E;
+        font-size: 12px!important;
+        font-family:'Franlink-medium';
+    }
+    .card-column .link{
+       font-weight: 600;
+        text-decoration: none;
+        color: rgb(188, 84, 253);
+        font-family:'Franlink-medium';
 
-
+    }
+    .card-column video{
+        width: 100%;
+    }
+    
 
 /***********************
 PANTALLAS DE MAYOR TAMAÑO
