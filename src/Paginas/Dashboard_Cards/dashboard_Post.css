@@ -79,8 +79,7 @@ POST - COLUMNS nuevo diseño
     flex-wrap: wrap;
     white-space: wrap;
     width: 100%;
-    cursor: -webkit-grab;
-}
+    }
 ::-webkit-scrollbar:horizontal {
         width:5em!important;
     }
@@ -137,6 +136,9 @@ POST - COLUMNS nuevo diseño
         width: 100%;
     }
 
+    .icon{
+        
+    }
 /*post de columnas*/
 .card-column{
     border-radius: 0!important;

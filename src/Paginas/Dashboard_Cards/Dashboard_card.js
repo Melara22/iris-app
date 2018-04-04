@@ -7,7 +7,8 @@ import {
 
 /*CSS*/
 import './dashboard_Post.css';
-
+//import '../../Assets/js/jquery.overscroll.min.js';
+//import '../../Assets/js/cursor-scroll.js';
 import Menu from '../../Componentes/menu';
 import Cards from '../../Componentes/Cards';
 import Columns from '../../Componentes/Columns';
