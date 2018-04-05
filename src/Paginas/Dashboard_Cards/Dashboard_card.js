@@ -41,6 +41,7 @@ var url = window.location.href;
 var id = url.substring(url.lastIndexOf('/') + 1 );
 var userar=[];
 var socnetar=[];
+var socialNetC;
 Inactivity();
 class Dashboard_card extends Component {
 constructor(props){
@@ -207,7 +208,6 @@ componentDidMount() {
           );
     }
     else{
-      console.log("Entre");
       return (
         
         <div className="row inside-post">  
@@ -215,37 +215,36 @@ componentDidMount() {
             { props.users.map( (userx,i) => { 
 
              const { twitter, facebook, user } = userx;
-            if(facebook==true){
-             return (
+            if (facebook==true){
+             const { twitter, facebook, user } = userx;
+              socialNetC="facebook";  
+               return (
+                 <div key = { i } className="col-md-3 col-lg-3">
+                 <div className="post-view">
 
-               <div key = { i } className="col-md-3 col-lg-3">
-               <div className="post-view">
-
-                   <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                   
-                    
-                    <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <img className="profile-social" src={fb}/>&nbsp;<h2>{user}</h2>
-                 
-                    </div>
-                    <Columns facebook={facebook} user={user} />       
-                    </div>
-              </div>
-             )
-           }
-           else{
-             return (
-              
-               <div key = { i } className="col-md-3 col-lg-3">
-               <div className="post-view">
-                  <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                    <img className="profile-social" src={tw} />&nbsp;&nbsp;<h2>{user}</h2>
+                     <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+                        <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img className="profile-social" src={fb}/>&nbsp;<h2>{user}</h2>
+                     </div>
+                     <Columns socialNetwork={socialNetC} user={user} />       
                   </div>
-                    <Columns2 twitter={twitter} user={user} />              
-                </div> 
-              </div>
-             )
-           }
+                </div>
+               )
+             }
+             else {
+              socialNetC="twitter";
+               return (
+                <div key = { i } className="col-md-3 col-lg-3">
+                 <div className="post-view">
+                    <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+                        <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img className="profile-social" src={tw}/>&nbsp;<h2>{user}</h2>
+                    </div>
+                    <Columns socialNetwork={socialNetC} user={user} />       
+                  </div>
+                </div>
+               );
+             }
             })}
             <div className=" col-md-3 col-lg-3 ">
                   <div className="post-view add-column">
@@ -261,7 +260,6 @@ componentDidMount() {
     )
      }
     }
-    console.log(this.state.design);
     verifiyAccess();
     verifyDesign();
     return (

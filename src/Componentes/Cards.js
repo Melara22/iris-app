@@ -152,7 +152,7 @@ class Cards extends Component {
       
        renderPostsn = postsOrdenados.map(function(postsn, i){
         const DefaultPlaceholdeR = 
-          function vavavav(){
+          function placeholder(){
             if(postsn.content.picture == null){
               return(<img src={post1}/>);
             } 

@@ -40,7 +40,7 @@ var numeral = require('numeral');
 var id = 'ProgramadoresAndanDiciendo';
 var url = window.location.href;
 var id1 = url.substring(url.lastIndexOf('/') + 1 );
-var API_fb= "";
+var ApiSN= "";
 /*declaramos como constantes a las APIS*/
 
 class Columns extends Component {
@@ -56,90 +56,119 @@ constructor(props){
 
 componentDidMount(){
   const {user} = this.props;
+  const {socialNetwork} = this.props;
+  if(socialNetwork == "facebook"){
+    ApiSN = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user;
+       axios.get(ApiSN)
+      .then((res) => {
+        this.setState({
+          data: res.data.data
+        });
+      })
+      .catch(function(e){
+        console.log('ERROR', e);
+      })
+  }
+  else if(socialNetwork == "twitter"){
+    ApiSN ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user;
+     axios.get(ApiSN)
+    .then(res => {
+      const posts = res.data;
 
-  API_fb = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user;
-     axios.get(API_fb)
-    .then((res) => {
-      console.log(res.config.url)
-
-      this.setState({
-        data: res.data.data
-      });
+      this.setState({ posts });
     })
+
     .catch(function(e){
-      console.log('ERROR', e);
+      console.log('ERROR' , e);
     })
+  }
 
   // console.log(user);
  
 }
   render() {
-
-    const renderPostfb = this.state.data.map(function(postfb, i){
-     if(postfb.content.type == "video"){
+const {socialNetwork} = this.props;
+let renderSn
+if(socialNetwork == "facebook"){
+  renderSn = this.state.data.map(function(postFb, i){
+      if(postFb.content.type == "video"){
        return(
-                       <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
-                                  <div className="caption">
-                                  <p className="date">
-                                        {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                        </p>
+         <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+            <div className="caption">
+            <p className="date">
+                  {moment(postFb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                  </p>
 
-                                      <p>{postfb.content.message}</p>
-                                      <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
-                                    </div>
+                <p>{postFb.content.message}</p>
+                <a className="link" href={postFb.permalink} target="_blank">Ver post</a>
+              </div>
 
-                                    <video height="250" controls>
-                                      <source src={postfb.content.source}/>
-                                    </video>
-                                  
-                                   <div className="opciones2">
-                                         <a className="btn"> <img src={megusta} alt="share" /> {numeral(postfb.reactions.like).format('0 a')}</a>&nbsp;
-                                        <a>{numeral(postfb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
-                                        <a>{numeral(postfb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
-                                        <a>{numeral(postfb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>
-                                      
-                                        
-                              </div>
-                               
-                         </div> 
-
+              <video height="250" controls>
+                <source src={postFb.content.source}/>
+              </video>
+            
+             <div className="opciones2">
+                   <a className="btn"> <img src={megusta} alt="share" /> {numeral(postFb.reactions.like).format('0 a')}</a>&nbsp;
+                  <a>{numeral(postFb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
+                  <a>{numeral(postFb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
+                  <a>{numeral(postFb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>          
+             </div>
+           </div> 
         );
      }
      else {
          return(
-                       <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
-                                  <div className="caption">
-                                  <p className="date">
-                                        {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                        </p>
+           <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+              <div className="caption">
+                <p className="date">
+                {moment(postFb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                </p>
 
-                                      <p>{postfb.content.message}</p>
-                                      <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
-                                    </div>
+                <p>{postFb.content.message}</p>
+                <a className="link" href={postFb.permalink} target="_blank">Ver post</a>
+              </div>
 
-                                  <img src={postfb.content.picture} />
+              <img src={postFb.content.picture} />
 
-                                   <div className="opciones2">
-                                        <a className="icon">{numeral(postfb.reactions.like).format('0 a')} <img src={megusta} alt="share" /></a>&nbsp;
-                                        <a>{numeral(postfb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
-                                        <a>{numeral(postfb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
-                                        <a>{numeral(postfb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>&nbsp;
-                                        <a>{numeral(postfb.reactions.ANGRY).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp;
-                                        
-                              </div>
-                               
-                         </div> 
-
+               <div className="opciones2">
+                    <a className="icon">{numeral(postFb.reactions.like).format('0 a')} <img src={megusta} alt="share" /></a>&nbsp;
+                    <a>{numeral(postFb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
+                    <a>{numeral(postFb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
+                    <a>{numeral(postFb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>&nbsp;
+                    <a>{numeral(postFb.reactions.ANGRY).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp;     
+               </div>
+            </div> 
         );
      }
-    });
-    
-    
-   
+
+
+    }); }
+
+else{
+console.log("AHUEVO");
+     renderSn = this.state.posts.map(function(posttw, i){
+      return(
+         <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+              <div className="caption">
+                  <p className="date">
+                   {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                    </p>
+                  <p>{posttw.content.message}</p>
+                </div>
+            
+               <div className="opciones2">
+                     <a>{posttw.retweet} <img src={retweet} alt="share" /></a>
+                    <a>{posttw.favorite} <img src={favorite} alt="share" /></a>
+                     
+              </div>                
+          </div>
+        );
+    });       
+} 
     return (
-                <div className="columns-post">
-                    {renderPostfb}
-                  </div>
+      <div className="columns-post">
+          {renderSn}
+      </div>
     );
   }
 }

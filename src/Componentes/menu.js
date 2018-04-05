@@ -104,7 +104,7 @@ class Menu extends Component {
 
          return (
            <li key = { i }>
-            <Link style={{textDecoration:"none"}}  to={ MY_ROUTE.replace(':slug', did) }><a style={{textDecoration:"none"}}  id="dashname" onClick={refresh}>{dname}</a></Link>
+            <Link style={{textDecoration:"none"}}  to={ MY_ROUTE.replace(':slug', did) }><span style={{textDecoration:"none"}}  id="dashname" onClick={refresh}>{dname}</span></Link>
         </li>
          )
 
@@ -146,7 +146,7 @@ class Menu extends Component {
                           
                             <li className="dropdown user-link" >
                                 <a className="dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"> 
-                                <a style={{textDecoration:"none"}} id="dashname" role="button"></a>
+                                <span style={{textDecoration:"none"}} id="dashname" role="button"></span>
                                  <img src={arrow} style={{marginLeft:'10px'}} alt="hola" />
                                 </a>
                                  <List users = { this.state.users } /> 
@@ -160,9 +160,9 @@ class Menu extends Component {
                             {this.modalAction()}
                             <li className="dropdown separacion state-url">
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                      <img className="menuicon" width="20" style={{marginTop:"-20px;"}} src={compartir} alt="icon-compártir" />
+                                      <img className="menuicon" width="20" style={{marginTop:"-20px"}} src={compartir} alt="icon-compártir" />
                                   </a>
-                                  <ul className="dropdown-menu menu-url" style={{width:"100%;paddingTop:0;"}}>
+                                  <ul className="dropdown-menu menu-url" style={{width:"100%, paddingTop:0"}}>
                                       <li className="info-url">
                                       <center>
                                         <div className="header-url">
