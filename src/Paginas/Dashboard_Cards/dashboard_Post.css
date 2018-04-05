@@ -68,16 +68,192 @@
 
 
 
-/*POST - CARDS*/
-
-
 /*************
-POST - COLUMNS
+POST - CARDS nuevo diseño
 **************/
 
+.card-post{
+    background: white!important;
+    padding: 0!important;
+    border-radius: 20px;
+    
+
+}
+
+.card-post img{
+   object-fit: cover;
+   width: 100%;
+   height: 13vw;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+}
+
+.card-post video{
+    width: 100%;
+    height: auto!important;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-post span p{
+    font-family: 'Franlink-regular';
+    font-size: 9px!important;
+    text-align: left!important;
+    color: rgb(194,194,194);
+}
+
+.post-name{
+    font-family: 'Franlink-bold'!important;
+    font-size: 16px!important;
+    text-align: left;
+    line-height: 5px;
+}
+
+.post-description{
+    font-family: 'Franlink-regular'!important;
+    font-size: 13px!important;
+    text-align: left;
+    color: rgb(168,168,168);
+    
+}
+.reaction-post{
+    display: flex;
+    flex-direction: row;
+}
+
+.comen{
+    position: relative;
+    float: right!important;
+}
+.reaction-post .btn{
+    display: flex;
+    padding:0px 5px!important;
+    font-size: 10px!important;
+    font-family: 'Franlink-medium';
+    flex-direction: column;
+}
+.coment-icon .btn{
+    display: flex;
+    padding:0px 5px!important;
+    font-size: 10px!important;
+    font-family: 'Franlink-medium';
+    flex-direction: column;
+}
+.coment-icon >.btn >img{
+    width: 23px;
+}
+
+.reaction-post >.btn >img{
+    width: 23px;
+}
+.cards{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+/*************
+POST - COLUMNS nuevo diseño
+**************/
+.inside-post{
+    display: -webkit-box;
+    flex-wrap: wrap;
+    white-space: wrap;
+    width: 100%;
+    }
+::-webkit-scrollbar:horizontal {
+        width:5em!important;
+    }
+.inside-post > .col-md-3 {
+     display: block;
+      float: none;
+     height: 100%;
+      width:25vw;
+   }
+
+   .add-column{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: transparent;
+    outline: 2px dashed #BDBDBD;
+    box-shadow: 0 0 0 transparent!important;
+   }
+
+   .add-column p {
+    font-family: 'Franlink-regular';
+    font-size: 1vw;
+    font-weight: bolder;
+    color: rgb(203, 203, 203);
+   }
+   .header-column{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+   }
+
+   .header-column .profile{
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+    vertical-align: middle;
+   }
+    .profile-social{
+        vertical-align: middle;
+    }
+
+    .header-column img{
+        width: 5%;
+    }
+    .header-column h2{
+        font-family: 'Franlink-bold';
+        font-size: 15px;
+    }
+    .line{
+        height: 2px;
+        outline: 1px solid red;
+        width: 100%;
+    }
+
+    .icon{
+        
+    }
+/*post de columnas*/
+.card-column{
+    border-radius: 0!important;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #eeeeee;
+}
+    .card-column .date{
+        color: #bdbdbd;
+        font-size: 11px!important;
+        font-family: 'Franlink-regular';
+        font-weight: bolder;
 
 
+    }
+    .card-column p{
+        color: #9E9E9E;
+        font-size: 12px!important;
+        font-family:'Franlink-medium';
+    }
+    .card-column .link{
+       font-weight: 600;
+        text-decoration: none;
+        color: rgb(188, 84, 253);
+        font-family:'Franlink-medium';
 
+    }
+    .card-column video{
+        width: 100%;
+    }
+    
+    .profile-img {
+            
+            border-radius: 50%;
+            
+    }
 
 /***********************
 PANTALLAS DE MAYOR TAMAÑO

@@ -203,7 +203,7 @@ deleteData(event){
                       <div className="prew">
                          <p>{ddescription}</p>
                       </div>
-                      <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><li>Ir a Dashboard</li></Link>
+                      <Link style={{textDecoration:"none"}} to={ MY_ROUTE.replace(':slug', did) }><a>Ir a Dashboard</a></Link>
                    </div>
                 </div>
              </div>

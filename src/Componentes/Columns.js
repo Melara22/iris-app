@@ -7,11 +7,17 @@ import Modals from './modals';
 
 /*Imagenes*/
 
+import megusta from '../Assets/Iconos/icon-fb/like@2x.png';
+import amor from '../Assets/Iconos/icon-fb/encanta@2x.png';
+import asombra from '../Assets/Iconos/icon-fb/asombra@2x.png';
+import triste from '../Assets/Iconos/icon-fb/triste@2x.png';
+import enojo from '../Assets/Iconos/icon-fb/enoja@2x.png';
+import comentario from '../Assets/Iconos/icon-fb/comentarios@2x.png';
+
 import agregar from '../Assets/Iconos/Agregar_icon.png';
 import likefb from '../Assets/Iconos/likefb.png';
 import love from '../Assets/Iconos/reacciones/love.png';
 import wow from '../Assets/Iconos/reacciones/wow.png';
-
 import share from '../Assets/Iconos/share.png';
 import retweet from '../Assets/Iconos/retweet@2x.png';
 import favorite from '../Assets/Iconos/like@2x.png';
@@ -27,6 +33,8 @@ import * as firebase from 'firebase';
 import {config} from '../Assets/js/cons.js';
 import {app, verifyDashboards2} from '../Assets/js/script.js';
 
+
+var numeral = require('numeral');
 var id = 'ProgramadoresAndanDiciendo';
 var url = window.location.href;
 var id1 = url.substring(url.lastIndexOf('/') + 1 );
@@ -66,24 +74,62 @@ componentDidMount(){
   render() {
 
     const renderPostfb = this.state.data.map(function(postfb, i){
-      return(
-                       <div key={i} className="thumbnail" style={{marginLeft:"10px"}}>
+     if(postfb.content.type == "video"){
+       return(
+                       <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
                                   <div className="caption">
-                                      <p>{postfb.content.message}</p>
-                                    </div>
-                                  <img src={postfb.content.picture} />
-                                   <div className="opciones2">
-                                         <a>{postfb.reactions.like} <img src={likefb} alt="share" /></a>
-                                        <a>{postfb.reactions.love} <img src={love} alt="share" /></a>
-                                        <a>{postfb.reactions.wow} <img src={wow} alt="share" /></a>
-                                       <a>{postfb.shares} <img src={sha} alt="share" /></a>
-                                        <a className="float-opcion">
+                                  <p className="date">
                                         {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                        </a>
+                                        </p>
+
+                                      <p>{postfb.content.message}</p>
+                                      <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
+                                    </div>
+
+                                    <video height="250" controls>
+                                      <source src={postfb.content.source}/>
+                                    </video>
+                                  
+                                   <div className="opciones2">
+                                         <a className="btn"> <img src={megusta} alt="share" /> {numeral(postfb.reactions.like).format('0 a')}</a>&nbsp;
+                                        <a>{numeral(postfb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
+                                        <a>{numeral(postfb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
+                                        <a>{numeral(postfb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>
+                                      
+                                        
                               </div>
-                              
-                         </div>     
+                               
+                         </div> 
+
         );
+     }
+     else {
+         return(
+                       <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+                                  <div className="caption">
+                                  <p className="date">
+                                        {moment(postfb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                                        </p>
+
+                                      <p>{postfb.content.message}</p>
+                                      <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
+                                    </div>
+
+                                  <img src={postfb.content.picture} />
+
+                                   <div className="opciones2">
+                                        <a className="icon">{numeral(postfb.reactions.like).format('0 a')} <img src={megusta} alt="share" /></a>&nbsp;
+                                        <a>{numeral(postfb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
+                                        <a>{numeral(postfb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
+                                        <a>{numeral(postfb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>&nbsp;
+                                        <a>{numeral(postfb.reactions.ANGRY).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp;
+                                        
+                              </div>
+                               
+                         </div> 
+
+        );
+     }
     });
     
     

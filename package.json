@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.17.1",
     "firebase": "^4.10.0",
+    "jquery-bridget": "^2.0.1",
+    "masonry-layout": "^4.2.1",
     "moment": "^2.20.1",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
@@ -21,5 +23,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "jquery": true,
+    "jest": true
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
   }
 }
