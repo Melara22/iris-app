@@ -145,7 +145,7 @@ if(socialNetwork == "facebook"){
     }); }
 
 else{
-console.log("AHUEVO");
+
      renderSn = this.state.posts.map(function(posttw, i){
       return(
          <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>

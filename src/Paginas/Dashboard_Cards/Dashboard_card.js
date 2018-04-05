@@ -209,7 +209,9 @@ componentDidMount() {
     }
     else{
       return (
-        
+  
+
+        <div className="container postainer1">
         <div className="row inside-post">  
 
             { props.users.map( (userx,i) => { 
@@ -234,6 +236,7 @@ componentDidMount() {
              else {
               socialNetC="twitter";
                return (
+
                 <div key = { i } className="col-md-3 col-lg-3">
                  <div className="post-view">
                     <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
@@ -257,6 +260,7 @@ componentDidMount() {
                   </div>
                 </div>
         </div>  
+        </div>
     )
      }
     }
@@ -267,12 +271,12 @@ componentDidMount() {
       <div className="Dashboard_card">
         
           <section>
-              <div className="container postainer1">
+             
                 <div className="starter-te">                     
                      <Menu/>
                 </div>
                 <List users = { this.state.users } />                
-              </div>
+              
         </section>
       </div>
       )
