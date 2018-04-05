@@ -257,6 +257,7 @@ export function createDashboard(){
         // Cancel enumeration
       }); 
      });
+setTimeout(function(){ window.location.reload() }, 500); 
     }
     else{
           dataReturn = false;
@@ -320,7 +321,7 @@ return new Promise((resolve, reject) => {
                         twitter:tw,
                         user: usname
                       });
-                      window.location.reload();
+                     
                     }
                     });
                   });
@@ -335,6 +336,7 @@ return new Promise((resolve, reject) => {
     else{
       dataReturn = false;
     }
+    setTimeout(function(){ window.location.reload() }, 500); 
     resolve({
       status: dataReturn
     });
