@@ -31,7 +31,6 @@ var url = window.location.href;
 var id1 = url.substring(url.lastIndexOf('/') + 1 );
 var API_tw= "";
 /*declaramos como constantes a las APIS*/
-
 class Columns extends Component {
 /*declaramos el constructor*/ 
 constructor(props){
@@ -56,10 +55,8 @@ componentDidMount(){
   .catch(function(e){
     console.log('ERROR' , e);
   })
- 
 }
   render() {
-     var id = 'ProgramadoresAndanDiciendo';
     const renderPosttw = this.state.posts.map(function(posttw, i){
       return(
                              <div key={i} className="thumbnail" style={{marginLeft:"10px"}}>

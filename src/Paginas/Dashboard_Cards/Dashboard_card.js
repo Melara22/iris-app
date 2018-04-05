@@ -13,7 +13,7 @@ import './dashboard_Post.css';
 import Menu from '../../Componentes/menu';
 import Cards from '../../Componentes/Cards';
 import Columns from '../../Componentes/Columns';
-import Columns2 from '../../Componentes/Columns';
+import Columns2 from '../../Componentes/Columns2';
 import Modals from '../../Componentes/modals';
 import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
@@ -227,7 +227,8 @@ componentDidMount() {
                     <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <img className="profile-social" src={fb}/>&nbsp;<h2>{user}</h2>
                  
-                    </div><Columns facebook={facebook} user={user} />       
+                    </div>
+                    <Columns facebook={facebook} user={user} />       
                     </div>
               </div>
              )
