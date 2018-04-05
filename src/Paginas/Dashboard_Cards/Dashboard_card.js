@@ -239,7 +239,7 @@ componentDidMount() {
                <div key = { i } className="col-md-3 col-lg-3">
                <div className="post-view">
                   <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                    <h2><img style={{marginTop:'-10px', marginLeft:'3px'}} src={tw} />&nbsp;&nbsp;{user}</h2>
+                    <img className="profile-social" src={tw} />&nbsp;&nbsp;<h2>{user}</h2>
                   </div>
                     <Columns2 twitter={twitter} user={user} />              
                 </div> 

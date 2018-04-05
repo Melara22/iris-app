@@ -14,6 +14,8 @@ import triste from '../Assets/Iconos/icon-fb/triste@2x.png';
 import enojo from '../Assets/Iconos/icon-fb/enoja@2x.png';
 import comentario from '../Assets/Iconos/icon-fb/comentarios@2x.png';
 
+
+
 import agregar from '../Assets/Iconos/Agregar_icon.png';
 import likefb from '../Assets/Iconos/likefb.png';
 import love from '../Assets/Iconos/reacciones/love.png';

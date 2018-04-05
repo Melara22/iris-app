@@ -11,6 +11,8 @@ import agregar from '../Assets/Iconos/Agregar_icon.png';
 import likefb from '../Assets/Iconos/likefb.png';
 import love from '../Assets/Iconos/reacciones/love.png';
 import wow from '../Assets/Iconos/reacciones/wow.png';
+import fav from '../Assets/Iconos/icon-tw/fav@.png';
+import rt from '../Assets/Iconos/icon-tw/ret.png';
 
 import share from '../Assets/Iconos/share.png';
 import retweet from '../Assets/Iconos/retweet@2x.png';
@@ -59,18 +61,18 @@ componentDidMount(){
   render() {
     const renderPosttw = this.state.posts.map(function(posttw, i){
       return(
-                             <div key={i} className="thumbnail" style={{marginLeft:"10px"}}>
+                             <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
                                   <div className="caption">
-                                      
+                                      <p className="date">
+                                       {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                                        </p>
                                       <p>{posttw.content.message}</p>
                                     </div>
                                 
                                    <div className="opciones2">
-                                         <a>{posttw.retweet} <img src={retweet} alt="share" /></a>
-                                        <a>{posttw.favorite} <img src={favorite} alt="share" /></a>
-                                        <a className="float-opcion">
-                                          {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                                          </a>  
+                                         <a>{posttw.retweet} <img src={rt} alt="share" /></a>
+                                        <a>{posttw.favorite} <img src={fav} alt="share" /></a>
+                                         
                                   </div>                
                               </div>        
         );
