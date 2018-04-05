@@ -68,9 +68,89 @@
 
 
 
-/*POST - CARDS*/
+/*************
+POST - CARDS nuevo diseño
+**************/
 
+.card-post{
+    background: white!important;
+    padding: 0!important;
+    border-radius: 20px;
+    
 
+}
+
+.card-post img{
+   object-fit: cover;
+   width: 100%;
+   height: 13vw;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+}
+
+.card-post video{
+    width: 100%;
+    height: auto!important;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-post span p{
+    font-family: 'Franlink-regular';
+    font-size: 9px!important;
+    text-align: left!important;
+    color: rgb(194,194,194);
+}
+
+.post-name{
+    font-family: 'Franlink-bold'!important;
+    font-size: 16px!important;
+    text-align: left;
+    line-height: 5px;
+}
+
+.post-description{
+    font-family: 'Franlink-regular'!important;
+    font-size: 13px!important;
+    text-align: left;
+    color: rgb(168,168,168);
+    
+}
+.reaction-post{
+    display: flex;
+    flex-direction: row;
+}
+
+.comen{
+    position: relative;
+    float: right!important;
+}
+.reaction-post .btn{
+    display: flex;
+    padding:0px 5px!important;
+    font-size: 10px!important;
+    font-family: 'Franlink-medium';
+    flex-direction: column;
+}
+.coment-icon .btn{
+    display: flex;
+    padding:0px 5px!important;
+    font-size: 10px!important;
+    font-family: 'Franlink-medium';
+    flex-direction: column;
+}
+.coment-icon >.btn >img{
+    width: 23px;
+}
+
+.reaction-post >.btn >img{
+    width: 23px;
+}
+.cards{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
 /*************
 POST - COLUMNS nuevo diseño
 **************/
@@ -169,6 +249,11 @@ POST - COLUMNS nuevo diseño
         width: 100%;
     }
     
+    .profile-img {
+            
+            border-radius: 50%;
+            
+    }
 
 /***********************
 PANTALLAS DE MAYOR TAMAÑO

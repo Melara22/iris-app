@@ -9,6 +9,7 @@ import {
 import './dashboard_Post.css';
 //import '../../Assets/js/jquery.overscroll.min.js';
 //import '../../Assets/js/cursor-scroll.js';
+
 import Menu from '../../Componentes/menu';
 import Cards from '../../Componentes/Cards';
 import Columns from '../../Componentes/Columns';
@@ -183,8 +184,8 @@ componentDidMount() {
      const List = (props) => {
         if(this.state.design == "cards"){
                 return (
-            <div className="">
-              <div className="">          
+            
+              <div >          
                   { props.users.map( (userx,i) => { 
                    const { twitter, facebook, user } = userx;
                     if(facebook==true){
@@ -198,23 +199,10 @@ componentDidMount() {
                   })}
                   <div>
                       <Cards user={userar} socialNetwork={socnetar}/> 
-                      {this.userLogged && (
-                         <div className="col-md-3 col-lg-3">
-                            <div className="card post-nuevo">
-                                <a className="img-card">
-                              </a>
-                              <div className="content-post" align="center">
-                                  <a data-toggle="modal" data-target="#myModal">
-                                 <img src={agregar} alt="agregar" id="addimg" />
-                                  </a>
-                                  <p>Agregar una pagina</p>
-                              </div>
-                            </div>
-                            <Modals />
-                          </div>)}
+                      
                   </div>
                 </div>
-              </div>
+              
               
           );
     }

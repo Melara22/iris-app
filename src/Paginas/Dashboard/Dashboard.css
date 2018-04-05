@@ -102,6 +102,10 @@
 }
 
 
+#content{
+	background: white;
+}
+
 /*LOADING*/
 .icon-loading svg{
 	width: 15%!important; 

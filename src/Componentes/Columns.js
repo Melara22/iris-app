@@ -86,7 +86,7 @@ componentDidMount(){
                                       <a className="link" href={postfb.permalink} target="_blank">Ver post</a>
                                     </div>
 
-                                    <video height="300" controls>
+                                    <video height="250" controls>
                                       <source src={postfb.content.source}/>
                                     </video>
                                   
