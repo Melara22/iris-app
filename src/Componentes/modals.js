@@ -82,7 +82,7 @@ class Modals extends Component {
     return (
       <div className="Modals">
 
-                  <div id="modal-account" className="modal modal5 fade" role="dialog">
+                  <div id="modal-account" className="modal modal5 fade" role="dialog" >
               <div className="modal-dialog modal-dialog1 ">
 
               

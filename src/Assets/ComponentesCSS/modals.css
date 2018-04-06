@@ -284,6 +284,9 @@ MODAL CUENTAS
 .modal5{
   background: rgb(248,248,248);
 }
+.modal5 .modal-dialog{
+  display: flex;align-items: center;
+}
 .account-header{
   padding: 10px;
   display: flex;
@@ -306,9 +309,8 @@ MODAL CUENTAS
 }
 .modal-body5{
   background: rgb(248,248,248);
-  display: flex;
-  justify-content: center;
   align-items: center;
+
 }
 
 .account{

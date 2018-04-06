@@ -215,7 +215,7 @@ componentDidMount() {
          <div className="row social-cpanel">
                 <div className="col-md-12">
                     <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
-
+                    
                 </div>
               </div>
             
@@ -262,6 +262,7 @@ componentDidMount() {
                     <img src={agregar} id="addimg"/>
                     </a>
                     <p>Agregar una pagina</p>
+                    
                     <Modals />
 
                   </div>
