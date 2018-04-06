@@ -13,25 +13,25 @@
   border-top-color:transparent;
   border-left-color: transparent;
   border-right-color: transparent;  
-  border-bottom:1px solid #B187FF!important; 
+ 
 }
 .ddescription:focus{
    border-radius:0px;
   border-top-color:transparent;
   border-left-color: transparent;
   border-right-color: transparent;  
-  border-bottom:1px solid #B187FF!important; 
+  
 }
 #dname{
   border-bottom:1px solid #E0E0E0!important; 
   border-radius:0px;
-  font-family: Franlink-ligth;
+  font-family: Franlink-regular;
   
 }
 .ddescription{
     border-bottom:1px solid #E0E0E0!important; 
     border-radius: 0px;
-    font-family: Franlink-ligth!important;
+    font-family: Franlink-regular!important;
 }
 .adddash {
   transition : filter 100ms linear

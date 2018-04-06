@@ -86,6 +86,11 @@ componentDidMount(){
   }
  
 }
+
+columnsDiv(){
+
+}
+
 render() {
 const {socialNetwork} = this.props;
 let renderSn
@@ -98,6 +103,13 @@ if(contadorf.length >0  || contadort.length >0 ){
 
       if(postFb.content.type == "video"){
        return(
+        <div>
+          <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+            <img className="img-circle profile" src={postFb.content.profile_picture}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img className="profile-social" src={fb}/>&nbsp;<h2>{postFb.content.username}</h2>
+         </div>
+        <div className="columns-post">
+        
          <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
             <div className="caption">
             <p className="date">
@@ -116,13 +128,21 @@ if(contadorf.length >0  || contadort.length >0 ){
                    <a className="btn"> <img src={megusta} alt="share" /> {numeral(postFb.reactions.like).format('0 a')}</a>&nbsp;
                   <a>{numeral(postFb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
                   <a>{numeral(postFb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
-                  <a>{numeral(postFb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>          
+                  <a>{numeral(postFb.reactions.sad).format('0 a')}<img src={triste} alt="icon-fb" /></a>          
              </div>
            </div> 
+        </div> 
+        </div>
         );
      }
      else {
          return(
+           <div>
+          <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+            <img className="img-circle profile" src={postFb.content.profile_picture}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <img className="profile-social" src={fb}/>&nbsp;<h2>{postFb.content.username}</h2>
+         </div>
+         <div className="columns-post">
            <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
               <div className="caption">
                 <p className="date">
@@ -143,29 +163,41 @@ if(contadorf.length >0  || contadort.length >0 ){
                     <a>{numeral(postFb.reactions.ANGRY).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp;     
                </div>
             </div> 
+           </div>
+          </div>
         );
      }
 
 
+
     }); 
   }
-  else{
+else{
+
+
      renderSn = this.state.posts.map(function(posttw, i){
       return(
-         <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
-              <div className="caption">
-                  <p className="date">
-                   {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
-                    </p>
-                  <p>{posttw.content.message}</p>
-                </div>
-            
-               <div className="opciones2">
-                     <a>{posttw.retweet} <img src={retweet} alt="share" /></a>
-                    <a>{posttw.favorite} <img src={favorite} alt="share" /></a>
-                     
-              </div>                
-          </div>
+         <div>
+            <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
+              <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img className="profile-social" src={tw}/>&nbsp;<h2>{posttw.content.username}</h2>
+           </div>
+           <div className="columns-post">
+           <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+                <div className="caption">
+                    <p className="date">
+                     {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
+                      </p>
+                    <p>{posttw.content.message}</p>
+                  </div>
+              
+                 <div className="opciones2">
+                       <a>{posttw.retweet} <img src={retweet} alt="share" /></a>
+                      <a>{posttw.favorite} <img src={favorite} alt="share" /></a>
+                </div>                
+            </div>
+           </div>                
+        </div>
         );
     });       
   }
@@ -173,14 +205,12 @@ if(contadorf.length >0  || contadort.length >0 ){
 else{
   return(
       <div className="blankStateD">
-        <div className="item" style={{backgroundColor:"coral"}}>1</div>
-        <div className="item" style={{backgroundColor:"lightblue"}}>2</div>
-        <div className="item" style={{backgroundColor:"pink"}}>3</div>
+        <div className="item" ><img src={imgstate}/></div>
       </div>
   );
 }
     return (
-      <div className="columns-post">
+      <div>
           {renderSn}
       </div>
     );

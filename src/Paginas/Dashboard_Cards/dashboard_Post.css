@@ -52,13 +52,21 @@
 
 .postainer1{
 
+    height: 100vh;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto; 
+    padding-right: 1em!important;
+    padding-left: 1em!important;
+    width: 100%!important;
+}
+.postainer-cards{
     padding-right: 1em!important;
     padding-left: 1em!important;
     margin-right: auto;
     margin-left: auto;
     width: 100%!important;
     margin-top: 5em;
-
 }
 .mis-post > .row{
   width: 100%!important;
@@ -66,6 +74,11 @@
   margin-top: 5em!important;
 }
 
+.postainer1 .inside-post{
+    overflow-x: scroll;
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
 
 
 /*************

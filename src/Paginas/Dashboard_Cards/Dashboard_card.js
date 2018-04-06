@@ -206,7 +206,9 @@ componentDidMount() {
     }
     else{
       return (
-        
+  
+
+        <div className="container postainer1">
         <div className="row inside-post">  
 
             { props.users.map( (userx,i) => { 
@@ -218,11 +220,6 @@ componentDidMount() {
                return (
                  <div key = { i } className="col-md-3 col-lg-3">
                  <div className="post-view">
-
-                     <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                        <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img className="profile-social" src={fb}/>&nbsp;<h2>{user}</h2>
-                     </div>
                      <Columns socialNetwork={socialNetC} user={user} />       
                   </div>
                 </div>
@@ -231,12 +228,9 @@ componentDidMount() {
              else {
               socialNetC="twitter";
                return (
+
                 <div key = { i } className="col-md-3 col-lg-3">
                  <div className="post-view">
-                    <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
-                        <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img className="profile-social" src={tw}/>&nbsp;<h2>{user}</h2>
-                    </div>
                     <Columns socialNetwork={socialNetC} user={user} />       
                   </div>
                 </div>
@@ -254,6 +248,7 @@ componentDidMount() {
                   </div>
                 </div>
         </div>  
+        </div>
     )
      }
     }
@@ -264,12 +259,12 @@ componentDidMount() {
       <div className="Dashboard_card">
         
           <section>
-              <div className="container postainer1">
+              
                 <div className="starter-te">                     
                      <Menu/>
                 </div>
                 <List users = { this.state.users } />                
-              </div>
+              
         </section>
       </div>
       )

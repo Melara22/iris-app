@@ -129,10 +129,10 @@ class Modals extends Component {
 			         	 <form>
 			                  <h4 id="modalActionVal">Nuevo Dashboard</h4>
 			                  <div className="form-group">
-			                  	<input className="form-control input-noborder" id="dname" placeholder="Dashboard name" style={{border:"none", boxShadow: "none"}} required/>
-                                <hr/>
-                                <textarea className="form-control input-noborder ddescription" id="ddescription" placeholder="Dashboard description" style={{resize: "none", border:"none", boxShadow: "none"}} required></textarea>
-                                <hr/>
+			                  	<input className="form-control input-noborder" id="dname" placeholder="Nombre del dashboard" style={{border:"none", boxShadow: "none"}} required/>
+                                <br/>
+                                <textarea className="form-control input-noborder ddescription" id="ddescription" placeholder="Description del dashboard " style={{resize: "none", border:"none", boxShadow: "none"}} required></textarea>
+                                <br/>
 			                  </div>
                 		</form>
 
