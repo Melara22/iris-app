@@ -28,6 +28,8 @@
 
 
 
+
+
 .profile-img{
     margin-top: -5px;
     margin-right: 5px;
@@ -76,10 +78,23 @@
 
 .postainer1 .inside-post{
     overflow-x: scroll;
-    padding-top: 60px;
+    padding-top: 85px;
     padding-bottom: 10px;
 }
 
+.social-cpanel{
+    padding-top: 4em;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.social-cpanel a{
+    color: rgb(188, 84, 253);
+    font-family: Franlink-medium;
+    text-decoration: none;
+}
 
 /*************
 POST - CARDS nuevo diseño

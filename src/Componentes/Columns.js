@@ -111,7 +111,9 @@ if(socialNetwork == "facebook"){
                    <a className="btn"> <img src={megusta} alt="share" /> {numeral(postFb.reactions.like).format('0 a')}</a>&nbsp;
                   <a>{numeral(postFb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
                   <a>{numeral(postFb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
-                  <a>{numeral(postFb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>          
+                  <a>{numeral(postFb.reactions.sad).format('0 a')}<img src={triste} alt="icon-fb" /></a>&nbsp;
+                  <a>{numeral(postFb.reactions.angry).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp; 
+                  <a>{numeral(postFb.content.comments).format('0 a')}<img src={comentario} alt="icon-comentario"/></a>          
              </div>
            </div> 
         );
@@ -134,8 +136,9 @@ if(socialNetwork == "facebook"){
                     <a className="icon">{numeral(postFb.reactions.like).format('0 a')} <img src={megusta} alt="share" /></a>&nbsp;
                     <a>{numeral(postFb.reactions.love).format('0 a')} <img src={amor} alt="share" /></a>&nbsp;
                     <a>{numeral(postFb.reactions.wow).format('0 a')} <img src={asombra} alt="share" /></a>&nbsp;
-                    <a>{numeral(postFb.reactions.SAD).format('0 a')}<img src={triste} alt="icon-fb" /></a>&nbsp;
-                    <a>{numeral(postFb.reactions.ANGRY).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp;     
+                    <a>{numeral(postFb.reactions.sad).format('0 a')}<img src={triste} alt="icon-fb" /></a>&nbsp;
+                    <a>{numeral(postFb.reactions.angry).format('0 a')}<img src={enojo} alt="icon-fb" /></a>&nbsp; 
+                    <a>{numeral(postFb.content.comments).format('0 a')}<img src={comentario} alt="icon-comentario"/></a>     
                </div>
             </div> 
         );

@@ -275,3 +275,88 @@ input:checked + .slider {
   width: 20%;
 }
 
+
+
+/*
+MODAL CUENTAS 
+
+*/
+.modal5{
+  background: rgb(248,248,248);
+}
+.account-header{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgb(248, 248, 248);
+}
+.account-header h2{
+  font-family: Franlink-medium;
+  color: #424242;
+  font-weight: bolder;
+  font-size: 25px;
+}
+.account-header p{
+  font-family: Franlink-regular;
+  color: #424242;
+  font-weight: 500;
+  font-size: 18px;
+}
+.modal-body5{
+  background: rgb(248,248,248);
+}
+
+.account{
+  background: white;
+  padding:5px; 
+  height: 100%;
+  display: flex;
+  margin-bottom:5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  
+}
+
+.account .col-md-3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.account .col-md-6{
+  display: flex;
+  text-align: left;
+  
+  flex-direction: column;
+}
+.account .col-md-6 span{
+  font-family: Franlink-medium;
+  color: #424242;
+  font-weight: 500;
+  font-size: 18px;
+  
+}
+.username{
+  font-family: Franlink-regular!important;
+  color: #bdbdbd!important;
+  font-size: 15px!important;
+}
+.account p{
+  text-align: left;
+}
+.account .col-md-8 img{
+  vertical-align: middle;
+  width:auto;
+  height: 70%;
+} 
+.account .col-md-8 span{
+  display: block;
+}
+.account img{
+  
+}
+
+.glyphicon-remove{
+  color: #bdbdbd!important;
+}

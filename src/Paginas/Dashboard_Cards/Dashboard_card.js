@@ -210,10 +210,17 @@ componentDidMount() {
     else{
       return (
   
-
         <div className="container postainer1">
-        <div className="row inside-post">  
+        
+         <div className="row social-cpanel">
+                <div className="col-md-12">
+                    <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
 
+                </div>
+              </div>
+            
+        <div className="row inside-post">  
+             
             { props.users.map( (userx,i) => { 
 
              const { twitter, facebook, user } = userx;
@@ -275,6 +282,9 @@ componentDidMount() {
                 <div className="starter-te">                     
                      <Menu/>
                 </div>
+                
+                
+               
                 <List users = { this.state.users } />                
               
         </section>
