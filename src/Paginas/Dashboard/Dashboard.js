@@ -151,7 +151,7 @@ deleteData(event){
     console.log(this.state.evaluate);
     if (this.state.evaluate != "lleno") {
       return (
-            <div className="container">
+            <div className="container blank-container">
               <div className="starter-template">
                 <Menu2/>
                 <div className="row agregar-dash">

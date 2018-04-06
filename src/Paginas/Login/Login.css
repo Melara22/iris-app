@@ -58,14 +58,14 @@ body {
 }
 .contenido-login h1{
 	font-size: 30px;
-  font-family:Brandon-light;
+  font-family:Franlink-ligth;
   font-weight: 300;
   color: #212121!important;
 
 }
 .contenido-login p{
 	font-size: 12px;
-  font-family:Brandon-light;
+  font-family:Franlink-regular;
   color: #757575!important;
 }
 
@@ -144,14 +144,14 @@ transition-duration: 0.5s;
 
 .login-texto h1{
   font-size: 30px;
-  font-family:Brandon-light;
+  font-family:Franlink-medium;
   font-weight: 300;
   color: white;
 }
 
 .login-texto p{
-  font-size: 12px;
-  font-family:Brandon-light;
+  font-size: 14px;
+  font-family:Franlink-regular;
   color: white!important;
   opacity: .6;
 }

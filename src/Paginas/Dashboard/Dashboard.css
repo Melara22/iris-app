@@ -23,7 +23,7 @@
 }
 
 .agregar-dash{
-	margin-top:20em!important;
+	
 }
 
 .state-div img{
@@ -72,6 +72,17 @@
 
  }
 
+ .blank-container{
+	height: 100vh;
+ }
+
+ .starter-template{
+ 	height: 100%;
+ 	display: flex;
+ 	justify-content: center;
+ 	align-items: center;
+ }
+
 .icon-menu img{
 	width: 1.3em!important;
 }
@@ -104,6 +115,7 @@
 
 #content{
 	background: white;
+	box-shadow: 0 0 0 transparent!important;
 }
 
 /*LOADING*/
