@@ -284,8 +284,7 @@ class Cards extends Component {
 
                      
                         {renderPostsn}  
-                          {this.userLogged && (
-                         <div className="grid-item col-md-3 col-lg-5">
+                        <div className="grid-item col-md-3 col-lg-5">
                             <div className="card post-nuevo">
                                 <a className="img-card">
                               </a>
@@ -298,8 +297,6 @@ class Cards extends Component {
                             </div>
                             <Modals />
                           </div>
-                                      
-                          )}
                      
        
       </div>
