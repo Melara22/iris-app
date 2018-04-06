@@ -24,6 +24,8 @@ import share from '../Assets/Iconos/share.png';
 import retweet from '../Assets/Iconos/retweet@2x.png';
 import favorite from '../Assets/Iconos/like@2x.png';
 import sha from '../Assets/Iconos/sha.png';
+
+import imgstate from '../Assets/Iconos/blank_state.png';
 import views from '../Assets/Iconos/views.png';
 
 import logo from '../Assets/img/mara/logo.png';
@@ -58,16 +60,16 @@ componentDidMount(){
   const {user} = this.props;
   const {socialNetwork} = this.props;
   if(socialNetwork == "facebook"){
-    ApiSN = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user;
-       axios.get(ApiSN)
-      .then((res) => {
-        this.setState({
-          data: res.data.data
-        });
-      })
-      .catch(function(e){
-        console.log('ERROR', e);
-      })
+    ApiSN = 'https://api-inxights-staging.herokuapp.com/public/v1/facebook/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user; 
+     axios.get(ApiSN)
+    .then((res) => {
+      this.setState({
+        data: res.data.data
+      });
+    })
+    .catch(function(e){
+      console.log('ERROR', e);
+    })
   }
   else if(socialNetwork == "twitter"){
     ApiSN ='https://api-inxights-staging.herokuapp.com/public/v1/twitter/posts?api_token=14c261ec0de964822a4fb1a18538b26a2ed4b661130babda14504db0eb084dde&username='+user;
@@ -79,18 +81,21 @@ componentDidMount(){
     })
 
     .catch(function(e){
-      console.log('ERROR' , e);
+      console.log('ERROR', e);
     })
   }
-
-  // console.log(user);
  
 }
-  render() {
+render() {
 const {socialNetwork} = this.props;
 let renderSn
-if(socialNetwork == "facebook"){
-  renderSn = this.state.data.map(function(postFb, i){
+var contadorf = this.state.data;
+var contadort = this.state.posts;
+
+if(contadorf.length >0  || contadort.length >0 ){
+  if(socialNetwork == "facebook"){
+   renderSn = this.state.data.map(function(postFb, i){
+
       if(postFb.content.type == "video"){
        return(
          <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
@@ -142,10 +147,9 @@ if(socialNetwork == "facebook"){
      }
 
 
-    }); }
-
-else{
-console.log("AHUEVO");
+    }); 
+  }
+  else{
      renderSn = this.state.posts.map(function(posttw, i){
       return(
          <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
@@ -164,7 +168,17 @@ console.log("AHUEVO");
           </div>
         );
     });       
+  }
 } 
+else{
+  return(
+      <div className="blankStateD">
+        <div className="item" style={{backgroundColor:"coral"}}>1</div>
+        <div className="item" style={{backgroundColor:"lightblue"}}>2</div>
+        <div className="item" style={{backgroundColor:"pink"}}>3</div>
+      </div>
+  );
+}
     return (
       <div className="columns-post">
           {renderSn}

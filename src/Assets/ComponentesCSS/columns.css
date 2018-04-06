@@ -1,28 +1,30 @@
 .btn-green:hover{
 	background-color:rgb(48, 239, 223)!important;
 	border-color: transparent!important;
-	
 }
 
 #addimg{
-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
+
 #addimg:hover{
-transform: scale(1.3);
+    transform: scale(1.3);
 }
+
 .nombre-dashboard li > a{
     font-family: Brandon-medium;
     font-size: 20px;
     color: black!important;
 }
 
-/*POST*/
 .thumbnail{
     border-color:transparent;
 }
+
 .thumbnail > .caption p {
     font-size: 13px;
 }
+
 .thumbnail p,h5{
     font-family: Brandon-light;
 }
@@ -31,6 +33,7 @@ transform: scale(1.3);
     display: inline-block;
     width: 15px;
 }
+
 .post-view{
     background-color: white;
     height: 60em;
@@ -50,9 +53,18 @@ transform: scale(1.3);
 
 }
 
-
-
-
+.blankStateD{
+    display:flex!important;
+    align-content: center!important;
+    justify-content:center!important;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
+}
+.blankStateD div{
+    align-self:center!important;
+}
 
 .logo-pagina img{
     width: 15%!important;

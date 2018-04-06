@@ -88,8 +88,7 @@ class Dashboard extends Component {
             });
           });
         });
-
-  }
+}
 deleteData(event){
 
     let self = this;
