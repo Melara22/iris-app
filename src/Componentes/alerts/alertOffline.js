@@ -11,7 +11,7 @@ class YouAreOffline extends React.Component {
         this.offlineMessage = this.props.whenOffline || <AlertWarning />;
         this.onlineMessage = this.props.whenOnline || 'Online';
         this.offlineStyle = this.props.style || { color: 'red' };
-        this.onlineStyle = this.props.style || { color: 'transparent' };
+        this.onlineStyle = this.props.style || { color: 'transparent', display:'none' };
         this.offlineClass = this.props.className || ''
         this.onlineClass = this.props.className || '';
     }
