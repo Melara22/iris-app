@@ -5,6 +5,7 @@ import {Redirect} from 'react-router-dom'
 import AlertSuccess from '../../Componentes/alerts/alertSuccess.js';
 import AlertDanger from '../../Componentes/alerts/alertDanger.js';
 import IconLoading from '../../Componentes/icons/IconLoading';
+import google from '../../Assets/Iconos/btn_google_signin_dark_normal_web@2x.png'
 import logo from '../../Assets/Iconos/login.png';
 import '../../Assets/js/script.js';
 import{signIn, signOut, createUser, extermin, verfSessionlog,checkIfUserExists} from '../../Assets/js/script.js';
@@ -77,8 +78,7 @@ verfSessionlog();
                 <img className="logo2" src={logo} alt="logo" />
                   <h1>Iniciar sesión</h1>
                     <p>Asegurate que tu cuenta sea elaniin.com para poder ingresar.</p>
-                    <button id="login" onClick={this.signInGoo} className="btn boton-image monBouton"><a className="text-botonimage">Sign up with Google</a></button>
-                  
+                     <a id="login" onClick={this.signInGoo}><img src={google} width="200"/></a>
                     <div className="marca">
                     <p>Powered by <a className="url-marca" href="https://elaniin.com/" target="_blank">Elaniin </a>&<a className="url-marca" target="_blank" href="http://app.inxights.co/"> Inxights</a></p>
                     </div>
