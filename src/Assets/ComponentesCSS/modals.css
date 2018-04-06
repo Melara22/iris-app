@@ -306,6 +306,9 @@ MODAL CUENTAS
 }
 .modal-body5{
   background: rgb(248,248,248);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .account{
