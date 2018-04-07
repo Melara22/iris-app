@@ -154,7 +154,7 @@ class Cards extends Component {
         const DefaultPlaceholdeR = 
           function vavavav(){
             if(postsn.content.picture == null){
-              return(<img src={post1}/>);
+              return(<img src={post1} style={{display:'none'}}/>);
             } 
             else{
               return(<img src={postsn.content.picture}/>);
@@ -170,9 +170,20 @@ class Cards extends Component {
                          <div className="thumbnail card-post" key={i}>
           <img src={postsn.content.media.media_url_https} />
               <div className="caption">
+
                 <div className="text-cards">
-                <span><p>{moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}</p></span>
+
+
+               <div className="row">
+                <div className="col-md-3">
+                      <img className="img-circle profile" src={postsn.content.profile_picture}/>
+                </div>
+                <div className="col-md-8">
+                     <span><p>{moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}</p></span>
                 <p className="post-name">{postsn.content.username}</p>
+                  </div>                
+                </div>
+                
                 </div>
                 <p className="post-description">{postsn.content.message}</p>
                  
@@ -201,11 +212,18 @@ class Cards extends Component {
                    <div className="thumbnail card-post">
            <video height="300" controls>
                                       <source src={postsn.content.source}/>
-                                    </video>
+             </video>
               <div className="caption">
                 <div className="text-cards">
-                <span><p>{moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}</p></span>
-                <p className="post-name">{postsn.content.username}</p>
+                <div className="row">
+                <div className="col-md-3">
+                      <img className="img-circle profile" src={postsn.content.profile_picture}/>
+                </div>
+                <div className="col-md-8">
+                      <span><p>{moment(postsn.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}</p></span>
+                      <p className="post-name">{postsn.content.username}</p>
+                  </div>                
+                </div>
                 </div>
                 <p className="post-description">{postsn.content.message}</p>
                  
@@ -239,7 +257,7 @@ class Cards extends Component {
                 
                 <div className="row">
                 <div className="col-md-3">
-                   
+                   <img className="img-circle profile" src={postsn.content.profile_picture}/>
                 </div>
 
                 <div className="col-md-8">

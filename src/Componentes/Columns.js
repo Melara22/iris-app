@@ -208,7 +208,10 @@ else{
 else{
   return(
       <div className="blankStateD">
-        <div className="item" ><img src={imgstate}/></div>
+        <div className="item" >
+        <img src={imgstate}/>
+        <p>Usuario no existente</p>
+        </div>
       </div>
   );
 }
