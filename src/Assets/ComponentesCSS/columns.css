@@ -66,6 +66,15 @@
     flex-wrap: wrap;
     -webkit-align-content: center;
     align-content: center;
+    height: 100%;
+}
+.blankStateD p{
+    text-align: center;
+    color: rgb(210, 210, 248);
+    font-family: Franlink-medium;
+    font-weight: bolder;
+    margin-top: 10px;
+    font-size: 18px;
 }
 .blankStateD div{
     align-self:center!important;

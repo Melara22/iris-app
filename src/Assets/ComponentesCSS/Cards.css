@@ -159,8 +159,13 @@
 }
 
 
+.grid-item{
+  width: 300px!important;
+}
 
-
+.post-description{
+  margin-top: 5px;
+}
 
 
 @media (min-width: 1366px) {
