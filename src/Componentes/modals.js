@@ -87,13 +87,12 @@ class Modals extends Component {
 
               
                 <div className="modal-content modal-content1">
-                 {this.state.sn}  
+                 {this.state.sn}
                   <div className="modal-body modal-body5">
                     <div className="account-header">
                     <h2>Edita tus cuentas</h2>
                     <p>Selecciona las cuentas que desees eliminar en tu dashboard</p>
                     </div>
-                    
                     <div className="row">
                         <div className="col-md-12">
                             <div className="account">

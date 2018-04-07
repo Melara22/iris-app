@@ -95,10 +95,7 @@ class Cards extends Component {
       axios.all(APIDa.map(l => axios.get(l)))
       .then(axios.spread((...res) => {
         for(var j=0; j<user.length; j++ ){
-          // console.log({
-          //   ...this.state.posts,
-          //   ...res[j].data
-          // });
+          console.log(j+"XD");
           if(socialNetwork[j]=="Facebook"){
 
           this.setState({
@@ -135,8 +132,7 @@ class Cards extends Component {
     var msnry;
     msnry = new Masonry( '.cards', {
         itemSelector: '.grid-item',
-        
-  percentPosition: true
+        percentPosition: true
     });
 
     console.log({msnry});    
