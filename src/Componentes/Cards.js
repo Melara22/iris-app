@@ -230,7 +230,6 @@ class Cards extends Component {
                 <a className="btn" role="button"><img src={asombra} />{numeral(postsn.reactions.wow).format('0 a')}</a> 
                 <a className="btn" role="button"><img src={triste} />{numeral(postsn.reactions.SAD).format('0 a')}</a> 
                 <a className="btn" role="button"><img src={enojo} />{numeral(postsn.reactions.ANGRY).format('0 a')}</a> 
-                
                 </div>
                 <div className="col-md-4 coment-icon">
                 <a className="btn pull-right" role="button"><img src={comentario} width="12"/>350</a>

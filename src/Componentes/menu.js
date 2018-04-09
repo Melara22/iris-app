@@ -160,7 +160,7 @@ class Menu extends Component {
                             {this.modalAction()}
                             <li className="dropdown separacion state-url">
                                   <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                      <img className="menuicon" width="20" style={{marginTop:"-20px"}} src={compartir} alt="icon-compártir" />
+                                      <img className="menuicon" width="20"  src={compartir} alt="icon-compártir" />
                                   </a>
                                   <ul className="dropdown-menu menu-url" style={{width:"100%, paddingTop:0"}}>
                                       <li className="info-url">

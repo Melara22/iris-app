@@ -12,7 +12,9 @@ import layout from '../Assets/Iconos/layout.png';
 import layout1 from '../Assets/Iconos/layout1.png';
 import publico from '../Assets/Iconos/publico.png';
 import privado from '../Assets/Iconos/privado.png';
-import{createDashboard, createSocialNetwork, } from '../Assets/js/script.js';
+import * as firebase from 'firebase';
+import {config} from '../Assets/js/cons.js';
+import{app,createDashboard, createSocialNetwork, } from '../Assets/js/script.js';
 
 
 class Modals extends Component {
@@ -21,12 +23,14 @@ class Modals extends Component {
 
     this.state = {
       msg: null,
-      sn: null
+      sn: null,
+      users: []
     };
 
     this.signInGoo = this.signInGoo.bind(this);
     this.createsn = this.createsn.bind(this);
   }
+
 
   signInGoo() {
     const goo = createDashboard();
@@ -77,15 +81,122 @@ class Modals extends Component {
       // console.log({catch: resp});
     });
   }
-  render() {
+componentDidMount(){
+     const self = this;
+            const rootRef = app.database().ref().child('users');
+            const userRef = rootRef.child('vavava');
+            
+            firebase.auth().onAuthStateChanged(function(user) {
+              rootRef.once('value', function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+            if (user) {
+              var uskey = childSnapshot.key;
+              var useremail = childSnapshot.child("email").val();
+              var namelog = firebase.auth().currentUser;
+                if (namelog.email == useremail) {
+                  var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+                    dashdirection.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                         var url = window.location.href;
+                          var id = url.substring(url.lastIndexOf('/') + 1 );
+                          var dashid = childSnapshot.child("did").val();
+                          if(dashid == id){
+                            var dashkey = childSnapshot.key
+                            var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                            sNetworkDir.once("value").then(function(snapshot) {
+                              snapshot.forEach(function(childSnapshot) {
+                                self.setState({
+                                  users: self.state.users.concat(childSnapshot.val())
+                                });
+                              });
+                            });
+                          }
+                        /**/
+                      });
+                    });
+                }  
+            }
+              else{
+                    var uskey = childSnapshot.key;
+                    var key2 = childSnapshot.child("email").val();         
+                    var dashdirection = app.database().ref("users/"+uskey+"/Dashboard/");
 
+                     dashdirection.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                             var url = window.location.href;
+                              var id = url.substring(url.lastIndexOf('/') + 1 );
+                              var dashid = childSnapshot.child("did").val();
+                              if(dashid == id){
+                                var keydashboard = childSnapshot.key;
+                                var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
+                                design.once("value").then(function(snapshot) {
+                                  snapshot.forEach(function(childSnapshot) {
+                                      var columnss = childSnapshot.child("columns").val();
+                                      if (columnss == true) {
+                                        self.setState({
+                                          design: "columns"
+                                        });
+                                      }
+                                      else{
+                                          self.setState({
+                                            design: "cards"
+                                          });
+                                      }
+                                  });
+                                });
+                                var dashkey = childSnapshot.key
+                                var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                                sNetworkDir.once("value").then(function(snapshot) {
+                                  snapshot.forEach(function(childSnapshot) {
+                                    self.setState({
+                                      users: self.state.users.concat(childSnapshot.val())
+                                    });
+                                  });
+                                });
+                              }
+                            /**/
+                          });
+                      });
+                  // Cancel enumeration
+
+              }
+               });
+              });
+            });
+}
+
+  render() {
+  console.log(this.state.users) 
+ const List = (props) => {
+                return (
+                 props.users.map( (userx,k) => { 
+                   const { twitter, facebook, user } = userx;
+                       <div  key={k} className="row">
+                        <div className="col-md-12">
+                            <div className="account">
+                            <div className="col-md-3">
+                             <img src={facebook} alt="logo-fb"/>  
+                            </div>
+                            <div className="col-md-6">
+                                <span className="name">lorem ipsum</span>
+                                <span className="username">@lorenipsum</span>
+                            </div>
+                            <div className="col-md-3">
+                           <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                  })
+              
+              
+          );
+   
+    }
     return (
       <div className="Modals">
-
-                  <div id="modal-account" className="modal modal5 fade" role="dialog" >
+        <div id="modal-account" className="modal modal5 fade" role="dialog" >
               <div className="modal-dialog modal-dialog1 ">
-
-              
                 <div className="modal-content modal-content1">
                  {this.state.sn}
                   <div className="modal-body modal-body5">
@@ -93,61 +204,9 @@ class Modals extends Component {
                     <h2>Edita tus cuentas</h2>
                     <p>Selecciona las cuentas que desees eliminar en tu dashboard</p>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="account">
-
-
-                            <div className="col-md-3">
-
-                             <img src={facebook} alt="logo-fb"/>  
-                            </div>
-
-                            <div className="col-md-6">
-                                <span className="name">lorem ipsum</span>
-                                <span className="username">@lorenipsum</span>
-                            </div>
-                            <div className="col-md-3">
-                           <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </div>
-
-
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="account">
-                                <div className="col-md-3">
-
-                             <img src={tw} alt="logo-fb"/>  
-                            </div>
-
-                            <div className="col-md-6">
-                                <span className="name">lorem ipsum</span>
-                                <span className="username">@lorenipsum</span>
-                            </div>
-                            <div className="col-md-3">
-                           <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </div>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                 
+                        <List users = { this.state.users } /> 
                   </div>
-
-                  
                 </div>
-
-               
-
               </div>
             </div>
       		<div id="myModal" className="modal modal1 fade" role="dialog">
