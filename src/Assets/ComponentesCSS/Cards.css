@@ -16,8 +16,17 @@
 
 }
 
-.space{
+.cards-tools{
+position: absolute;
+    margin-left: 0px;
+    z-index: 1;
+    margin-top: -8px;
 
+}
+.cards-tools a{
+  color: rgb(188, 84, 253);
+    font-family: Franlink-medium;
+    text-decoration: none;
 }
 
 .img-card {

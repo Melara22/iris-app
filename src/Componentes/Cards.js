@@ -7,6 +7,7 @@ import '../Assets/ComponentesCSS/Cards.css';
 
 
 import Modals from './modals';
+import  Modalssocial from './modalsocial';
 /*Imagenes*/
 import agregar from '../Assets/Iconos/Agregar_icon.png';
 
@@ -121,6 +122,7 @@ class Cards extends Component {
         setTimeout(() => {
           this.invokeMasonry();
         }, 200);
+
         
 
       }))
@@ -136,9 +138,10 @@ class Cards extends Component {
   invokeMasonry(){
     var msnry;
     msnry = new Masonry( '.cards', {
-        itemSelector: '.grid-item',
+        itemSelector: '.grid-item',    
+        percentPosition: true,
+        columnWidth: 22
         
-  percentPosition: true
     });
 
     console.log({msnry});    
@@ -166,7 +169,7 @@ class Cards extends Component {
         var usersplit = usernamevar.split("@");
         if(usersplit.length>1){
          return (
-                 <div  className="grid-item col-md-3 col-lg-5 space ">
+                 <div  className="grid-item col-md-3 ">
                    
                   
                          <div className="thumbnail card-post" key={i}>
@@ -208,7 +211,7 @@ class Cards extends Component {
         }
         else{
          if(postsn.content.type == "video") {return (
-                 <div  className="grid-item col-md-3 col-lg-5 space ">
+                 <div  className="grid-item col-md-3  ">
                     
 
                    <div className="thumbnail card-post">
@@ -250,7 +253,7 @@ class Cards extends Component {
           }
         else{
             return(
-            <div  className="grid-item col-md-3 col-lg-5 space ">
+            <div  className="grid-item col-md-3 ">
                     
 
                    <div className="thumbnail card-post">
@@ -300,9 +303,15 @@ class Cards extends Component {
   
     return (
     <div className="container postainer-cards">
+      <div className="row cards-tools">
+                <div className="col-md-12">
+                    <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
+                    
+                </div>
+              </div>
       <div className="cards row">
 
-                     
+                     <Modalssocial/>
                         {renderPostsn}  
                         <div className="grid-item col-md-3 col-lg-5">
                             <div className="card post-nuevo">

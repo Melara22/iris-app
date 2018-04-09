@@ -11,6 +11,8 @@ import notifi from '../../Assets/Iconos/notificaciones.png';
 import nuevo from '../../Assets/Iconos/nuevo.png';
 import erase from '../../Assets/Iconos/erase.png';
 import imgstate from '../../Assets/Iconos/blank_state.png';
+
+
 import{app, verifyDashboards, signOut, verfSession,getData,getDashData} from '../../Assets/js/script.js';
 import {
   BrowserRouter as Router,
@@ -19,6 +21,10 @@ import {
 } from 'react-router-dom'
 import {MY_ROUTE} from '../../routes.js'
 let List;
+
+
+var Masonry = require ( 'masonry-layout' );
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -35,14 +41,17 @@ class Dashboard extends Component {
   }
   updateSearch(event){
     this.setState({search: event.target.value.substr(0,20)})
+
   }
   componentDidMount() {
+     
+    
     setTimeout(() => {
       this.setState({
           loading: [1, 2, 3]
-      });
-  }, 2000);
+      });}, 2000);
   let self = this;
+
   firebase.database().ref("users").once("value").then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
           var keys = childSnapshot.key;
@@ -78,10 +87,14 @@ class Dashboard extends Component {
               if (namelog.email == useremail) {
                   var dashdirection = app.database().ref("users/" + uskey + "/Dashboard/");
                   dashdirection.once("value").then(function(snapshot) {
+
                       snapshot.forEach(function(childSnapshot) {
+
                           self.setState({
+
                               dashs: self.state.dashs.concat(childSnapshot.val())
                           });
+
                       });
                   });
               }
@@ -89,7 +102,19 @@ class Dashboard extends Component {
           });
       });
   });
+  
   }
+
+
+  itemsMasonry(){
+    var mason;
+    mason = new Masonry( ' .dashcontainer', {
+      querySelector:'.item-dash',
+      percentPosition:true
+    });
+    console.log(mason);
+  }
+
   onDeleteData(data) {
           let self = this;
           var dashInic = this.state.dashs;
@@ -101,10 +126,12 @@ class Dashboard extends Component {
           }
           console.log(dashInic.length);
           if (dashInic.length === 0) {
+
               this.setState({
                   evaluate: "vacio"
               });
           }
+
           this.setState({
               data: dashInic
           });
@@ -141,7 +168,10 @@ class Dashboard extends Component {
     ));
 }
  valueState(){
-  
+
+    setTimeout(() => {
+          this.itemsMasonry();
+        }, 200);
     console.log(this.state.evaluate);
     if (this.state.evaluate != "lleno") {
       return (
@@ -166,17 +196,18 @@ class Dashboard extends Component {
   else{
     List = (props) => {
     let filteredContact = props.dashs.filter((dashs) => {
-      return dashs.dname.toLowerCase().indexOf(this.state.search.toString().toLowerCase()) !== -1;          
+      return dashs.dname.toLowerCase().indexOf(this.state.search.toString().toLowerCase()) !== -1;  
+             
     });
     if(filteredContact.length > 0){
     getData();
     return (
-   <div className=" mis-post">
-   <div className="row">
+
+   <div className="dashcontainer row">
       { filteredContact.map( (user,i) => { 
       const { did, dname, ddescription } = user;
       return (
-      <div className="col-md-4 col-lg-4 col-dash" style={{marginBottom:"30px"}} key = { i }>
+      <div className="item-dash col-md-4 col-lg-4 col-dash " style={{marginBottom:"30px"}} key = { i }>
          <div id="header">
             <ul className="a">
                <div className="col-md-8 header-name">
@@ -187,7 +218,7 @@ class Dashboard extends Component {
                   </Link>  
                </div>
                <div className="col-md-4 icon-trash val">
-                  <img src={erase} alt="trash" onClick={this.onDeleteData.bind(this, user)} onChange={this.onChange}/>
+                  <img id="addimg" src={erase} alt="trash" onClick={this.onDeleteData.bind(this, user)} onChange={this.onChange}/>
                </div>
             </ul>
          </div>
@@ -205,14 +236,14 @@ class Dashboard extends Component {
       )
       })}
    </div>
-</div>
+
 )}
 else{
   return ( 
-  <center className="animated pulse" id ="nore">
+  <div className="no-result row animated pulse" id ="nore">
      <br/><img src={imgstate} alt="nostate" />
-     <h2 style={{color:"#BDBDBD"}}>No results found</h2>
-  </center>
+     <h2>No se han encontrado resultados</h2>
+  </div>
   );
 }}
   return(
@@ -270,6 +301,7 @@ else{
   render() {
     console.log(this.state.dashs);
     return (
+
     this.state.loading.length <= 0 ? <IconLoading /> : (  
     <div className="Dashboard">
       <section className="dash">

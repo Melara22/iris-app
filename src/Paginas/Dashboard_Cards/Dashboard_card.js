@@ -15,6 +15,7 @@ import Cards from '../../Componentes/Cards';
 import Columns from '../../Componentes/Columns';
 import Columns2 from '../../Componentes/Columns2';
 import Modals from '../../Componentes/modals';
+import  Modalssocial from '../../Componentes/modalsocial';
 import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
@@ -195,10 +196,10 @@ componentDidMount() {
                         socnetar[i] = "twitter";
                      }
                   })}
-                  <div>
+                  
                       <Cards user={userar} socialNetwork={socnetar}/> 
                       
-                  </div>
+                
                 </div>
               
               
@@ -217,7 +218,7 @@ componentDidMount() {
               </div>
             
         <div className="row inside-post">  
-             
+             <Modalssocial />
             { props.users.map( (userx,i) => { 
 
              const { twitter, facebook, user } = userx;
