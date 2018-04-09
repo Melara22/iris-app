@@ -19,7 +19,7 @@ import comentario from '../Assets/Iconos/icon-fb/comentarios@2x.png';
 
 import fav from '../Assets/Iconos/icon-tw/fav@.png';
 import rt from '../Assets/Iconos/icon-tw/ret.png';
-
+import ImgLoading from './icons/imgLoading';
 
 
 
@@ -118,6 +118,8 @@ class Cards extends Component {
         setTimeout(() => {
           this.invokeMasonry();
         }, 200);
+        
+
       }))
       .catch(function(e){
         console.log('ERROR ', e);
