@@ -65,48 +65,10 @@ export function signIn(){
         status: dataReturn
 
       });
-      
-      // while(true){
-      //   if(email.charAt(i)!=='@'){
-      //       i++;
-      //   }
-      //   else{
-      //       var j = i;
-      //       var k=0;
-      //       while(true){
-      //         if(email.charAt(j)!==''){
-      //           j++;
-      //           k++;
-      //         }
-      //         else{
-      //           uid = (email.substr(0, i));
-      //           edomain=email.substr(i, k);
-      //           if(edomain === standardomain){
-      //             checkIfUserExists(name, email, uid);
-      //             return false;
-      //           }
-      //           else{
-      //             extermin();
-      //             return false;
-      //           }
-      //         }
-      //       }
-      //   }
-      // }
-    // ...
     }).catch(function(error) {
-      // Handle Errors here.
-      //var errorCode = error.code;
-      //var errorMessage = error.message;
-      // The email of the user's account used.
-      //var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      //var credential = error.credential;
-      // ...
-
-      reject({
-        status: 'Rejected'
-      });
+        reject({
+          status: 'Rejected'
+        });
     });
   });
 }

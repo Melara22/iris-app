@@ -7,6 +7,7 @@ import {
 
 /*CSS*/
 import './dashboard_Post.css';
+import '../../Assets/ComponentesCSS/modals.css';
 //import '../../Assets/js/jquery.overscroll.min.js';
 //import '../../Assets/js/cursor-scroll.js';
 
@@ -15,6 +16,7 @@ import Cards from '../../Componentes/Cards';
 import Columns from '../../Componentes/Columns';
 import Columns2 from '../../Componentes/Columns2';
 import Modals from '../../Componentes/modals';
+import  Modalssocial from '../../Componentes/modalsocial';
 import IconLoading from '../../Componentes/icons/IconLoading';
 /*Imagenes*/
 import logomenu from '../../Assets/Iconos/logo_fondo@2x.png';
@@ -62,16 +64,15 @@ constructor(props){
 }
 
 componentWillMount() {
-      
-    firebase.auth().onAuthStateChanged((user) => {
-        if(!user){
-          this.userLogged = !!user;
-        }
-        else{
-          this.userLogged = !!user
-        } 
-      });
-    }
+  firebase.auth().onAuthStateChanged((user) => {
+      if(!user){
+        this.userLogged = !!user;
+      }
+      else{
+        this.userLogged = !!user
+      } 
+  });
+}
 
     onDeleteData(data) {
       console.log("CONGRATULATIONS");
@@ -92,37 +93,37 @@ componentWillMount() {
           });
           var query = firebase.database().ref("users");
           firebase.auth().onAuthStateChanged(function(user) {
-              query.once("value").then(function(snapshot) {
-                  snapshot.forEach(function(childSnapshot) {
-                      var namelog = firebase.auth().currentUser;
-                      var key2 = childSnapshot.child("email").val();
-                      if (namelog.email == key2) {
-                          var keys = childSnapshot.key;
-                          var dashdirection = app.database().ref("users/" + keys + "/Dashboard/");
-                          dashdirection.once("value").then(function(snapshot) {
-                              snapshot.forEach(function(childSnapshot) {
-                                  var dashboardid = childSnapshot.child("did").val();
-                                  var url = window.location.href;
-                                  var id = url.substring(url.lastIndexOf('/') + 1 );
-                                  if (id == dashboardid) {
-                                      var keydashboard = childSnapshot.key;
-                                      var socialNetwork = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/");
-                                      socialNetwork.once("value").then(function(snapshot) {
-                                          snapshot.forEach(function(childSnapshot){
-                                                if(data.user === childSnapshot.child("user").val()){
-                                                  var userkey = childSnapshot.key;
-                                                  console.log(userkey);
-                                                  var userSn = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/"+userkey);
-                                                  userSn.remove();
-                                                }
-                                          });
-                                      });
+            query.once("value").then(function(snapshot) {
+              snapshot.forEach(function(childSnapshot) {
+                var namelog = firebase.auth().currentUser;
+                var key2 = childSnapshot.child("email").val();
+                if (namelog.email == key2) {
+                  var keys = childSnapshot.key;
+                  var dashdirection = app.database().ref("users/" + keys + "/Dashboard/");
+                  dashdirection.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                        var dashboardid = childSnapshot.child("did").val();
+                        var url = window.location.href;
+                        var id = url.substring(url.lastIndexOf('/') + 1 );
+                        if (id == dashboardid) {
+                            var keydashboard = childSnapshot.key;
+                            var socialNetwork = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/");
+                            socialNetwork.once("value").then(function(snapshot) {
+                                snapshot.forEach(function(childSnapshot){
+                                  if(data.user === childSnapshot.child("user").val()){
+                                    var userkey = childSnapshot.key;
+                                    console.log(userkey);
+                                    var userSn = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/"+userkey);
+                                    userSn.remove();
                                   }
-                              });
-                          });
-                      }
+                                });
+                            });
+                        }
+                      });
                   });
-              });
+                 }
+               });
+             });
           });
 }
 
@@ -253,7 +254,7 @@ onchangeContent(newName){
                     }
                   })}
                 <div>
-                    <Cards user={userar} socialNetwork={socnetar}/>  
+                  <Cards user={userar} socialNetwork={socnetar}/> 
                 </div>
               </div>
           );
@@ -264,7 +265,6 @@ onchangeContent(newName){
            <div className="row social-cpanel">
               <div className="col-md-12">
                   <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
-                  
               </div>
             </div>
             <div className="row inside-post">     
@@ -298,7 +298,32 @@ onchangeContent(newName){
                       <img src={agregar} id="addimg"/>
                       </a>
                       <p>Agregar una pagina</p>
-                      <Modals changeContent={this.onchangeContent}  />
+                      <Modalssocial changeContent={this.onchangeContent}  />
+                      <div className="Modals">
+                        <div id="myModal" className="modal modal1 fade" role="dialog">
+                          <div className="modal-dialog modal-dialog1 ">
+                            <div className="modal-content modal-content1">
+                             {this.state.sn}  
+                              <div className="modal-body modal-body1">
+                                <h2>Seleccione una red social</h2>
+                                <p>Agregar una cuenta a tu dashboard y revisa constantemente su contenido</p>
+                                <div className="redes">
+                                 <input type="radio" className="radio_item" value="" name="item" id="radio1"/>
+                                 <label className="label_item" htmlFor="radio1"> <img src={fb} /> </label>
+                                 <input type="radio" className="radio_item" value="" name="item" id="radio2"/>
+                                 <label className="label_item" htmlFor="radio2"> <img src={tw} /> </label>
+                             </div>
+                             <form>
+                              <div className="form-group" align="center">
+                                <input type="email" className="form-control input-color-blue" id="usname"/>
+                              </div>
+                             </form>
+                              <a onClick={this.createsn} className="btn bt-primary btnAgregar adddash">Agregar cuenta</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
             </div>  
@@ -311,9 +336,8 @@ onchangeContent(newName){
       <div className="Dashboard_card">
         <section>
           <div className="starter-te">            
+          <Menu/>
           </div>
-          <br/><br/><br/>
-          <a>{this.state.homeLink}</a>
           <List users = { this.state.users } />
         </section>
       </div>

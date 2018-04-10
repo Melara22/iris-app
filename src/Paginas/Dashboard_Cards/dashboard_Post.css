@@ -111,7 +111,7 @@ POST - CARDS nuevo diseño
 .card-post img{
    object-fit: cover;
    width: 100%;
-   height: 13vw;
+   height: 15em;
    border-top-left-radius: 20px;
    border-top-right-radius: 20px;
 }
@@ -178,6 +178,7 @@ POST - CARDS nuevo diseño
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 2em;
 }
 /*************
 POST - COLUMNS nuevo diseño
@@ -195,7 +196,7 @@ POST - COLUMNS nuevo diseño
      display: block;
       float: none;
      height: 100%;
-      width:25vw;
+      width:400px;
    }
 
    .add-column{

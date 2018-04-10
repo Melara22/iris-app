@@ -77,13 +77,13 @@
   
 }
 .modal-body1 h2{
- font-family:Brandon-light;
+ font-family:Franlink-ligth;
  color: #BDBDBD;
- font-size: 40px;
+ font-size: 35px;
 }
 
 .modal-body1 p{
-  font-family: Brandon-light;
+  font-family: Franlink-regular;
   padding-left: 4em;
   padding-right: 4em;
   font-size: 15px;
@@ -100,8 +100,8 @@
   background-color:#B388FF;
   border-color: transparent;
   color: white;
-  font-family:Brandon-medium;
-  font-size: 20px;
+  font-family:Franlink-medium;
+  font-size: 16px;
   padding-left: 30px;
   padding-right:30px; 
 }

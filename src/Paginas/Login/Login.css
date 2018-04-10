@@ -6,8 +6,7 @@ body {
 /*LOGIN PARTE DE LOGUEO*/
 
 .contenedor{
-  
-  width: 100%;
+ 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,8 +24,7 @@ body {
 }
 .login-container{
 	
-   margin-left: 25em;
-   margin-right: 25em;
+ 
    align-items: center;
    display: flex;
    justify-content: center;
@@ -64,28 +62,16 @@ body {
 
 }
 .contenido-login p{
-	font-size: 12px;
-  font-family:Franlink-regular;
+	font-size: 13px;
+  font-family:Franlink-medium;
   color: #757575!important;
+  font-weight: 300;
 }
 
 .logo2 {
   width: 30%;
 }
 
-.boton-image{
-  border-radius: 0px!important;
-  background-color: #2979FF;
-  border-color: #2979FF;
-  color: white;
-  font-family: Brandon-medium;
-  font-weight: 100;
-}
-
-.boton-image:hover{ 
-filter: brightness(110%);
-transition-duration: 0.5s;
-}
 
 
 .boton-image:before {
@@ -129,24 +115,25 @@ transition-duration: 0.5s;
 
 /*LOGIN PARTE TEXTO DE BIENVENIDA*/
 .login-texto{
-  top:26px; 
+  
   background: rgb(161, 123, 252);
-  padding-top: 80px;
-  padding-bottom: 100px;
-  padding-left: 80px;
-  padding-right: 80px;
   text-align: left;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  padding: 50px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    
+    flex-direction: column;
 
 }
 
 .login-texto h1{
   font-size: 30px;
-  font-family:Franlink-medium;
+  font-family:Franlink-bold;
   font-weight: 300;
   color: white;
+  text-align: left!important;
+  align-content: space-around;
 }
 
 .login-texto p{
@@ -159,24 +146,11 @@ transition-duration: 0.5s;
 @media screen and (max-width: 1920px){
   .login-container{
   
-   margin-left: 30em;
-   margin-right: 30em;
-   align-items: center;
-   display: flex;
-   justify-content: center; 
+  
 
 }
   .login-texto{
-  top:4px; 
-  
-  padding-top: 80px;
-  padding-bottom: 100px;
-  padding-left: 80px;
-  padding-right: 80px;
-  text-align: left;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+ 
 
 }
 
@@ -186,25 +160,10 @@ transition-duration: 0.5s;
 @media screen and (max-width: 1280px) and (min-height: 660px){
   .login-container{
   
-   margin-left: 15em;
-   margin-right: 15em;
-   align-items: center;
-   display: flex;
-   justify-content: center; 
 }
 
 .login-texto{
-  top:-10px; 
-  
-  padding-top: 5em;
-  padding-bottom: 5em;
-  padding-left: 60px;
-  padding-right: 60px;
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+ 
 
 }
 
@@ -215,22 +174,10 @@ transition-duration: 0.5s;
 .login-container{
   
 
-   align-items: center;
-   display: flex;
-   justify-content: center; 
 }
 
 .login-texto{
-  top:4px; 
- 
-  padding-top: 5em;
-  padding-bottom: 5em;
-  padding-left: 60px;
-  padding-right: 60px;
-  text-align: left;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  
 
 }
 
@@ -241,24 +188,11 @@ transition-duration: 0.5s;
 @media (max-width: 1366px) and (min-height: 768px){
 .login-container{
  
-   margin-left: 15em;
-   margin-right: 15em;
-   align-items: center;
-   display: flex;
-   justify-content: center; 
+  
 }
 
 .login-texto{
-  top:4px; 
-
-  padding-top: 5em;
-  padding-bottom: 5em;
-  padding-left: 60px;
-  padding-right: 60px;
-  text-align: left;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+ 
 
 }
 }
