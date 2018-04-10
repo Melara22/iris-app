@@ -52,6 +52,7 @@ export function signIn(){
           dataReturn = true;
           uid = customEmail[0];
           checkIfUserExists(name, email, uid);
+
         }
       }
 
@@ -127,7 +128,7 @@ export function createUser() {
     name: name,
     email: email
   });
-  window.location.href="/dashboard"
+  document.getElementById('mtb').click();
 }
 
 export function createDashboard(){
@@ -380,9 +381,6 @@ export function gotData (data){
     if(state===false){
         createUser();
       }
-      else{
-        window.location.href="/Dashboard";
-      }
   }
 }
   
@@ -399,7 +397,7 @@ export function verfSession(){
 export function verfSessionlog(){
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-      window.location.href="/Dashboard";
+      document.getElementById('mtb').click();
     }
   });
 }

@@ -22,6 +22,9 @@
   border-right-color: transparent;  
   
 }
+.modal-backdrop{
+  position: relative!important;
+}
 #dname{
   border-bottom:1px solid #E0E0E0!important; 
   border-radius:0px;

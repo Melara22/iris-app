@@ -8,6 +8,11 @@ import IconLoading from '../../Componentes/icons/IconLoading';
 import google from '../../Assets/Iconos/btn_google_signin_dark_normal_web@2x.png'
 import logo from '../../Assets/Iconos/login.png';
 import '../../Assets/js/script.js';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom'
 import{signIn, signOut, createUser, extermin, verfSessionlog,checkIfUserExists} from '../../Assets/js/script.js';
 import { YouAreOffline } from '../../Componentes/alerts/alertOffline.js';
 
@@ -81,6 +86,7 @@ verfSessionlog();
                      <a id="login" onClick={this.signInGoo}><img src={google} width="200"/></a>
                     <div className="marca">
                     <p>Powered by <a className="url-marca" href="https://elaniin.com/" target="_blank">Elaniin </a>&<a className="url-marca" target="_blank" href="http://app.inxights.co/"> Inxights</a></p>
+                    <Link id="mtb" style={{textDecoration:"none"}} to="/Dashboard"><a>Ir a Dashboard</a></Link>
                     </div>
                  </div>
             </div >

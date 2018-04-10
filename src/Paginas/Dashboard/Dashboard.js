@@ -131,14 +131,6 @@ class Dashboard extends Component {
                   });
               });
           });
-  return (
-    this.state.loading.length <= 0 ? <IconLoading /> : (  
-    <div className="Dashboard">
-      <section className="dash">
-        {this.valueState()}
-      </section>
-    </div>    
-    ));
 }
  valueState(){
   

@@ -42,6 +42,8 @@ var id = url.substring(url.lastIndexOf('/') + 1 );
 var userar=[];
 var socnetar=[];
 var socialNetC;
+var url = window.location.href;
+var lawea = url.substring(url.lastIndexOf('/') + 1 );
 Inactivity();
 class Dashboard_card extends Component {
 constructor(props){
@@ -51,11 +53,12 @@ constructor(props){
     
     users: [],
     loading:[],
-    design:[]
+    design:[],
+    homeLink:"Prueba"
     
   };
 
-  
+  this.onchangeContent = this.onchangeContent.bind(this);  
 }
 
 componentWillMount() {
@@ -69,6 +72,59 @@ componentWillMount() {
         } 
       });
     }
+
+    onDeleteData(data) {
+      console.log("CONGRATULATIONS");
+          let self = this;
+          var usersInic = this.state.users;
+          for (var i = 0; i < usersInic.length; i++) {
+              if (usersInic[i].user === data.user) {
+                  usersInic.splice(i, 1);
+              }
+          }
+          if (usersInic.length === 0) {
+              this.setState({
+                  evaluate: "vacio"
+              });
+          }
+          this.setState({
+              users: usersInic
+          });
+          var query = firebase.database().ref("users");
+          firebase.auth().onAuthStateChanged(function(user) {
+              query.once("value").then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                      var namelog = firebase.auth().currentUser;
+                      var key2 = childSnapshot.child("email").val();
+                      if (namelog.email == key2) {
+                          var keys = childSnapshot.key;
+                          var dashdirection = app.database().ref("users/" + keys + "/Dashboard/");
+                          dashdirection.once("value").then(function(snapshot) {
+                              snapshot.forEach(function(childSnapshot) {
+                                  var dashboardid = childSnapshot.child("did").val();
+                                  var url = window.location.href;
+                                  var id = url.substring(url.lastIndexOf('/') + 1 );
+                                  if (id == dashboardid) {
+                                      var keydashboard = childSnapshot.key;
+                                      var socialNetwork = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/");
+                                      socialNetwork.once("value").then(function(snapshot) {
+                                          snapshot.forEach(function(childSnapshot){
+                                                if(data.user === childSnapshot.child("user").val()){
+                                                  var userkey = childSnapshot.key;
+                                                  console.log(userkey);
+                                                  var userSn = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/"+userkey);
+                                                  userSn.remove();
+                                                }
+                                          });
+                                      });
+                                  }
+                              });
+                          });
+                      }
+                  });
+              });
+          });
+}
 
 componentDidMount() {
           const self = this;
@@ -171,111 +227,94 @@ componentDidMount() {
           setTimeout(() => {
             this.setState({loading: [1, 2]});
           },3000);
-        }
+}
 
- 
+onchangeContent(newName){
+   this.setState({
+        users: newName
+    });
+}
 
   render() {
 
-    // const List = this.renderList();
-
      const List = (props) => {
         if(this.state.design == "cards"){
-                return (
-            
-              <div >          
+          return (
+              <div>          
                   { props.users.map( (userx,i) => { 
                    const { twitter, facebook, user } = userx;
                     if(facebook==true){
                        userar[i] = user;
                        socnetar[i] = "Facebook";
-                     }
-                   else{
+                    }
+                    else{
                         userar[i] = user;
                         socnetar[i] = "twitter";
-                     }
+                    }
                   })}
-                  <div>
-                      <Cards user={userar} socialNetwork={socnetar}/> 
-                      
-                  </div>
-                </div>
-              
-              
-          );
-    }
-    else{
-      return (
-  
-        <div className="container postainer1">
-        
-         <div className="row social-cpanel">
-                <div className="col-md-12">
-                    <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
-                    
+                <div>
+                    <Cards user={userar} socialNetwork={socnetar}/>  
                 </div>
               </div>
-            
-        <div className="row inside-post">  
-             
-            { props.users.map( (userx,i) => { 
-
-             const { twitter, facebook, user } = userx;
-            if (facebook==true){
-             const { twitter, facebook, user } = userx;
-              socialNetC="facebook";  
-               return (
-                 <div key = { i } className="col-md-3 col-lg-3">
-                 <div className="post-view">
-                     <Columns socialNetwork={socialNetC} user={user} />       
-                  </div>
-                </div>
-               )
-             }
-             else {
-              socialNetC="twitter";
-               return (
-
-                <div key = { i } className="col-md-3 col-lg-3">
-                 <div className="post-view">
-                    <Columns socialNetwork={socialNetC} user={user} />       
-                  </div>
-                </div>
-               );
-             }
-            })}
-            <div className=" col-md-3 col-lg-3 ">
+          );
+        }
+      else{
+      return (
+        <div className="container postainer1">
+           <div className="row social-cpanel">
+              <div className="col-md-12">
+                  <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
+                  
+              </div>
+            </div>
+            <div className="row inside-post">     
+                { props.users.map( (userx,i) => { 
+                 const { twitter, facebook, user } = userx;
+                if (facebook==true){
+                 const { twitter, facebook, user } = userx;
+                  socialNetC="facebook";  
+                  return (
+                    <div key = { i } className="col-md-3 col-lg-3">
+                       <div className="post-view">
+                           <Columns socialNetwork={socialNetC} user={user} />       
+                       </div>
+                    </div>
+                  )
+                }
+                else {
+                  socialNetC="twitter";
+                  return (                
+                    <div key = { i } className="col-md-3 col-lg-3">
+                     <div className="post-view">
+                        <Columns socialNetwork={socialNetC} user={user} />       
+                      </div>
+                    </div>
+                  );
+                }
+                })}
+                <div className=" col-md-3 col-lg-3 ">
                   <div className="post-view add-column">
-                    <a data-toggle="modal" data-target="#myModal">
-                    <img src={agregar} id="addimg"/>
-                    </a>
-                    <p>Agregar una pagina</p>
-                    
-                    <Modals />
-
+                      <a data-toggle="modal" data-target="#myModal">
+                      <img src={agregar} id="addimg"/>
+                      </a>
+                      <p>Agregar una pagina</p>
+                      <Modals changeContent={this.onchangeContent}  />
                   </div>
                 </div>
-        </div>  
+            </div>  
         </div>
-    )
-     }
-    }
+    )}}
     verifiyAccess();
     verifyDesign();
     return (
        this.state.loading.length <= 0 ? <IconLoading /> : (
       <div className="Dashboard_card">
-        
-          <section>
-              
-                <div className="starter-te">                     
-                     <Menu/>
-                </div>
-                
-                
-               
-                <List users = { this.state.users } />                
-              
+        <section>
+          <div className="starter-te">            
+          </div>
+          <br/><br/><br/>
+          <a>{this.state.homeLink}</a>
+          <List users = { this.state.users } />
         </section>
       </div>
       )

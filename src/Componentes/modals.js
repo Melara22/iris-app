@@ -24,14 +24,12 @@ class Modals extends Component {
     this.state = {
       msg: null,
       sn: null,
-      users: []
+      users: [],
+      homeLink:"XD"
     };
-
     this.signInGoo = this.signInGoo.bind(this);
     this.createsn = this.createsn.bind(this);
   }
-
-
   signInGoo() {
     const goo = createDashboard();
 
@@ -164,35 +162,110 @@ componentDidMount(){
               });
             });
 }
+ onDeleteData(data) {
+          let self = this;
 
+          var usersInic = this.state.users;
+          
+          for (var i = 0; i < usersInic.length; i++) {
+            console.log(usersInic[i].user, data.user);
+              if (usersInic[i].user === data.user) {
+                  usersInic.splice(i, 1);
+              }
+          }
+          if (usersInic.length === 0) {
+              this.setState({
+                  evaluate: "vacio"
+              });
+          }
+          this.setState({
+              users: usersInic
+          });
+
+          var query = firebase.database().ref("users");
+          firebase.auth().onAuthStateChanged(function(user) {
+              query.once("value").then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                      var namelog = firebase.auth().currentUser;
+                      var key2 = childSnapshot.child("email").val();
+                      if (namelog.email == key2) {
+                          var keys = childSnapshot.key;
+                          var dashdirection = app.database().ref("users/" + keys + "/Dashboard/");
+                          dashdirection.once("value").then(function(snapshot) {
+                              snapshot.forEach(function(childSnapshot) {
+                                  var dashboardid = childSnapshot.child("did").val();
+                                  var url = window.location.href;
+                                  var id = url.substring(url.lastIndexOf('/') + 1 );
+                                  if (id == dashboardid) {
+                                      var keydashboard = childSnapshot.key;
+                                      var socialNetwork = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/");
+                                      socialNetwork.once("value").then(function(snapshot) {
+                                          snapshot.forEach(function(childSnapshot){
+                                                if(data.user === childSnapshot.child("user").val()){
+                                                  var userkey = childSnapshot.key;
+                                                  var userSn = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/"+userkey);
+                                                  userSn.remove();
+                                                }
+                                          });
+                                      });
+                                  }
+                              });
+                          });
+                      }
+                  });
+              });
+          });
+          this.props.changeContent(this.state.users);
+}
   render() {
-  console.log(this.state.users) 
- const List = (props) => {
-                return (
-                 props.users.map( (userx,k) => { 
-                   const { twitter, facebook, user } = userx;
-                       <div  key={k} className="row">
-                        <div className="col-md-12">
+ const List = (props) => {                 
+        
+            return(<div className="row">
+            {this.state.users.map((item,i) => {
+                if(item.facebook===true){
+                return( 
+                    
+                        <div key={i} className="col-md-12">
                             <div className="account">
                             <div className="col-md-3">
                              <img src={facebook} alt="logo-fb"/>  
                             </div>
                             <div className="col-md-6">
-                                <span className="name">lorem ipsum</span>
-                                <span className="username">@lorenipsum</span>
+                                <span className="name">{item.user}</span>
+                                <span className="username">@{item.user}</span>
                             </div>
                             <div className="col-md-3">
-                           <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                           <a onClick={this.onDeleteData.bind(this, item)}><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                             </div>
                             </div>
+                        </div> 
+                    
+                );
+            }
+            else{
+                return(
+                
+                    <div key={i} className="col-md-12">
+                        <div className="account">
+                        <div className="col-md-3">
+                         <img src={tw} alt="logo-fb"/>  
                         </div>
-                    </div>
-                  })
-              
-              
-          );
-   
-    }
+                        <div className="col-md-6">
+                            <span className="name">{item.user}</span>
+                            <span className="username">{item.user}</span>
+                        </div>
+                        <div className="col-md-3">
+                       <a onClick={this.onDeleteData.bind(this, item)}><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        </div>
+                        </div>
+                    </div> 
+                
+
+                );
+            }
+        })}
+            </div>);
+        }
     return (
       <div className="Modals">
         <div id="modal-account" className="modal modal5 fade" role="dialog" >

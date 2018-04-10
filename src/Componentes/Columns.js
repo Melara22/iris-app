@@ -103,14 +103,14 @@ if(contadorf.length >0  || contadort.length >0 ){
 
       if(postFb.content.type == "video"){
        return(
-        <div>
+        <div key={i}>
           <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
             <img className="img-circle profile" src={postFb.content.profile_picture}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <img className="profile-social" src={fb}/>&nbsp;<h2>{postFb.content.username}</h2>
          </div>
         <div className="columns-post">
         
-         <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+         <div  className="thumbnail card-column" style={{marginLeft:"10px"}}>
             <div className="caption">
             <p className="date">
                   {moment(postFb.content.created_at).format('Do MMMM YYYY, h:mm:ss a')}
@@ -139,7 +139,7 @@ if(contadorf.length >0  || contadort.length >0 ){
      }
      else {
          return(
-           <div>
+           <div key={i}>
           <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
             <img className="img-circle profile" src={postFb.content.profile_picture}/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <img className="profile-social" src={fb}/>&nbsp;<h2>{postFb.content.username}</h2>
@@ -180,13 +180,14 @@ else{
 
      renderSn = this.state.posts.map(function(posttw, i){
       return(
-         <div>
+         
+           <div key={i}  className="columns-post">
+           <div>
             <div className="col-md-12 header-column" style={{ marginBottom:"-390px", marginTop:"15px"}}>
               <img className="img-circle profile" src="http://via.placeholder.com/500x500"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <img className="profile-social" src={tw}/>&nbsp;<h2>{posttw.content.username}</h2>
            </div>
-           <div className="columns-post">
-           <div key={i} className="thumbnail card-column" style={{marginLeft:"10px"}}>
+           <div className="thumbnail card-column" style={{marginLeft:"10px"}}>
                 <div className="caption">
                     <p className="date">
                      {moment(posttw.created_at).format('Do MMMM YYYY, h:mm:ss a')}
