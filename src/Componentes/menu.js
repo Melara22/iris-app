@@ -15,7 +15,7 @@ import arrow from '../Assets/Iconos/arrow.png';
 import{signOut, verfSession,getData,getDashData} from '../Assets/js/script.js';
 import * as firebase from 'firebase';
 import {config} from '../Assets/js/cons.js';
-import {app, verifyDashboards2, refresh} from '../Assets/js/script.js';
+import {app} from '../Assets/js/script.js';
 import { YouAreOffline } from '../Componentes/alerts/alertOffline.js';
 import {
   BrowserRouter as Router,
@@ -52,82 +52,68 @@ class Menu extends Component {
       });
     }
 
-    componentDidMount() {
-        const self = this;
-        const rootRef = app.database().ref().child('users');
-        const userRef = rootRef.child('vavava');
-        firebase.auth().onAuthStateChanged(function(user) {
-          rootRef.once('value', function(snapshot){
-            snapshot.forEach(function(childSnapshot){
-              if (user) {
-              var uskey = childSnapshot.key;
-              var useremail = childSnapshot.child("email").val();
-              var namelog = firebase.auth().currentUser;
-                if (namelog.email == useremail) {
-                  var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
-                    dashdirection.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                        self.setState({
-                            users: self.state.users.concat(childSnapshot.val())
-                        });
-                      });
-                    });
-                }
-                /**/
-              }
-            });
-          });
-        });
+componentDidMount() {
+  const self = this;
+  const rootRef = app.database().ref().child('users');
+  const userRef = rootRef.child('vavava');
+  firebase.auth().onAuthStateChanged(function(user) {
+    rootRef.once('value', function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        if (user) {
+        var uskey = childSnapshot.key;
+        var useremail = childSnapshot.child("email").val();
+        var namelog = firebase.auth().currentUser;
+          if (namelog.email == useremail) {
+            var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+              dashdirection.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                  self.setState({
+                      users: self.state.users.concat(childSnapshot.val())
+                  });
+                });
+              });
+          }
+          /**/
         }
+      });
+    });
+  });
+}
 
-
-
-
-
+messageSimulate(){
+  this.props.createState();
+}
   render() {
     let self = this;
 
      List = (props) => {
     let filteredContact = props.users.filter(
-        (users) => {
-          return users.dname.indexOf(this.state.search) !== -1;
-        }
-      );
-
+      (users) => {
+        return users.dname.indexOf(this.state.search) !== -1;
+      }
+    );
     return (
-            
-        <ul className="dropdown-menu">              
-                        
+      <ul className="dropdown-menu">                           
         { filteredContact.map( (user,i) => { 
-
          const { did, dname, ddescription } = user;
-
          return (
            <li key = { i }>
-            <Link style={{textDecoration:"none"}}  to={ MY_ROUTE.replace(':slug', did) }><span style={{textDecoration:"none"}}  id="dashname" onClick={refresh}>{dname}</span></Link>
-        </li>
+            <Link style={{textDecoration:"none"}}  to={ MY_ROUTE.replace(':slug', did) }><span style={{textDecoration:"none"}}  id="dashname" onClick={this.messageSimulate.bind(this)}>{dname}</span></Link>
+          </li>
          )
-
-
         })}
-        </ul>
+      </ul>
     )
 }
-    
 
-    return (
-
-      <div className="Menu">
-
-                      {this.deprueba()}
-
-          <div align="center">
+  return (
+    <div className="Menu">
+      {this.deprueba()}
+      <div align="center">
         <Modals />
-         </div>
       </div>
-
-
-    );
+    </div>
+  );
   }
   deprueba(){
     if(this.userLogged == true){

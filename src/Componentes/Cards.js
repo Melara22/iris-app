@@ -165,10 +165,10 @@ class Cards extends Component {
         var usersplit = usernamevar.split("@");
         if(usersplit.length>1){
          return (
-                 <div  className="grid-item col-md-3 ">
+                 <div  key={i}  className="grid-item col-md-3 ">
                    
                   
-                         <div className="thumbnail card-post" key={i}>
+                         <div className="thumbnail card-post">
           <img src={postsn.content.media.media_url_https} />
               <div className="caption">
 

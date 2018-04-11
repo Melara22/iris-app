@@ -56,11 +56,13 @@ constructor(props){
     users: [],
     loading:[],
     design:[],
-    homeLink:"Prueba"
+    createState:[],
+
     
   };
 
-  this.onchangeContent = this.onchangeContent.bind(this);  
+  this.onchangeContent = this.onchangeContent.bind(this);
+  this.forceUpdate = this.forceUpdate.bind(this);
 }
 
 componentWillMount() {
@@ -72,168 +74,264 @@ componentWillMount() {
         this.userLogged = !!user
       } 
   });
+  const self = this;
+  const rootRef = app.database().ref().child('users');
+  firebase.auth().onAuthStateChanged(function(user) {
+    rootRef.once('value', function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        if (user) {
+          var uskey = childSnapshot.key;
+          var useremail = childSnapshot.child("email").val();
+          var namelog = firebase.auth().currentUser;
+            if (namelog.email == useremail) {
+              var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+                dashdirection.once("value").then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                     var url = window.location.href;
+                      var id = url.substring(url.lastIndexOf('/') + 1 );
+                      var dashid = childSnapshot.child("did").val();
+                      if(dashid == id){
+                        var dashkey = childSnapshot.key
+                        var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
+                        design.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                              var columnss = childSnapshot.child("columns").val();
+                              if (columnss == true) {
+                                self.setState({
+                                  design: "columns"
+                                });
+                              }
+                              else{
+                                  self.setState({
+                                    design: "cards"
+                                  });
+                              }
+                          });
+                        });
+                        var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                        sNetworkDir.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                            self.setState({
+                              users: self.state.users.concat(childSnapshot.val())
+                            });
+                          });
+                        });
+                      }
+                    /**/
+                  });
+                });
+            }  
+        }
+        else{
+          var uskey = childSnapshot.key;
+          var key2 = childSnapshot.child("email").val();         
+          var dashdirection = app.database().ref("users/"+uskey+"/Dashboard/");
+          dashdirection.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                 var url = window.location.href;
+                  var id = url.substring(url.lastIndexOf('/') + 1 );
+                  var dashid = childSnapshot.child("did").val();
+                  if(dashid == id){
+                    var keydashboard = childSnapshot.key;
+                    var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
+                    design.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                          var columnss = childSnapshot.child("columns").val();
+                          if (columnss == true) {
+                            self.setState({
+                              design: "columns"
+                            });
+                          }
+                          else{
+                              self.setState({
+                                design: "cards"
+                              });
+                          }
+                      });
+                    });
+                    var dashkey = childSnapshot.key
+                    var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                    sNetworkDir.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                        self.setState({
+                          users: self.state.users.concat(childSnapshot.val())
+                        });
+                      });
+                    });
+                  }
+                /**/
+            });
+          });
+        }
+     });
+    });
+    });
 }
 
-    onDeleteData(data) {
-      console.log("CONGRATULATIONS");
-          let self = this;
-          var usersInic = this.state.users;
-          for (var i = 0; i < usersInic.length; i++) {
-              if (usersInic[i].user === data.user) {
-                  usersInic.splice(i, 1);
-              }
-          }
-          if (usersInic.length === 0) {
-              this.setState({
-                  evaluate: "vacio"
-              });
-          }
-          this.setState({
-              users: usersInic
-          });
-          var query = firebase.database().ref("users");
-          firebase.auth().onAuthStateChanged(function(user) {
-            query.once("value").then(function(snapshot) {
+onDeleteData(data) {
+  let self = this;
+  var usersInic = this.state.users;
+  for (var i = 0; i < usersInic.length; i++) {
+      if (usersInic[i].user === data.user) {
+          usersInic.splice(i, 1);
+      }
+  }
+  if (usersInic.length === 0) {
+      this.setState({
+          evaluate: "vacio"
+      });
+  }
+  this.setState({
+      users: usersInic
+  });
+  var query = firebase.database().ref("users");
+  firebase.auth().onAuthStateChanged(function(user) {
+    query.once("value").then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        var namelog = firebase.auth().currentUser;
+        var key2 = childSnapshot.child("email").val();
+        if (namelog.email == key2) {
+          var keys = childSnapshot.key;
+          var dashdirection = app.database().ref("users/" + keys + "/Dashboard/");
+          dashdirection.once("value").then(function(snapshot) {
               snapshot.forEach(function(childSnapshot) {
-                var namelog = firebase.auth().currentUser;
-                var key2 = childSnapshot.child("email").val();
-                if (namelog.email == key2) {
-                  var keys = childSnapshot.key;
-                  var dashdirection = app.database().ref("users/" + keys + "/Dashboard/");
-                  dashdirection.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                        var dashboardid = childSnapshot.child("did").val();
-                        var url = window.location.href;
-                        var id = url.substring(url.lastIndexOf('/') + 1 );
-                        if (id == dashboardid) {
-                            var keydashboard = childSnapshot.key;
-                            var socialNetwork = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/");
-                            socialNetwork.once("value").then(function(snapshot) {
-                                snapshot.forEach(function(childSnapshot){
-                                  if(data.user === childSnapshot.child("user").val()){
-                                    var userkey = childSnapshot.key;
-                                    console.log(userkey);
-                                    var userSn = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/"+userkey);
-                                    userSn.remove();
-                                  }
-                                });
-                            });
-                        }
-                      });
-                  });
-                 }
-               });
-             });
+                var dashboardid = childSnapshot.child("did").val();
+                var url = window.location.href;
+                var id = url.substring(url.lastIndexOf('/') + 1 );
+                if (id == dashboardid) {
+                    var keydashboard = childSnapshot.key;
+                    var socialNetwork = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/");
+                    socialNetwork.once("value").then(function(snapshot) {
+                        snapshot.forEach(function(childSnapshot){
+                          if(data.user === childSnapshot.child("user").val()){
+                            var userkey = childSnapshot.key;
+                            console.log(userkey);
+                            var userSn = app.database().ref("users/"+keys+"/Dashboard/"+keydashboard+"/SocialNetwork/"+userkey);
+                            userSn.remove();
+                          }
+                        });
+                    });
+                }
+              });
           });
+         }
+       });
+     });
+  });
 }
 
 componentDidMount() {
-          const self = this;
-            const rootRef = app.database().ref().child('users');
-            const userRef = rootRef.child('vavava');
-            
-            firebase.auth().onAuthStateChanged(function(user) {
-              rootRef.once('value', function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-            if (user) {
-              var uskey = childSnapshot.key;
-              var useremail = childSnapshot.child("email").val();
-              var namelog = firebase.auth().currentUser;
-                if (namelog.email == useremail) {
-                  var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
-                    dashdirection.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                         var url = window.location.href;
-                          var id = url.substring(url.lastIndexOf('/') + 1 );
-                          var dashid = childSnapshot.child("did").val();
-                          if(dashid == id){
-                            var dashkey = childSnapshot.key
-                            var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
-                            design.once("value").then(function(snapshot) {
-                              snapshot.forEach(function(childSnapshot) {
-                                  var columnss = childSnapshot.child("columns").val();
-                                  if (columnss == true) {
-                                    self.setState({
-                                      design: "columns"
-                                    });
-                                  }
-                                  else{
-                                      self.setState({
-                                        design: "cards"
-                                      });
-                                  }
-                              });
-                            });
-                            var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
-                            sNetworkDir.once("value").then(function(snapshot) {
-                              snapshot.forEach(function(childSnapshot) {
-                                self.setState({
-                                  users: self.state.users.concat(childSnapshot.val())
-                                });
-                              });
-                            });
-                          }
-                        /**/
-                      });
-                    });
-                }  
-            }
-              else{
-                    var uskey = childSnapshot.key;
-                    var key2 = childSnapshot.child("email").val();         
-                    var dashdirection = app.database().ref("users/"+uskey+"/Dashboard/");
-
-                     dashdirection.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                             var url = window.location.href;
-                              var id = url.substring(url.lastIndexOf('/') + 1 );
-                              var dashid = childSnapshot.child("did").val();
-                              if(dashid == id){
-                                var keydashboard = childSnapshot.key;
-                                var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
-                                design.once("value").then(function(snapshot) {
-                                  snapshot.forEach(function(childSnapshot) {
-                                      var columnss = childSnapshot.child("columns").val();
-                                      if (columnss == true) {
-                                        self.setState({
-                                          design: "columns"
-                                        });
-                                      }
-                                      else{
-                                          self.setState({
-                                            design: "cards"
-                                          });
-                                      }
-                                  });
-                                });
-                                var dashkey = childSnapshot.key
-                                var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
-                                sNetworkDir.once("value").then(function(snapshot) {
-                                  snapshot.forEach(function(childSnapshot) {
-                                    self.setState({
-                                      users: self.state.users.concat(childSnapshot.val())
-                                    });
-                                  });
-                                });
-                              }
-                            /**/
-                          });
-                      });
-                  // Cancel enumeration
-
-              }
-               });
-              });
-            });
-          setTimeout(() => {
-            this.setState({loading: [1, 2]});
-          },3000);
+  setTimeout(() => {
+    this.setState({loading: [1, 2]});
+  },3000);
 }
 
+
 onchangeContent(newName){
-   this.setState({
-        users: newName
+ this.setState({
+      users: newName,
+  });
+}
+
+forceUpdate(){
+  console.log("CONGRATULATIONS");
+  const self = this;
+  this.setState({
+      users: [],
+      design:[]
+  });
+  const rootRef = app.database().ref().child('users');
+  
+  firebase.auth().onAuthStateChanged(function(user) {
+    rootRef.once('value', function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        if (user) {
+          var uskey = childSnapshot.key;
+          var useremail = childSnapshot.child("email").val();
+          var namelog = firebase.auth().currentUser;
+            if (namelog.email == useremail) {
+              var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+                dashdirection.once("value").then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                     var url = window.location.href;
+                      var id = url.substring(url.lastIndexOf('/') + 1 );
+                      var dashid = childSnapshot.child("did").val();
+                      if(dashid == id){
+                        var dashkey = childSnapshot.key
+                        var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
+                        design.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                              var columnss = childSnapshot.child("columns").val();
+                              if (columnss == true) {
+                                self.setState({
+                                  design: "columns"
+                                });
+                              }
+                              else{
+                                self.setState({
+                                  design: "cards"
+                                });
+                              }
+                          });
+                        });
+                        var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                        sNetworkDir.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                            self.setState({
+                              users: self.state.users.concat(childSnapshot.val())
+                            });
+                          });
+                        });
+                      }
+                    /**/
+                  });
+                });
+            }  
+        }
+        else{
+          var uskey = childSnapshot.key;
+          var key2 = childSnapshot.child("email").val();         
+          var dashdirection = app.database().ref("users/"+uskey+"/Dashboard/");
+          dashdirection.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                 var url = window.location.href;
+                  var id = url.substring(url.lastIndexOf('/') + 1 );
+                  var dashid = childSnapshot.child("did").val();
+                  if(dashid == id){
+                    var keydashboard = childSnapshot.key;
+                    var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
+                    design.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                          var columnss = childSnapshot.child("columns").val();
+                          if (columnss == true) {
+                            self.setState({
+                              design: "columns"
+                            });
+                          }
+                          else{
+                              self.setState({
+                                design: "cards"
+                              });
+                          }
+                      });
+                    });
+                    var dashkey = childSnapshot.key
+                    var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                    sNetworkDir.once("value").then(function(snapshot) {
+                      snapshot.forEach(function(childSnapshot) {
+                        self.setState({
+                          users: self.state.users.concat(childSnapshot.val())
+                        });
+                      });
+                    });
+                  }
+                /**/
+            });
+          });
+        }
+     });
     });
+  });
 }
 
   render() {
@@ -336,7 +434,7 @@ onchangeContent(newName){
       <div className="Dashboard_card">
         <section>
           <div className="starter-te">            
-          <Menu/>
+          <Menu createState={this.forceUpdate}/>
           </div>
           <List users = { this.state.users } />
         </section>

@@ -220,7 +220,6 @@ export function createDashboard(){
         // Cancel enumeration
       }); 
      });
-setTimeout(function(){ window.location.reload() }, 500); 
     }
     else{
           dataReturn = false;

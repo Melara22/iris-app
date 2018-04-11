@@ -20,87 +20,83 @@ class Modalssocial extends Component {
     };
   }
  componentDidMount(){
-     const self = this;
-            const rootRef = app.database().ref().child('users');
-            const userRef = rootRef.child('vavava');
-            
-            firebase.auth().onAuthStateChanged(function(user) {
-              rootRef.once('value', function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-            if (user) {
+  const self = this;
+  const rootRef = app.database().ref().child('users');
+  firebase.auth().onAuthStateChanged(function(user) {
+    rootRef.once('value', function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        if (user) {
+          var uskey = childSnapshot.key;
+          var useremail = childSnapshot.child("email").val();
+          var namelog = firebase.auth().currentUser;
+            if (namelog.email == useremail) {
+              var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
+                dashdirection.once("value").then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                     var url = window.location.href;
+                      var id = url.substring(url.lastIndexOf('/') + 1 );
+                      var dashid = childSnapshot.child("did").val();
+                      if(dashid == id){
+                        var dashkey = childSnapshot.key
+                        var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                        sNetworkDir.once("value").then(function(snapshot) {
+                          snapshot.forEach(function(childSnapshot) {
+                            self.setState({
+                              users: self.state.users.concat(childSnapshot.val())
+                            });
+                          });
+                        });
+                      }
+                    /**/
+                  });
+                });
+            }  
+        }
+        else{
               var uskey = childSnapshot.key;
-              var useremail = childSnapshot.child("email").val();
-              var namelog = firebase.auth().currentUser;
-                if (namelog.email == useremail) {
-                  var dashdirection=app.database().ref("users/"+uskey+"/Dashboard/");
-                    dashdirection.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                         var url = window.location.href;
-                          var id = url.substring(url.lastIndexOf('/') + 1 );
-                          var dashid = childSnapshot.child("did").val();
-                          if(dashid == id){
-                            var dashkey = childSnapshot.key
-                            var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
-                            sNetworkDir.once("value").then(function(snapshot) {
-                              snapshot.forEach(function(childSnapshot) {
-                                self.setState({
-                                  users: self.state.users.concat(childSnapshot.val())
-                                });
+              var key2 = childSnapshot.child("email").val();         
+              var dashdirection = app.database().ref("users/"+uskey+"/Dashboard/");
+
+               dashdirection.once("value").then(function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                       var url = window.location.href;
+                        var id = url.substring(url.lastIndexOf('/') + 1 );
+                        var dashid = childSnapshot.child("did").val();
+                        if(dashid == id){
+                          var keydashboard = childSnapshot.key;
+                          var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
+                          design.once("value").then(function(snapshot) {
+                            snapshot.forEach(function(childSnapshot) {
+                                var columnss = childSnapshot.child("columns").val();
+                                if (columnss == true) {
+                                  self.setState({
+                                    design: "columns"
+                                  });
+                                }
+                                else{
+                                    self.setState({
+                                      design: "cards"
+                                    });
+                                }
+                            });
+                          });
+                          var dashkey = childSnapshot.key
+                          var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
+                          sNetworkDir.once("value").then(function(snapshot) {
+                            snapshot.forEach(function(childSnapshot) {
+                              self.setState({
+                                users: self.state.users.concat(childSnapshot.val())
                               });
                             });
-                          }
-                        /**/
-                      });
-                    });
-                }  
-            }
-              else{
-                    var uskey = childSnapshot.key;
-                    var key2 = childSnapshot.child("email").val();         
-                    var dashdirection = app.database().ref("users/"+uskey+"/Dashboard/");
-
-                     dashdirection.once("value").then(function(snapshot) {
-                      snapshot.forEach(function(childSnapshot) {
-                             var url = window.location.href;
-                              var id = url.substring(url.lastIndexOf('/') + 1 );
-                              var dashid = childSnapshot.child("did").val();
-                              if(dashid == id){
-                                var keydashboard = childSnapshot.key;
-                                var design=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/Design");
-                                design.once("value").then(function(snapshot) {
-                                  snapshot.forEach(function(childSnapshot) {
-                                      var columnss = childSnapshot.child("columns").val();
-                                      if (columnss == true) {
-                                        self.setState({
-                                          design: "columns"
-                                        });
-                                      }
-                                      else{
-                                          self.setState({
-                                            design: "cards"
-                                          });
-                                      }
-                                  });
-                                });
-                                var dashkey = childSnapshot.key
-                                var sNetworkDir=app.database().ref("users/"+uskey+"/Dashboard/"+dashkey+"/SocialNetwork");
-                                sNetworkDir.once("value").then(function(snapshot) {
-                                  snapshot.forEach(function(childSnapshot) {
-                                    self.setState({
-                                      users: self.state.users.concat(childSnapshot.val())
-                                    });
-                                  });
-                                });
-                              }
-                            /**/
                           });
-                      });
-                  // Cancel enumeration
-
-              }
-               });
-              });
-            });
+                        }
+                      /**/
+                    });
+                });
+        }
+     });
+    });
+  });
 }
  onDeleteData(data) {
     let self = this;
