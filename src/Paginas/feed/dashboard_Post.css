@@ -53,14 +53,19 @@
 
 
 .postainer1{
-
-    height: 100vh;
+    cursor: grab;
+    cursor: -webkit-grab;
+    height: 97vh;
     display: flex;
     margin-right: auto;
     margin-left: auto; 
     padding-right: 1em!important;
     padding-left: 1em!important;
     width: 100%!important;
+}
+.postainer1:active{
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
 }
 .postainer-cards{
     padding-right: 1em!important;
@@ -77,7 +82,7 @@
 }
 
 .postainer1 .inside-post{
-    overflow-x: scroll;
+    
     padding-top: 85px;
     padding-bottom: 10px;
 }
@@ -179,6 +184,12 @@ POST - CARDS nuevo diseño
     display: flex;
     flex-wrap: wrap;
     margin-top: 2em;
+    cursor: grab;
+    cursor: -webkit-grab;
+}
+.cards:active{
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
 }
 /*************
 POST - COLUMNS nuevo diseño
@@ -187,11 +198,9 @@ POST - COLUMNS nuevo diseño
     display: -webkit-box;
     flex-wrap: wrap;
     white-space: wrap;
-    width: 100%;
+    
     }
-::-webkit-scrollbar:horizontal {
-        width:5em!important;
-    }
+
 .inside-post > .col-md-3 {
      display: block;
       float: none;

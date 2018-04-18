@@ -8,7 +8,9 @@ import {
 /*CSS*/
 import './dashboard_Post.css';
 import '../../Assets/ComponentesCSS/modals.css';
-//import '../../Assets/js/jquery.overscroll.min.js';
+//import '../../Assets/js/jquery.overscroll.min';
+import $ from 'jquery';
+
 //import '../../Assets/js/cursor-scroll.js';
 
 import Menu from '../../Componentes/menu';
@@ -39,6 +41,7 @@ import {app, verifiyAccess,verifyDesign, Inactivity} from '../../Assets/js/scrip
 import {MY_ROUTE} from '../../routes.js'
 
 import{verfSession, verifyDashboards, getData} from '../../Assets/js/script.js';
+var reactDragscroll = require("react-dragscroll");
 var url = window.location.href;
 var id = url.substring(url.lastIndexOf('/') + 1 );
 var userar=[];
@@ -365,7 +368,8 @@ forceUpdate(){
                   <p><a data-toggle="modal" data-target="#modal-account">Ajuste de dashboards</a></p>
               </div>
             </div>
-            <div className="row inside-post">     
+
+            <div className="row inside-post dragscroll">     
                 { props.users.map( (userx,i) => { 
                  const { twitter, facebook, user } = userx;
                 if (facebook==true){

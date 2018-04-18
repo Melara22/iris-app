@@ -37,3 +37,8 @@ body {
 body a{
 	cursor: pointer;
 }
+
+body:active{
+	cursor: -webkit-grabbing;
+	cursor: grabbing;
+}

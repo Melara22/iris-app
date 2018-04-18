@@ -13,8 +13,8 @@ import asombra from '../Assets/Iconos/icon-fb/asombra@2x.png';
 import triste from '../Assets/Iconos/icon-fb/triste@2x.png';
 import enojo from '../Assets/Iconos/icon-fb/enoja@2x.png';
 import comentario from '../Assets/Iconos/icon-fb/comentarios@2x.png';
-
-
+import IconLoading from './icons/IconLoading';
+import gif from '../Assets/Iconos/loading.gif';
 
 import agregar from '../Assets/Iconos/Agregar_icon.png';
 import likefb from '../Assets/Iconos/likefb.png';
@@ -52,6 +52,7 @@ constructor(props){
   this.state = {
     posts:[],
     data:[],
+    loading:[],
 
   }
 }
@@ -84,6 +85,9 @@ componentDidMount(){
       console.log('ERROR', e);
     })
   }
+  setTimeout(() => {
+    this.setState({loading: [1, 2]});
+  },3000);
  
 }
 
@@ -117,7 +121,7 @@ if(contadorf.length >0  || contadort.length >0 ){
                   </p>
 
                 <p>{postFb.content.message}</p>
-                <a className="link" href={postFb.permalink} target="_blank">Ver post</a>
+               
               </div>
 
               <video height="250" controls>
@@ -152,7 +156,7 @@ if(contadorf.length >0  || contadort.length >0 ){
                 </p>
 
                 <p>{postFb.content.message}</p>
-                <a className="link" href={postFb.permalink} target="_blank">Ver post</a>
+               
               </div>
 
               <img src={postFb.content.picture} />
@@ -208,10 +212,11 @@ else{
 } 
 else{
   return(
+      
       <div className="blankStateD">
         <div className="item" >
-        <img src={imgstate}/>
-        <p>Usuario no existente</p>
+        <img src={gif}/>
+        
         </div>
       </div>
   );

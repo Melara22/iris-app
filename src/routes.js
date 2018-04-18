@@ -9,12 +9,12 @@ import Dashboard from './Paginas/Dashboard/Dashboard';
 import Dashboard2 from './Paginas/Dashboardagregar/Dashboard2';
 import Dashboard_Post from './Paginas/Dashboard_Post/Dashboard_Post';
 import Dashboard_Columns from './Paginas/Dashboard_Columns/Dashboard_Columns';
-import Dashboard_card from './Paginas/Dashboard_Cards/Dashboard_card';
+import Dashboard_card from './Paginas/feed/Dashboard_card';
 import DashboardPost from './Paginas/DashboardPost/PostColumn';
 import DashboardBuscar from './Paginas/DashboardBuscar/Dashboardbuscar';
 import DashboardPost2 from './Paginas/DashboardPost2/DashboardPost2';
 import Private from './Paginas/Dashboard-private/private';
-export const MY_ROUTE = '/Dashboard_card/:slug';
+export const MY_ROUTE = '/feed/:slug';
 
 const BasicExample = () => (
   <Router>
@@ -27,8 +27,8 @@ const BasicExample = () => (
         );
       }}/>*/}
       <Route path="/dashboardagregar" component={dashboard2}/>
-      <Route path="/dashboard_Post" component={dashboard_post}/>
-      <Route path="/dashboard_card" component={dashboard_card}/>
+      
+      <Route path="/feed" component={feed}/>
 
 
       <Route exact strict path="/dashboard_columns/:slug" render={(match) => {
@@ -70,7 +70,7 @@ const dashboard_columns = () => (
     <Dashboard_Columns />
   </div>
 )
-const dashboard_card = () => (
+const feed = () => (
   <div>
     <Dashboard_card />
   </div>
@@ -82,11 +82,6 @@ const privateD = () => (
   </div>
 )
 
-const dashboardpost = () => (
-  <div>
-    <DashboardPost />
-  </div>  
-)
 
 const dashboardbuscar = () => (
   <div>
